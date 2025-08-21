@@ -7,17 +7,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 const { signUp } = strings;
 
 interface ISignup {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
   password: string;
-  phoneNumber: string;
+  phone_number: string;
+  confirmPassword: string;
 }
 
 const signUpSchema = yup.object({
-  firstName: yup.string().required("first name cannot be empty"),
-  lastName: yup.string().required("last name cannot be empty"),
-  phoneNumber: yup.string().required("phone number is required"),
+  first_name: yup.string().required("first name cannot be empty"),
+  last_name: yup.string().required("last name cannot be empty"),
+  phone_number: yup.string().required("phone number is required"),
   email: yup
     .string()
     .required("email is required")
@@ -27,14 +28,6 @@ const signUpSchema = yup.object({
 });
 
 const SignUpForm = () => {
-  // const [signUpFormData, setSignUpFormData] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   password: "",
-  //   phoneNumber: "",
-  // });
-
   const {
     register,
     watch,
@@ -42,11 +35,11 @@ const SignUpForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       password: "",
-      phoneNumber: "",
+      phone_number: "",
       confirmPassword: "",
     },
     resolver: yupResolver(signUpSchema),
@@ -62,31 +55,31 @@ const SignUpForm = () => {
       <form onSubmit={handleSubmit(signUpFormSubmitHandler)}>
         <div className="mt-3 flex flex-col gap-2">
           <div className="flex flex-col gap-1">
-            {/* for firstName */}
+            {/* for first_name */}
 
             <Input
               type="text"
-              id="firstName"
-              placeholder={signUp.placeholder.firstName}
-              value={watch("firstName")}
-              error={errors.firstName ? errors.firstName.message : ""}
-              {...register("firstName")}
-              label={signUp.firstName}
-              labelHtmlFor="firstName"
+              id="first_name"
+              placeholder={signUp.placeholder.first_name}
+              value={watch("first_name")}
+              error={errors.first_name ? errors.first_name.message : ""}
+              {...register("first_name")}
+              label={signUp.first_name}
+              labelHtmlFor="first_name"
               required
             />
           </div>
-          {/* for lastName */}
+          {/* for last_name */}
 
           <Input
             type="text"
-            id="lastName"
-            placeholder={signUp.placeholder.lastName}
-            value={watch("lastName")}
-            error={errors.lastName ? errors.lastName.message : ""}
-            {...register("lastName")}
-            label={signUp.lastName}
-            labelHtmlFor="lastName"
+            id="last_name"
+            placeholder={signUp.placeholder.last_name}
+            value={watch("last_name")}
+            error={errors.last_name ? errors.last_name.message : ""}
+            {...register("last_name")}
+            label={signUp.last_name}
+            labelHtmlFor="last_name"
           />
 
           {/* for email */}
@@ -103,17 +96,17 @@ const SignUpForm = () => {
             required
           />
 
-          {/* for phoneNumber */}
+          {/* for phone_number */}
 
           <Input
             type="number"
-            id="phoneNumber"
-            placeholder={signUp.placeholder.phoneNumber}
-            value={watch("phoneNumber")}
-            error={errors.phoneNumber ? errors.phoneNumber.message : ""}
-            {...register("phoneNumber")}
-            label={signUp.phoneNumber}
-            labelHtmlFor="phoneNumber"
+            id="phone_number"
+            placeholder={signUp.placeholder.phone_number}
+            value={watch("phone_number")}
+            error={errors.phone_number ? errors.phone_number.message : ""}
+            {...register("phone_number")}
+            label={signUp.phone_number}
+            labelHtmlFor="phone_number"
             required
           />
 
