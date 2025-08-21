@@ -5,7 +5,7 @@ export const strings = {
     last_name: "Last Name",
     email: "Email",
     password: "Password",
-    confirmPassword: "Confirm Password",
+    confirm_password: "Confirm Password",
     phone_number: "Phone Number",
     signUpButton: "Sign Up",
     placeholder: {
@@ -14,7 +14,7 @@ export const strings = {
       email: "example@gmail.com",
       phone_number: "000000000000",
       password: "**************",
-      confirmPassword: "****************",
+      confirm_password: "****************",
     },
   },
 

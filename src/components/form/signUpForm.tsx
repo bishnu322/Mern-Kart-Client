@@ -2,30 +2,10 @@ import { strings } from "../../strings";
 import { useForm } from "react-hook-form";
 import { Input } from "../../shared/designSystem/form/input/Input";
 import { Button } from "../../shared/designSystem/form/button/Button";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import type { ISignup } from "../../types/auth.types";
+import { signUpSchema } from "../../schema/auth.schema";
 const { signUp } = strings;
-
-interface ISignup {
-  first_name: string;
-  last_name: string;
-  email: string;
-  password: string;
-  phone_number: string;
-  confirmPassword: string;
-}
-
-const signUpSchema = yup.object({
-  first_name: yup.string().required("first name cannot be empty"),
-  last_name: yup.string().required("last name cannot be empty"),
-  phone_number: yup.string().required("phone number is required"),
-  email: yup
-    .string()
-    .required("email is required")
-    .email("invalid email format"),
-  password: yup.string().required("password is required"),
-  confirmPassword: yup.string().required("password is required"),
-});
 
 const SignUpForm = () => {
   const {
@@ -40,7 +20,7 @@ const SignUpForm = () => {
       email: "",
       password: "",
       phone_number: "",
-      confirmPassword: "",
+      confirm_password: "",
     },
     resolver: yupResolver(signUpSchema),
     mode: "all",
@@ -126,14 +106,16 @@ const SignUpForm = () => {
 
           {/* confirm password */}
           <Input
-            type="confirmPassword"
-            id="confirmPassword"
-            placeholder={signUp.placeholder.confirmPassword}
-            value={watch("confirmPassword")}
-            error={errors.password ? errors.password.message : ""}
-            {...register("confirmPassword")}
-            label={signUp.confirmPassword}
-            labelHtmlFor="confirmPassword"
+            type="confirm_password"
+            id="confirm_password"
+            placeholder={signUp.placeholder.confirm_password}
+            value={watch("confirm_password")}
+            error={
+              errors.confirm_password ? errors.confirm_password.message : ""
+            }
+            {...register("confirm_password")}
+            label={signUp.confirm_password}
+            labelHtmlFor="confirm_password"
             required
           />
 
