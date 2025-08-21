@@ -5,9 +5,14 @@ import { Button } from "../../shared/designSystem/form/button/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import type { ISignup } from "../../types/auth.types";
 import { signUpSchema } from "../../schema/auth.schema";
+import { useMutation } from "@tanstack/react-query";
+import { signUpApi } from "../../api/auth.api";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 const { signUp } = strings;
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     watch,
@@ -26,8 +31,23 @@ const SignUpForm = () => {
     mode: "all",
   });
 
+  const { mutate, isPending } = useMutation({
+    mutationFn: signUpApi,
+    onSuccess: (response: any) => {
+      console.log(response);
+      toast.success(response?.message ?? "sign up successful");
+      navigate("/login");
+    },
+    onError: (error: any) => {
+      console.log(error);
+      toast.error(error?.message ?? "sign up failed");
+    },
+    mutationKey: ["signup_mutation"],
+  });
+
   const signUpFormSubmitHandler = async (data: ISignup) => {
     console.log(data);
+    mutate(data);
   };
 
   return (
@@ -122,7 +142,11 @@ const SignUpForm = () => {
           {/* form submit button */}
 
           <div className="w-full mt-3">
-            <Button type="submit" children={signUp.signUpButton} />
+            <Button
+              type="submit"
+              children={signUp.signUpButton}
+              disabled={isPending}
+            />
           </div>
         </div>
       </form>
