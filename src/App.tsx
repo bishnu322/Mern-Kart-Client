@@ -14,7 +14,6 @@ function App() {
   return (
     <main className="h-full">
       <BrowserRouter>
-        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -25,7 +24,6 @@ function App() {
           <Route path="/product/:id" element={<DetailPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-        {/* <Footer /> */}
       </BrowserRouter>
 
       <Toaster reverseOrder={true} />
