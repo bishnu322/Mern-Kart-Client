@@ -1,16 +1,14 @@
 import Footer from "../components/footer/Footer";
 import Header from "../components/header";
 
-const Product = () => {
+const Wishlist = () => {
   return (
     <div className="h-full bg-gray-300">
       <Header />
-
-      <div className="min-h-full">Product</div>
-
+      <div className="h-full">wishlist</div>
       <Footer />
     </div>
   );
 };
 
-export default Product;
+export default Wishlist;
