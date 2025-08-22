@@ -1,14 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router";
 import logo from "../../assets/mernKart.png";
-import {
-  FaHeart,
-  FaShoppingCart,
-  FaBars,
-  FaTimes,
-  FaLongArrowAltRight,
-} from "react-icons/fa";
+import { FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
-import { MdLogout } from "react-icons/md";
+
 import { useMutation } from "@tanstack/react-query";
 import { logoutApi } from "../../api/auth.api";
 import toast from "react-hot-toast";
