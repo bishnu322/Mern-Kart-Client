@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Header from "../components/header";
-import Footer from "../components/footer/Footer";
 
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +35,6 @@ const ContactUs: React.FC = () => {
 
   return (
     <>
-      <Header />
       <div className="w-full min-h-full bg-gray-300 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
@@ -300,7 +297,6 @@ const ContactUs: React.FC = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

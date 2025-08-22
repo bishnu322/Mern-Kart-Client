@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import SignUpForm from "../../components/form/signUpForm";
 import { strings } from "../../strings";
 
@@ -10,6 +11,13 @@ const SignUp = () => {
         </h1>
 
         <SignUpForm />
+
+        <div className="text-center m-2  text-md">
+          Have an account?
+          <span className="text-violet-500 font-bold cursor-pointer mx-2">
+            <Link to={"/login"}>Login</Link>
+          </span>
+        </div>
       </div>
     </main>
   );

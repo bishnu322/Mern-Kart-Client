@@ -12,23 +12,28 @@ import { Toaster } from "react-hot-toast";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
 import Profile from "./pages/Profile";
+import ClientLayout from "./layout/ClientLayout";
 
 function App() {
   return (
     <main className="h-full">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/products" element={<Product />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/About-us" element={<AboutUs />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/product/:id" element={<DetailPage />} />
+
+          <Route path={"/"} element={<ClientLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Product />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/About-us" element={<AboutUs />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/product/:id" element={<DetailPage />} />
+          </Route>
+
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
