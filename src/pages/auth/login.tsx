@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import LoginForm from "../../components/form/loginForm";
 import { strings } from "../../strings";
 
@@ -11,9 +12,9 @@ const Login = () => {
         <LoginForm />
         {/* for signup routing */}
         <div className="text-center m-2  text-md">
-          Don't have an account?{" "}
-          <span className="text-violet-500 font-bold cursor-pointer">
-            Sign Up
+          Don't have an account?
+          <span className="text-violet-500 font-bold cursor-pointer mx-2">
+            <Link to={"/signup"}>Sign Up</Link>
           </span>
         </div>
       </div>
