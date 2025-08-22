@@ -3,11 +3,15 @@ import logo from "../../assets/mernKart.png";
 import {
   FaHeart,
   FaShoppingCart,
-  FaUser,
   FaBars,
   FaTimes,
+  FaLongArrowAltRight,
 } from "react-icons/fa";
 import { useState } from "react";
+import { MdLogout } from "react-icons/md";
+import { useMutation } from "@tanstack/react-query";
+import { logoutApi } from "../../api/auth.api";
+import toast from "react-hot-toast";
 
 const links: { label: string; link: string }[] = [
   {
@@ -33,7 +37,7 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="flex justify-between px-4 md:px-8 lg:px-36 items-center py-3">
+      <div className="flex justify-between px-4 md:px-8 lg:px-20 items-center py-3">
         {/* logo */}
         <LogoSection />
 
@@ -134,8 +138,32 @@ const NavLinksMobile = ({
 //! icon section
 
 const IconSection = () => {
+  const user = JSON.parse(localStorage.getItem("token") as string) ?? null;
+
+  const get_user_data = (user: any) => {
+    return `${user?.first_name} ${user?.last_name}`;
+  };
+
+  const { mutate } = useMutation({
+    mutationFn: logoutApi,
+    onSuccess: (response: any) => {
+      console.log(response);
+      toast.success(response?.message ?? "logout success");
+      localStorage.clear();
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error(error?.message ?? "logout failed");
+    },
+    mutationKey: ["logout_mutation"],
+  });
+
+  const logoutHandler = () => {
+    mutate();
+  };
+
   return (
-    <div className="flex justify-between gap-4 md:gap-5 items-center">
+    <div className="flex justify-between gap-4 md:gap-2 items-center">
       <Link
         to="/cart"
         className="p-2 text-gray-700 hover:text-violet-600 transition-colors"
@@ -148,15 +176,33 @@ const IconSection = () => {
       >
         <FaHeart size={"20px"} />
       </Link>
-      <Link
-        to="/profile"
-        className="flex items-center gap-2 p-2 text-gray-700 hover:text-violet-600 transition-colors"
-      >
-        <FaUser size={"20px"} />
-        <span className="hidden md:block font-semibold text-violet-700 text-md">
-          Username
-        </span>
-      </Link>
+
+      {user ? (
+        <div className="flex items-center">
+          <Link
+            to="/profile"
+            className="p-2 hover:text-violet-600 transition-colors text-lg font-semibold text-violet-500"
+          >
+            {/* <FaUser size={"20px"} /> */}
+            <span>{get_user_data(user)}</span>
+          </Link>
+
+          <button
+            onClick={logoutHandler}
+            className="px-3 py-2 bg-violet-600 text-sm rounded font-semibold text-white cursor-pointer transition-all duration-500 hover:bg-violet-500"
+          >
+            Logout
+          </button>
+        </div>
+      ) : (
+        <div>
+          <Link to={"/login"}>
+            <button className="px-3 py-2 bg-violet-600 text-sm rounded font-semibold text-white cursor-pointer transition-all duration-500 hover:bg-violet-500">
+              Login
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
