@@ -145,7 +145,7 @@ const IconSection = () => {
     onSuccess: (response: any) => {
       console.log(response);
       localStorage.clear();
-      toast.success(response?.message ?? "logout success");
+      toast.success(response?.message ?? "logout successful");
       navigate("/");
     },
     onError: (error) => {
