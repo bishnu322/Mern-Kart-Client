@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import logo from "../../assets/mernKart.png";
 import {
   FaHeart,
@@ -144,12 +144,15 @@ const IconSection = () => {
     return `${user?.first_name} ${user?.last_name}`;
   };
 
+  const navigate = useNavigate();
+
   const { mutate } = useMutation({
     mutationFn: logoutApi,
     onSuccess: (response: any) => {
       console.log(response);
-      toast.success(response?.message ?? "logout success");
       localStorage.clear();
+      toast.success(response?.message ?? "logout success");
+      navigate("/");
     },
     onError: (error) => {
       console.log(error);
