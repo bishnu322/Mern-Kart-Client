@@ -2,7 +2,6 @@ import { Link, useLocation, useNavigate } from "react-router";
 import logo from "../../assets/mernKart.png";
 import { FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
-
 import { useMutation } from "@tanstack/react-query";
 import { logoutApi } from "../../api/auth.api";
 import toast from "react-hot-toast";
