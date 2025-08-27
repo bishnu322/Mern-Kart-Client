@@ -1,5 +1,6 @@
 // import Header from "../components/header";
-import FeaturedProduct from "../components/landing/FeaturedProduct";
+import CategoryList from "../components/landing/category";
+import FeaturedProduct from "../components/landing/product/FeaturedProduct";
 import Hero from "../components/landing/Hero";
 
 const Home = () => {
@@ -7,7 +8,8 @@ const Home = () => {
     <div className=" bg-gray-50 w-full">
       <Hero />
 
-      <div className="px-10 py-5 h-100">
+      <CategoryList />
+      <div className="px-10 py-5 min-h-full">
         <FeaturedProduct />
       </div>
     </div>
