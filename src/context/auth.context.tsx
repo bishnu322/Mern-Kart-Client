@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   createContext,
   useContext,
@@ -7,22 +8,19 @@ import {
   type SetStateAction,
 } from "react";
 import { type IUser } from "../types/global.types";
+import { profileApi } from "../api/auth.api";
 
 interface IContext {
-  user: null | IUser;
-  setUser: Dispatch<SetStateAction<null>>;
+  user: IUser | null;
+  setUser: Dispatch<SetStateAction<IUser | null>>;
   isLoading: boolean;
-  token: string | null;
-  setToken: Dispatch<SetStateAction<string | null>>;
   logout: () => void;
 }
 
-const initial_value = {
+const initial_value: IContext = {
   user: null,
   setUser: () => {},
   isLoading: true,
-  token: null,
-  setToken: () => {},
   logout: () => {},
 };
 
@@ -31,23 +29,29 @@ const AuthContext = createContext<IContext>(initial_value);
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
+  // const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    try {
-      const data = localStorage.getItem("user");
-      const token = localStorage.getItem("token");
-      if (data && token) {
-        setUser(JSON.parse(data));
-        setToken(token);
+    async function fetchUser() {
+      try {
+        const data = await profileApi();
+        console.log(data);
+        if (data && typeof data === "object" && "data" in data) {
+          setUser((data as { data: IUser }).data);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        setUser(null);
+        console.log(error);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
     }
+
+    fetchUser();
   }, []);
 
   const logout = (cb = () => {}) => {
@@ -57,9 +61,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider
-      value={{ user, setUser, token, setToken, isLoading, logout }}
-    >
+    <AuthContext.Provider value={{ user, setUser, isLoading, logout }}>
       {children}
     </AuthContext.Provider>
   );

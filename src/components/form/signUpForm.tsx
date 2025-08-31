@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { strings } from "../../strings";
 import { useForm } from "react-hook-form";
 import { Input } from "../../shared/designSystem/form/input/Input";
@@ -33,10 +34,11 @@ const SignUpForm = () => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: signUpApi,
+
     onSuccess: (response: any) => {
       console.log(response);
       toast.success(response?.message ?? "sign up successful");
-      navigate("/login");
+      navigate("/login", { replace: true });
     },
     onError: (error: any) => {
       console.log(error);

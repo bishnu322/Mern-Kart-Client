@@ -8,15 +8,20 @@ import { Button } from "../../shared/designSystem/form/button/Button";
 import { loginApi } from "../../api/auth.api";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useAuth } from "../../context/auth.context";
 
 const { login } = strings;
 
 const LoginForm = () => {
-  const { setUser, setToken } = useAuth();
+  const { setUser } = useAuth();
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const navigate_to = location.state?.from ?? "/";
+  console.log(location);
+
   const {
     register,
     watch,
@@ -33,14 +38,15 @@ const LoginForm = () => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: loginApi,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onSuccess: (response: any) => {
       console.log(response);
       toast.success(response?.message ?? "login success");
       localStorage.setItem("user", JSON.stringify(response.data.data));
-      localStorage.setItem("token", response.data.access_token);
+      // localStorage.setItem("token", response.data.access_token);
       setUser(response.data.data);
-      setToken(response.data.access_token);
-      navigate("/");
+      // setToken(response.data.access_token);
+      navigate(navigate_to, { replace: true });
     },
     onError: (error) => {
       console.log(error);

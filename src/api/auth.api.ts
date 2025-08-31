@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { IloginData, ISignup } from "../types/auth.types";
 import api from "./";
 
@@ -32,6 +33,20 @@ export const logoutApi = async () => {
     return response.data;
   } catch (error: any) {
     console.log(error);
+    throw error.response.data;
+  }
+};
+
+export const profileApi = async () => {
+  try {
+    const response = await api.get("/auth/me");
+
+    console.log(response.data);
+
+    return response.data;
+  } catch (error: any) {
+    console.log(error);
+
     throw error.response.data;
   }
 };
