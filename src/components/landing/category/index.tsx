@@ -21,7 +21,7 @@ const CategoryList = () => {
   if (!data) return null;
 
   return (
-    <div className="p-10">
+    <div className="p-5">
       <TitleComponent
         title="Our featured Categories"
         sub_title="Explore products by categories"
@@ -30,7 +30,7 @@ const CategoryList = () => {
       <div>
         {/* render category */}
         {data.data.length > 0 && (
-          <div className=" mt-6 grid  grid-cols-4  gap-5">
+          <div className=" mt-6 flex flex-col gap-2 sm:grid sm:grid-cols-3">
             {data.data.map((category) => (
               <CategoryCard key={category._id} category={category} />
             ))}
