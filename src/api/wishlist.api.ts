@@ -25,6 +25,25 @@ export const wishlistApi = async (): TResponse<WishlistItem[]> => {
   }
 };
 
+interface AddToWishlist {
+  _id: string;
+}
+
+export const addToWishlist = async (_id: string): TResponse<AddToWishlist> => {
+  try {
+    const response = await api.post<TResponse<AddToWishlist>>("/wishlist", {
+      _id,
+    });
+    console.log(response.data);
+
+    return response.data;
+  } catch (error: any) {
+    console.log(error);
+
+    throw error.response.data;
+  }
+};
+
 export const removeWishlistProductApi = async (id: string) => {
   try {
     const response = await api.post("/wishlist", {

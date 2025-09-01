@@ -12,7 +12,7 @@ const Wishlist = () => {
   if (!data?.data?.length) return <div>wishlist is empty..</div>;
 
   return (
-    <div className="flex justify-center items-center sm:grid sm:grid-cols-4">
+    <div className="flex justify-center flex-wrap items-center sm:flex sm:flex-wrap sm:my-10">
       {data.data.map((value) => (
         <div
           className="p-4 m-5  w-[300px] rounded  shadow-2xl shadow-gray-700 bg-white"
