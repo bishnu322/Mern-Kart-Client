@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useLocation, useNavigate } from "react-router";
 import logo from "../../assets/mernKart.png";
 import { FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
@@ -134,7 +135,7 @@ const NavLinksMobile = ({
 const IconSection = () => {
   // const user = JSON.parse(localStorage.getItem("token") as string) ?? null;
   const { user } = useAuth();
-  const { setUser, setToken } = useAuth();
+  const { setUser } = useAuth();
 
   const get_user_data = (user: any) => {
     return `${user?.first_name} ${user?.last_name}`;
@@ -147,10 +148,10 @@ const IconSection = () => {
     onSuccess: (response: any) => {
       console.log(response);
       localStorage.removeItem("user");
-      localStorage.removeItem("token");
+      // localStorage.removeItem("token");
       toast.success(response?.message ?? "logout successful");
       setUser(null);
-      setToken(null);
+
       navigate("/");
     },
     onError: (error) => {

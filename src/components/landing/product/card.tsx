@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// const image =
-//   "https://specials-images.forbesimg.com/imageserve/65df2e0562b5d061b718a4af/Skin-and-hair-care-beauty-product-mock-up--lotion-bottle--oil--cream--isolated-on/960x0.jpg?fit=scale";
-
 import { useMutation } from "@tanstack/react-query";
 import type { IProduct } from "../../../types/product.types";
 import { addToWishlist } from "../../../api/wishlist.api";
 import toast from "react-hot-toast";
+import { Link } from "react-router";
 
 interface IProductCardProps {
   product: IProduct;
@@ -15,7 +12,7 @@ const ProductCard = ({ product }: IProductCardProps) => {
   const { mutate, isPending } = useMutation({
     mutationFn: addToWishlist,
     onSuccess: (response) => {
-      toast.success(response.message);
+      toast.success(response.data.message);
     },
     onError: (error) => {
       toast.error(error.message);
@@ -67,9 +64,11 @@ const ProductCard = ({ product }: IProductCardProps) => {
 
       <div className="flex justify-between">
         {/* view detail */}
-        <button className="border-1 px-3 py-2 rounded text-md font-semibold cursor-pointer hover:bg-black hover:text-white transition-all duration-300">
-          View Detail
-        </button>
+        <Link to={`/product/${product?._id}?name=${product?.name}`}>
+          <button className="border-1 px-3 py-2 rounded text-md font-semibold cursor-pointer hover:bg-black hover:text-white transition-all duration-300">
+            View Detail
+          </button>
+        </Link>
         {/* add to cart */}
         <button
           onClick={addToList}

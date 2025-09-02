@@ -12,7 +12,7 @@ const Wishlist = () => {
   if (!data?.data?.length) return <div>wishlist is empty..</div>;
 
   return (
-    <div className="flex justify-center flex-wrap items-center sm:flex sm:flex-wrap sm:my-10">
+    <div className="flex justify-center flex-wrap items-center sm:flex sm:flex-wrap sm:my-10 sm:justify-start">
       {data.data.map((value) => (
         <div
           className="p-4 m-5  w-[300px] rounded  shadow-2xl shadow-gray-700 bg-white"
@@ -30,7 +30,7 @@ const Wishlist = () => {
 
           {/* name */}
 
-          <div className="flex justify-between my-3">
+          <div className="flex justify-between my-1">
             <h2 className="text-lg text-violet-800 font-semibold">
               {value.name}
             </h2>
@@ -41,6 +41,12 @@ const Wishlist = () => {
               NPR. {value.price}
             </p>
           </div>
+
+          <div className="line-clamp-2 my-3 text-gray-500">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+            temporibus magnam deleniti, quam quas eligendi.
+          </div>
+
           {/* button */}
 
           {/* view detail */}

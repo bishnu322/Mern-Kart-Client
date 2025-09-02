@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { TResponse } from "../types/generic";
 import api from "./index";
 
@@ -13,35 +12,25 @@ interface WishlistItem {
 }
 
 export const wishlistApi = async (): TResponse<WishlistItem[]> => {
-  try {
-    const response = await api.get<TResponse<WishlistItem[]>>("/wishlist");
+  const response = await api.get<TResponse<WishlistItem[]>>("/wishlist");
 
-    console.log(response.data);
+  console.log(response.data);
 
-    return response.data;
-  } catch (error: any) {
-    console.log(error);
-    throw error.response.data;
-  }
+  return response.data;
 };
 
 interface AddToWishlist {
   _id: string;
+  message: string;
 }
 
 export const addToWishlist = async (_id: string): TResponse<AddToWishlist> => {
-  try {
-    const response = await api.post<TResponse<AddToWishlist>>("/wishlist", {
-      _id,
-    });
-    console.log(response.data);
+  const response = await api.post<TResponse<AddToWishlist>>("/wishlist", {
+    _id,
+  });
+  console.log(response.data);
 
-    return response.data;
-  } catch (error: any) {
-    console.log(error);
-
-    throw error.response.data;
-  }
+  return response.data;
 };
 
 export const removeWishlistProductApi = async (id: string) => {

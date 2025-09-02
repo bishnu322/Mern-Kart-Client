@@ -7,3 +7,12 @@ export const getAllProduct = async (): TGetAllProduct => {
   const response = await api.get<TGetAllProduct>("/product");
   return response.data;
 };
+
+type TGetProductById = TResponse<IProduct>;
+
+export const getProductById = async (id: string): TGetProductById => {
+  const response = await api.get<TGetProductById>(`/product/${id}`);
+
+  console.log(response.data);
+  return response.data;
+};

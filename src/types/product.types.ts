@@ -3,7 +3,7 @@ import type { ICategoryResponse } from "./category.types";
 import type { IImage, IResponse, IUser } from "./global.types";
 
 export interface IProduct extends IResponse {
-  id: string;
+  _id: string;
   cover_img: IImage;
   images?: IImage[];
   name: string;
