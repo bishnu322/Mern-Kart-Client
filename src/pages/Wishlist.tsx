@@ -2,14 +2,16 @@ import { withAuth } from "../hoc/with.auth.hoc";
 import { allAdminAndUser } from "../types/global.types";
 import { useQuery } from "@tanstack/react-query";
 import { wishlistApi } from "../api/wishlist.api";
+import Loader from "../components/loader/loader";
 
 const Wishlist = () => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: wishlistApi,
     queryKey: ["get_all_wishlist"],
   });
 
   if (!data?.data?.length) return <div>wishlist is empty..</div>;
+  if (isLoading) return <Loader />;
 
   return (
     <div className="flex justify-center flex-wrap items-center sm:flex sm:flex-wrap sm:my-10 sm:justify-start">
