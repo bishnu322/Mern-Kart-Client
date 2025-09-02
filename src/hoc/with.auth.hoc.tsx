@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { useAuth } from "../context/auth.context";
 import toast from "react-hot-toast";
 import { Navigate, useLocation } from "react-router";
+import Loader from "../components/loader/loader";
 
 // Define Role type, adjust as needed for your app
 type Role = string;
@@ -16,7 +17,7 @@ export function withAuth<T extends object>(
     const location = useLocation();
 
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <Loader />;
     }
 
     if (!user) {
