@@ -13,7 +13,7 @@ interface IProps {
 
 const CategoryCard: React.FC<IProps> = ({ category }) => {
   return (
-    <div className="flex gap-2 items-center border-2 bg-violet-50 border-gray-200 p-3 cursor-pointer transition-all duration-300 hover:transition-y-1">
+    <div className=" border-2 bg-violet-50 border-gray-200 p-3 cursor-pointer transition-all duration-300 hover:transition-y-1">
       <div>
         <MdOutlineCategory size={22} className="text-violet-500" />
       </div>

@@ -19,7 +19,7 @@ const FeaturedProduct = () => {
         link="#"
       />
 
-      <div className="flex justify-between flex-wrap">
+      <div className="flex justify-between flex-wrap items-center">
         {data.data.map((data) => (
           <ProductCard key={data._id} product={data} />
         ))}

@@ -3,27 +3,19 @@ import { allAdminAndUser } from "../types/global.types";
 import { useQuery } from "@tanstack/react-query";
 import { wishlistApi } from "../api/wishlist.api";
 
-interface WishlistItem {
-  _id: string;
-  cover_img: { path: string };
-  name: string;
-  price: number;
-  // add other fields as needed
-}
-
 const Wishlist = () => {
   const { data } = useQuery({
     queryFn: wishlistApi,
     queryKey: ["get_all_wishlist"],
   });
 
-  if (!data) return <div>wishlist is empty..</div>;
+  if (!data?.data?.length) return <div>wishlist is empty..</div>;
 
   return (
-    <div>
-      {data.data.map((value: WishlistItem) => (
+    <div className="flex justify-center flex-wrap items-center sm:flex sm:flex-wrap sm:my-10 sm:justify-start">
+      {data.data.map((value) => (
         <div
-          className="p-4  m-5  w-[300px] rounded  shadow-2xl shadow-gray-700 bg-white "
+          className="p-4 m-5  w-[300px] rounded  shadow-2xl shadow-gray-700 bg-white"
           key={value._id}
         >
           {/* image section */}
@@ -38,7 +30,7 @@ const Wishlist = () => {
 
           {/* name */}
 
-          <div className="flex justify-between my-3">
+          <div className="flex justify-between my-1">
             <h2 className="text-lg text-violet-800 font-semibold">
               {value.name}
             </h2>
@@ -49,6 +41,12 @@ const Wishlist = () => {
               NPR. {value.price}
             </p>
           </div>
+
+          <div className="line-clamp-2 my-3 text-gray-500">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+            temporibus magnam deleniti, quam quas eligendi.
+          </div>
+
           {/* button */}
 
           {/* view detail */}
