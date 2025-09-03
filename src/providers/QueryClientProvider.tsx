@@ -1,7 +1,6 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import type React from "react";
-
-const query_client = new QueryClient();
+import { query_client } from "./queryClient";
 
 interface IProps {
   children: React.ReactNode;

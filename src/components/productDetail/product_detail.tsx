@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import type { IProduct } from "../../types/product.types";
 import { TiStarFullOutline } from "react-icons/ti";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
 import { IoMdPricetag } from "react-icons/io";
+import { useMutation } from "@tanstack/react-query";
+import { pushProductToCart } from "../../api/cart.api";
+import toast from "react-hot-toast";
 
 interface IProps {
   product: IProduct;
@@ -24,6 +28,23 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
   };
 
   console.log(quantity);
+
+  const { mutate } = useMutation({
+    mutationFn: pushProductToCart,
+    onSuccess: (response: any) => {
+      toast.success(response.message ?? "product is added to cart");
+    },
+    onError: (error) => {
+      toast.error(error.message ?? "Unable to add product to cart");
+    },
+    mutationKey: ["productAddedToCart"],
+  });
+
+  const addProductToCart = () => {
+    mutate({ productId: product._id, quantity });
+  };
+
+  console.log(product._id);
 
   return (
     <div className="flex flex-col gap-5">
@@ -132,7 +153,10 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
       </div>
 
       <div className="flex justify-between md:flex md:justify-start gap-5">
-        <button className="w-full bg-black px-10 py-2 text-white text-lg rounded cursor-pointer font-semibold">
+        <button
+          onClick={addProductToCart}
+          className="w-full bg-black px-10 py-2 text-white text-lg rounded cursor-pointer font-semibold"
+        >
           Add to Cart
         </button>
         <button className="w-full bg-gray-300 px-10 py-2 text-back text-lg rounded cursor-pointer font-semibold border">
