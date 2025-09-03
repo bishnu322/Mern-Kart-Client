@@ -19,7 +19,7 @@ const FeaturedProduct = () => {
       <TitleComponent
         title="Featured Product"
         sub_title="Limited Stock - Shop featured favorites today"
-        link="#"
+        link="/products"
       />
 
       <div className="flex justify-between flex-wrap items-center">
