@@ -33,10 +33,10 @@ export const addToWishlist = async (_id: string): TResponse<AddToWishlist> => {
   return response.data;
 };
 
-export const removeWishlistProductApi = async (id: string) => {
+export const removeWishlistProductApi = async (productId: string) => {
   try {
-    const response = await api.post("/wishlist", {
-      id,
+    const response = await api.delete("/wishlist/remove", {
+      data: { _id: productId },
     });
 
     console.log(response.data);
