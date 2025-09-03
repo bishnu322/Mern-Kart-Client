@@ -71,9 +71,9 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
         >
           Quantity
         </label>
-        <div className="w-[300px] border rounded flex items-center justify-between px-5">
+        <div className="w-[300px] border rounded flex items-center justify-between px-3">
           <button
-            className=" p-1 aspect-square text-2xl font-bold"
+            className=" p-2 aspect-square text-2xl font-bold "
             onClick={decrement}
           >
             -
