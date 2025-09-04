@@ -25,14 +25,14 @@ const ProductCard = ({ product }: IProductCardProps) => {
   };
 
   return (
-    <div className="p-5 m-5  w-[300px] rounded  shadow-2xl bg-white shadow-gray-400">
+    <div className="p-3 m-5  w-[300px] rounded shadow-2xl bg-white shadow-gray-400">
       {/* image section */}
 
       <div>
         <img
           src={product.cover_img.path}
-          alt={""}
-          className="object-contain w-full h-[250px]"
+          alt={"product_img"}
+          className="object-contain w-full h-[150px]"
         />
       </div>
 

@@ -13,10 +13,14 @@ import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
 import Profile from "./pages/Profile";
 import ClientLayout from "./layout/ClientLayout";
+import Dashboard from "./pages/admin/Dashboard";
+import User from "./pages/admin/User";
+import OrderPage from "./pages/admin/Order";
+import AdminLayout from "./layout/admin.layout";
 
 function App() {
   return (
-    <main>
+    <main className="h-full w-full bg-gray-200">
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -32,9 +36,16 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/product/:id" element={<DetailPage />} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
 
-          <Route path="*" element={<PageNotFound />} />
+          {/* admin routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="/admin" element={<Dashboard />} />
+            <Route path="/admin/user" element={<User />} />
+            <Route path="/admin/orders" element={<OrderPage />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
         </Routes>
       </BrowserRouter>
 

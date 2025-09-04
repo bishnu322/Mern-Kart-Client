@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { TResponse } from "../types/generic";
 import api from "./index";
 
@@ -45,4 +47,11 @@ export const removeWishlistProductApi = async (productId: string) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const clearAllProductFromWishlist = async (userId: any) => {
+  const response = await api.post("wishlist/clear", userId);
+
+  console.log(response.data);
+  return response.data;
 };
