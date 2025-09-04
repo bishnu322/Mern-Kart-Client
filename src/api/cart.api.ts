@@ -3,7 +3,15 @@ import type { IProduct } from "../types/product.types";
 import api from "./index";
 
 interface ICartResponse {
-  product: IProduct;
+  user: string;
+  items: [
+    {
+      product: IProduct;
+      quantity: number;
+      total_price: number;
+    }
+  ];
+  total_amount: number;
 }
 
 export const getAllCartData = async (): TResponse<ICartResponse> => {

@@ -16,7 +16,7 @@ import ClientLayout from "./layout/ClientLayout";
 
 function App() {
   return (
-    <main className="h-full w-full">
+    <main className="h-full w-full bg-gray-200">
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
