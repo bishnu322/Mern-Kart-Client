@@ -19,17 +19,17 @@ const SidebarLinks = () => {
     },
     {
       label: "Brands",
-      link: "/admin",
+      link: "/admin/brand",
       icon: <GiStamper />,
     },
     {
       label: "Category",
-      link: "/admin",
+      link: "/admin/category",
       icon: <IoPricetagsOutline />,
     },
     {
       label: "Products",
-      link: "/admin",
+      link: "/admin/product",
       icon: <MdOutlineShoppingBag />,
     },
     {
@@ -49,7 +49,7 @@ const SidebarLinks = () => {
         <Link
           to={items.link}
           key={items.link}
-          className={`flex items-center p-2 gap-2 mx-3 font-semibold text-lg rounded hover:bg-violet-500 hover:text-white transition-all duration-200 ${
+          className={`flex items-center mt-2 p-2 gap-2 mx-3 font-semibold text-lg rounded hover:bg-violet-500 hover:text-white transition-all duration-200 ${
             isActive === items.link ? "bg-violet-500 text-white" : ""
           }`}
         >
