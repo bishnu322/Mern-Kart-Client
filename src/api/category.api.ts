@@ -8,3 +8,13 @@ export const getAllCategory = async (): TGetAllCategoryResponse => {
 
   return response.data;
 };
+
+type TCreateCategoryResponse = TResponse<ICategoryResponse[]>;
+
+export const createCategory = async (data: {
+  name: string;
+  description: string;
+}): Promise<TCreateCategoryResponse> => {
+  const response = await api.post<TCreateCategoryResponse>("/category", data);
+  return response.data;
+};

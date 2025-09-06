@@ -14,7 +14,7 @@ export const Button: React.FC<IButtonProps> = ({
   return (
     <div>
       <button
-        className="w-full bg-violet-500 p-3 rounded-md cursor-pointer text-white font-bold text-lg transition-all duration-300 hover:bg-violet-700 text-center disabled:bg-violet-400 disabled:cursor-not-allowed"
+        className="w-full bg-violet-600 px-3 py-2 rounded-md cursor-pointer text-white font-bold text-lg transition-all duration-300 hover:bg-violet-800 text-center disabled:bg-violet-400 disabled:cursor-not-allowed"
         type={type}
         onClick={onClick}
         disabled={disabled}

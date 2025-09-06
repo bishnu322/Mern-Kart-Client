@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { FC, InputHTMLAttributes } from "react";
 import { FaStarOfLife } from "react-icons/fa";
 
