@@ -1,4 +1,7 @@
+import AdminBodyWrapper from "../../../components/admin/form/AdminBodyWrapper";
+
 import PageHeader from "../../../components/admin/header/PageHeader";
+import FetchCategory from "./FetchCategory";
 
 const Category = () => {
   return (
@@ -10,6 +13,9 @@ const Category = () => {
         linkTo={"/admin/category/add"}
         buttonText={"Add New Category"}
       />
+      <AdminBodyWrapper>
+        <FetchCategory />
+      </AdminBodyWrapper>
     </main>
   );
 };

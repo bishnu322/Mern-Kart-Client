@@ -1,5 +1,6 @@
 // import { useForm } from "react-hook-form";
-import FormBody from "../../../components/admin/form/FormBody";
+import AdminBodyWrapper from "../../../components/admin/form/AdminBodyWrapper";
+
 import PageHeader from "../../../components/admin/header/PageHeader";
 import RegisterCategoryForm from "./RegisterCategoryForm";
 // import { Button } from "../../../shared/designSystem/form/button/Button";
@@ -24,14 +25,15 @@ const AddCategory = () => {
 
       {/* form body */}
 
-      <FormBody>
+      <AdminBodyWrapper>
         <div>
           <h1 className="text-xl font-semibold text-violet-800">
             Category form
           </h1>
         </div>
+
         <RegisterCategoryForm />
-      </FormBody>
+      </AdminBodyWrapper>
     </div>
   );
 };

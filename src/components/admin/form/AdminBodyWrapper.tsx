@@ -4,7 +4,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const FormBody: React.FC<IProps> = ({ children }) => {
+const AdminBodyWrapper: React.FC<IProps> = ({ children }) => {
   return (
     <div className="p-2 mt-2 border border-gray-300 rounded shadow min-h-[600px]">
       {children}
@@ -12,4 +12,4 @@ const FormBody: React.FC<IProps> = ({ children }) => {
   );
 };
 
-export default FormBody;
+export default AdminBodyWrapper;
