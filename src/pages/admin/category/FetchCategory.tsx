@@ -5,7 +5,6 @@ import { getAllCategory } from "../../../api/category.api";
 import { Link } from "react-router";
 
 const FetchCategory = () => {
-  //   const [countCategory, setCountCategory] = useState(1);
   const { data, isLoading } = useQuery({
     queryFn: getAllCategory,
     queryKey: ["get_All_category"],
