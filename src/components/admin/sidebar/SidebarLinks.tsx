@@ -1,4 +1,3 @@
-import React from "react";
 import { MdOutlineDashboard } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 import { PiUsersThreeBold } from "react-icons/pi";
@@ -50,7 +49,7 @@ const SidebarLinks = () => {
           to={items.link}
           key={items.link}
           className={`flex items-center mt-2 p-2 gap-2 mx-3 font-semibold text-lg rounded hover:bg-violet-500 hover:text-white transition-all duration-200 ${
-            isActive === items.link ? "bg-violet-500 text-white" : ""
+            isActive === items.link ? "bg-violet-600 text-white" : ""
           }`}
         >
           <div>{items.icon}</div>

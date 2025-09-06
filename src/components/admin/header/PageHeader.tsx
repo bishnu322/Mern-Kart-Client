@@ -27,7 +27,7 @@ const PageHeader: React.FC<IProps> = ({
         {buttonText && linkTo && (
           <Link
             to={linkTo}
-            className="flex items-center bg-violet-600 rounded px-3 p-2 text-sm font-bold gap-1 text-gray-300 cursor-pointer hover:bg-violet-700"
+            className="flex items-center bg-violet-600 rounded px-3 p-2 text-sm font-bold gap-1 text-gray-50 cursor-pointer hover:bg-violet-700"
           >
             <IoMdAdd size={20} />
             <p>{buttonText}</p>

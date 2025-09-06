@@ -11,7 +11,9 @@ const AdminHeader = () => {
         </div>
 
         <div>
-          <h1 className="text-violet-600 font-semibold text-lg">Super Admin</h1>
+          <h1 className="text-violet-600 font-semibold text-lg">
+            {`${user?.first_name} ${user?.last_name}`}
+          </h1>
           <button className="text-orange-600 font-bold">Sign out</button>
         </div>
       </div>
