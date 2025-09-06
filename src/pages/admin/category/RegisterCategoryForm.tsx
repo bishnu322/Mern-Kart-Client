@@ -6,12 +6,12 @@ import toast from "react-hot-toast";
 import { Input } from "../../../shared/designSystem/form/input/Input";
 import { Button } from "../../../shared/designSystem/form/button/Button";
 
-type FormValues = {
+export type FormValues = {
   name: string;
   description: string;
 };
 
-interface ICategoryData {
+export interface ICategoryData {
   name: string;
   description: string;
 }

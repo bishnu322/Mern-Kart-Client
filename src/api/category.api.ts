@@ -18,3 +18,31 @@ export const createCategory = async (data: {
   const response = await api.post<TCreateCategoryResponse>("/category", data);
   return response.data;
 };
+
+type TCreateCategoryResponseById = TResponse<ICategoryResponse>;
+
+export const getCategoryById = async (
+  id: string
+): TCreateCategoryResponseById => {
+  const response = await api.get<TCreateCategoryResponseById>(
+    `/category/${id}`
+  );
+  return response.data;
+};
+
+type TUpdateCategoryResponseById = TResponse<ICategoryResponse>;
+
+export const updateCategoryById = async (
+  id: string,
+  data: {
+    name: string;
+    description: string;
+  }
+): TUpdateCategoryResponseById => {
+  const response = await api.put<TUpdateCategoryResponseById>(
+    `/category/${id}`,
+    data
+  );
+
+  return response.data;
+};

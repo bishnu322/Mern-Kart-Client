@@ -2,9 +2,9 @@ import { Input } from "../../../shared/designSystem/form/input/Input";
 import { Button } from "../../../shared/designSystem/form/button/Button";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCategory } from "../../../api/category.api";
+import { Link } from "react-router";
 
 const FetchCategory = () => {
-  //   const [countCategory, setCountCategory] = useState(1);
   const { data, isLoading } = useQuery({
     queryFn: getAllCategory,
     queryKey: ["get_All_category"],
@@ -33,7 +33,7 @@ const FetchCategory = () => {
       {/* category data table  */}
 
       <div className="w-full h-full ">
-        <table className="w-full border border-gray-400 text-left rounded mt-3 overflow-hidden ">
+        <table className="w-full border border-gray-400 text-left rounded mt-3 overflow-hidden  ">
           <thead className="bg-violet-600 text-gray-100">
             <tr>
               <th className="border border-gray-300 px-4 py-2">S.N</th>
@@ -51,16 +51,18 @@ const FetchCategory = () => {
                 <td className="border border-gray-100 px-4 py-2">
                   {items.name}
                 </td>
-                <td className="border border-gray-100 px-4 py-2">
+                <td className="border border-gray-100 px-4 py-2 line-clamp-3">
                   {items.description}
                 </td>
                 <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">
-                  <button
-                    className="bg-orange-500 text-gray-100 px-5 py-1 rounded cursor-pointer hover:bg-orange-600"
-                    value={items._id}
-                  >
-                    Edit
-                  </button>
+                  <Link to={`/admin/category/${items._id}`}>
+                    <button
+                      className="bg-orange-500 text-gray-100 px-5 py-1 rounded cursor-pointer hover:bg-orange-600"
+                      value={items._id}
+                    >
+                      Edit
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
