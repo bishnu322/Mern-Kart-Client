@@ -52,6 +52,7 @@ const RegisterCategoryForm = () => {
           id="name"
           label="Name"
           labelHtmlFor="name"
+          placeholder="Name"
           className="w-full border border-violet-600 p-2 rounded outline-none"
           {...register("name")}
         />
@@ -61,6 +62,7 @@ const RegisterCategoryForm = () => {
           id="description"
           label="Description"
           labelHtmlFor="description"
+          placeholder="Description"
           className="w-full border border-violet-600 p-2 rounded outline-none"
           {...register("description")}
         />
