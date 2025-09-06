@@ -20,6 +20,7 @@ import AdminLayout from "./layout/admin.layout";
 import Products from "./pages/admin/product/Product";
 import Brand from "./pages/admin/brand/Brand";
 import Category from "./pages/admin/category/Category";
+import AddCategory from "./pages/admin/category/AddCategory";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
             <Route path="/admin/product" element={<Products />} />
             <Route path="/admin/brand" element={<Brand />} />
             <Route path="/admin/category" element={<Category />} />
+            <Route path="/admin/category/add" element={<AddCategory />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
