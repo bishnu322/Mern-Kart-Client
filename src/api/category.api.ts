@@ -2,6 +2,7 @@ import type { ICategoryResponse } from "../types/category.types";
 import type { TResponse } from "../types/generic";
 import api from "./index";
 
+// get all category data
 type TGetAllCategoryResponse = TResponse<ICategoryResponse[]>;
 export const getAllCategory = async (): TGetAllCategoryResponse => {
   const response = await api.get<TGetAllCategoryResponse>("/category");
@@ -9,6 +10,7 @@ export const getAllCategory = async (): TGetAllCategoryResponse => {
   return response.data;
 };
 
+// post category
 type TCreateCategoryResponse = TResponse<ICategoryResponse[]>;
 
 export const createCategory = async (data: {
@@ -18,6 +20,8 @@ export const createCategory = async (data: {
   const response = await api.post<TCreateCategoryResponse>("/category", data);
   return response.data;
 };
+
+// get category by id
 
 type TCreateCategoryResponseById = TResponse<ICategoryResponse>;
 
@@ -29,6 +33,8 @@ export const getCategoryById = async (
   );
   return response.data;
 };
+
+// update category
 
 type TUpdateCategoryResponseById = TResponse<ICategoryResponse>;
 

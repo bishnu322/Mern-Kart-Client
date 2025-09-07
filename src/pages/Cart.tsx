@@ -24,6 +24,7 @@ const Cart = () => {
         <p className="mt-5 px-5 text-md font-semibold text-orange-600">Price</p>
       </div>
       {/* horizontal line */}
+
       <hr />
 
       {/* cart product */}

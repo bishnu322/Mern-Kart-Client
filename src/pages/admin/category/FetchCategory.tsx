@@ -23,7 +23,10 @@ const FetchCategory = () => {
 
       <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4">
         <div className="col-span-2 sm:col-span-3">
-          <Input className="w-full border border-violet-600 p-2 rounded outline-none " />
+          <Input
+            className="w-full border border-violet-600 p-2 rounded outline-none "
+            placeholder="Search category"
+          />
         </div>
         <div className="col-span-1 sm:col-span-1">
           <Button>Search</Button>
@@ -51,7 +54,7 @@ const FetchCategory = () => {
                 <td className="border border-gray-100 px-4 py-2">
                   {items.name}
                 </td>
-                <td className="border border-gray-100 px-4 py-2 line-clamp-3">
+                <td className="border border-gray-100 px-4 py-2 ">
                   {items.description}
                 </td>
                 <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">

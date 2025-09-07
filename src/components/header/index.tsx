@@ -133,7 +133,6 @@ const NavLinksMobile = ({
 //! icon section
 
 const IconSection = () => {
-  // const user = JSON.parse(localStorage.getItem("token") as string) ?? null;
   const { user } = useAuth();
   const { setUser } = useAuth();
 
@@ -148,12 +147,13 @@ const IconSection = () => {
     onSuccess: (response: any) => {
       console.log(response);
       localStorage.removeItem("user");
-      // localStorage.removeItem("token");
+
       toast.success(response?.message ?? "logout successful");
       setUser(null);
 
       navigate("/");
     },
+
     onError: (error) => {
       console.log(error);
       toast.error(error?.message ?? "logout failed");
