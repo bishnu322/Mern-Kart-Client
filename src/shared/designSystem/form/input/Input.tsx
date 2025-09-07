@@ -47,7 +47,7 @@ export const Input: FC<IInputProps> = ({
       />
 
       <span>
-        {error && <p className="text-red-600 h-1 text-sm -mt-1">{error}</p>}
+        {error && <p className="text-red-600 h-1 text-sm mt-1">{error}</p>}
       </span>
     </>
   );

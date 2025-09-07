@@ -46,7 +46,7 @@ export const TextArea: FC<ITextAreaProps> = ({
       />
 
       <span>
-        {error && <p className="text-red-600 h-1 text-sm -mt-1">{error}</p>}
+        {error && <p className="text-red-600 h-1 text-sm mt-1">{error}</p>}
       </span>
     </>
   );

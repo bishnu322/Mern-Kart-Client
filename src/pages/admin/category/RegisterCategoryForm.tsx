@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import { Input } from "../../../shared/designSystem/form/input/Input";
 import { Button } from "../../../shared/designSystem/form/button/Button";
 import { TextArea } from "../../../shared/designSystem/form/input/TextArea";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { categorySchema } from "../../../schema/categorySchema";
 
 export type FormValues = {
   name: string;
@@ -19,11 +21,17 @@ export interface ICategoryData {
 const RegisterCategoryForm = () => {
   const queryClient = useQueryClient();
 
-  const { register, handleSubmit } = useForm<FormValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
     defaultValues: {
       name: "",
       description: "",
     },
+    resolver: yupResolver(categorySchema),
+    mode: "all",
   });
 
   const { mutate, isPending } = useMutation({
@@ -50,6 +58,7 @@ const RegisterCategoryForm = () => {
           label="Name"
           labelHtmlFor="name"
           placeholder="Category name"
+          error={errors.name ? errors.name.message : ""}
           className="w-full border border-violet-600 p-2 rounded outline-none"
           {...register("name")}
         />
@@ -61,12 +70,13 @@ const RegisterCategoryForm = () => {
           label="Description"
           labelHtmlFor="description"
           placeholder="Describe Category here..."
+          error={errors.description ? errors.description.message : ""}
           className="w-full border border-violet-600 p-2 rounded outline-none min-h-[200px]"
           {...register("description")}
         />
       </div>
 
-      <div className=" w-full">
+      <div className="mt-3 w-full">
         <Button type="submit">{isPending ? "Submitting" : "Submit"}</Button>
       </div>
     </form>
