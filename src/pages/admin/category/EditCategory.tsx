@@ -10,6 +10,7 @@ import type { FormValues } from "./RegisterCategoryForm";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import { TextArea } from "../../../shared/designSystem/form/input/TextArea";
 
 const EditCategory = () => {
   const { id } = useParams();
@@ -65,31 +66,30 @@ const EditCategory = () => {
           Category field to edit
         </h1>
 
-        <form
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <Input
               id="name"
               label="Name"
               labelHtmlFor="name"
+              placeholder="Category name"
               className="w-full border border-violet-600 p-2 rounded outline-none"
-              {...register("name", { required: true })}
+              {...register("name")}
             />
           </div>
 
           <div>
-            <Input
+            <TextArea
               id="description"
               label="Description"
               labelHtmlFor="description"
-              className="w-full border border-violet-600 p-2 rounded outline-none"
+              placeholder="Describe Category here..."
+              className="w-full border border-violet-600 p-2 rounded outline-none min-h-[200px]"
               {...register("description")}
             />
           </div>
 
-          <div className="mt-6 w-full">
+          <div className=" w-full">
             <Button type="submit">{isPending ? "Updating" : "Update"}</Button>
           </div>
         </form>
