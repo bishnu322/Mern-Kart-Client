@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-// import React from "react";
 import { useForm } from "react-hook-form";
 import { createCategory } from "../../../api/category.api";
 import toast from "react-hot-toast";
@@ -52,17 +51,18 @@ const RegisterCategoryForm = () => {
           id="name"
           label="Name"
           labelHtmlFor="name"
-          placeholder="Name"
+          placeholder="Category name"
           className="w-full border border-violet-600 p-2 rounded outline-none"
           {...register("name")}
         />
       </div>
+
       <div>
         <Input
           id="description"
           label="Description"
           labelHtmlFor="description"
-          placeholder="Description"
+          placeholder="Describe Category here..."
           className="w-full border border-violet-600 p-2 rounded outline-none"
           {...register("description")}
         />

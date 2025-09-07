@@ -54,7 +54,7 @@ const FetchCategory = () => {
                 <td className="border border-gray-100 px-4 py-2">
                   {items.name}
                 </td>
-                <td className="border border-gray-100 px-4 py-2 line-clamp-3">
+                <td className="border border-gray-100 px-4 py-2 ">
                   {items.description}
                 </td>
                 <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">
