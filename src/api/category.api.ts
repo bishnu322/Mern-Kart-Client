@@ -4,8 +4,12 @@ import api from "./index";
 
 // get all category data
 type TGetAllCategoryResponse = TResponse<ICategoryResponse[]>;
-export const getAllCategory = async (): TGetAllCategoryResponse => {
-  const response = await api.get<TGetAllCategoryResponse>("/category");
+export const getAllCategory = async (params: {
+  query?: string;
+}): TGetAllCategoryResponse => {
+  const response = await api.get<TGetAllCategoryResponse>(`/category`, {
+    params,
+  });
 
   return response.data;
 };
@@ -52,3 +56,5 @@ export const updateCategoryById = async (
 
   return response.data;
 };
+
+// remove category

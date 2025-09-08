@@ -76,7 +76,7 @@ const RegisterCategoryForm = () => {
         />
       </div>
 
-      <div className="mt-3 w-full">
+      <div className="mt-3 w-1/4 ">
         <Button type="submit">{isPending ? "Submitting" : "Submit"}</Button>
       </div>
     </form>
