@@ -58,3 +58,9 @@ export const updateCategoryById = async (
 };
 
 // remove category
+export const removeCategoryData = async (id: string) => {
+  const response = await api.delete(`/category/${id}`);
+  console.log(response.data);
+
+  return response.data;
+};

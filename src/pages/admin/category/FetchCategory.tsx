@@ -1,12 +1,15 @@
 import { Input } from "../../../shared/designSystem/form/input/Input";
-import { useQuery } from "@tanstack/react-query";
-import { getAllCategory } from "../../../api/category.api";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getAllCategory, removeCategoryData } from "../../../api/category.api";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const FetchCategory = () => {
   const [querySearch, setQuerySearch] = useState("");
   const [tempSearch, setTempSearch] = useState("");
+
+  const queryClient = useQueryClient();
 
   const { data: categoryData } = useQuery({
     queryFn: () =>
@@ -16,6 +19,18 @@ const FetchCategory = () => {
     queryKey: ["get_All_category", querySearch],
   });
 
+  const { mutate } = useMutation({
+    mutationFn: removeCategoryData,
+    mutationKey: ["removeCategoryData"],
+    onSuccess: (response) => {
+      toast.success(response.message ?? "category removed");
+      queryClient.invalidateQueries({ queryKey: ["get_All_category"] });
+    },
+    onError: (error) => {
+      toast.error(error.message ?? "cannot remove");
+    },
+  });
+
   useEffect(() => {
     const interval = setTimeout(() => {
       setQuerySearch(tempSearch);
@@ -23,6 +38,10 @@ const FetchCategory = () => {
 
     return () => clearTimeout(interval);
   }, [tempSearch]);
+
+  const removeCategory = (id: string) => {
+    mutate(id);
+  };
 
   return (
     <div className="w-full h-full">
@@ -40,9 +59,6 @@ const FetchCategory = () => {
             onChange={(e) => setTempSearch(e.target.value)}
           />
         </div>
-        {/* <div className="col-span-1 sm:col-span-1">
-          <Button onClick={() => refetch()}>Search</Button>
-        </div> */}
       </div>
 
       {/* category data table  */}
@@ -72,6 +88,8 @@ const FetchCategory = () => {
                 <td className="border border-gray-100 px-4 py-2 ">
                   {items.description}
                 </td>
+
+                {/* edit category */}
                 <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">
                   <Link to={`/admin/category/${items._id}`}>
                     <button
@@ -82,15 +100,16 @@ const FetchCategory = () => {
                     </button>
                   </Link>
                 </td>
+
+                {/* remove category */}
                 <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">
-                  <Link to={`/admin/category/${items._id}`}>
-                    <button
-                      className="bg-red-600 text-gray-100 px-5 py-1 rounded cursor-pointer hover:bg-red-600"
-                      value={items._id}
-                    >
-                      Delete
-                    </button>
-                  </Link>
+                  <button
+                    onClick={() => removeCategory(items._id)}
+                    className="bg-red-600 text-gray-100 px-5 py-1 rounded cursor-pointer hover:bg-red-600"
+                    value={items._id}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
