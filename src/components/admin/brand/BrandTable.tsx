@@ -45,7 +45,7 @@ const BrandTable: React.FC<IProps> = ({ brandData }) => {
 
             {/* edit category */}
             <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">
-              <Link to={`/admin/category/${items._id}`}>
+              <Link to={`/admin/brand/${items._id}`}>
                 <button
                   className="bg-orange-500 text-gray-100 px-5 py-1 rounded cursor-pointer hover:bg-orange-600"
                   value={items._id}

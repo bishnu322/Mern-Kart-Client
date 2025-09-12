@@ -1,11 +1,10 @@
-import React from "react";
 import PageHeader from "../../../components/admin/header/PageHeader";
 import AdminBodyWrapper from "../../../components/admin/form/AdminBodyWrapper";
 import BrandList from "../../../components/admin/brand/BrandList";
 
 const Brand = () => {
   return (
-    <main>
+    <main className="w-full h-screen">
       <PageHeader
         title="Brand list"
         subTitle="All product brand list"

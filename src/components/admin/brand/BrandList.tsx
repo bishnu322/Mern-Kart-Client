@@ -1,22 +1,29 @@
-import React from "react";
 import { Input } from "../../../shared/designSystem/form/input/Input";
 import { useQuery } from "@tanstack/react-query";
 import { getAllBrand } from "../../../api/brand.api";
-import type { IBrand } from "../../../types/brand.types";
 import BrandTable from "./BrandTable";
+import { useEffect, useState } from "react";
 
-interface IProps {
-  brand: IBrand;
-}
+const BrandList = () => {
+  const [searchBrand, setSearchBrand] = useState("");
+  const [tempSearch, setTempSearch] = useState("");
 
-const BrandList: React.FC<IProps> = () => {
-  const { data, isLoading } = useQuery({
-    queryFn: getAllBrand,
-    queryKey: ["getAllBrand"],
+  //*  fetching all the brands
+
+  const { data } = useQuery({
+    queryFn: () => getAllBrand({ query: searchBrand }),
+    queryKey: ["getAllBrand", searchBrand],
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  //   console.log(data?.data);
+  // * debouncing while searching brand
+
+  useEffect(() => {
+    const intervalHandler = setTimeout(() => {
+      setSearchBrand(tempSearch);
+    }, 500);
+
+    return () => clearTimeout(intervalHandler);
+  }, [tempSearch]);
 
   return (
     <main className="w-full h-screen flex flex-col gap-2">
@@ -25,8 +32,10 @@ const BrandList: React.FC<IProps> = () => {
         {/* search button  */}
 
         <Input
+          value={tempSearch}
           className="w-full border border-violet-600 p-2 rounded outline-none "
           placeholder="Search Brand"
+          onChange={(e) => setTempSearch(e.target.value)}
         />
       </div>
 
