@@ -2,12 +2,14 @@ import { Input } from "../../../shared/designSystem/form/input/Input";
 import { TextArea } from "../../../shared/designSystem/form/input/TextArea";
 import { Button } from "../../../shared/designSystem/form/button/Button";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { brandSchema } from "../../../schema/brandSchema";
 
-interface IBrandType {
+import { useMutation } from "@tanstack/react-query";
+import { createBrand } from "../../../api/brand.api";
+import toast from "react-hot-toast";
+
+export interface IBrandType {
   brand_name: string;
-  logo: string;
+  logo: FileList;
   description: string;
 }
 
@@ -17,18 +19,30 @@ const BrandForm = () => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<IBrandType>({
-    resolver: yupResolver(brandSchema),
+  } = useForm<IBrandType>();
+
+  const { mutate } = useMutation({
+    mutationFn: createBrand,
+    mutationKey: ["createBrand"],
+    onSuccess: () => {
+      toast.success("Brand created...");
+    },
+    onError: (error) => {
+      toast.error(error.message ?? "Unable to create brand!");
+    },
   });
   console.log(watch);
 
   const handleFormSubmit = (data: IBrandType) => {
+    mutate(data);
     console.log(data);
   };
+
   return (
     <form
       className="w-full h-screen flex flex-col gap-2"
       onSubmit={handleSubmit(handleFormSubmit)}
+      //   onClick={handleFormSubmit}
     >
       <div className="grid  gap-2 sm:grid-cols-2">
         <div>
