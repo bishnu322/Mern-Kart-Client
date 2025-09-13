@@ -22,6 +22,9 @@ import Brand from "./pages/admin/brand/Brand";
 import Category from "./pages/admin/category/Category";
 import AddCategory from "./pages/admin/category/AddCategory";
 import EditCategory from "./pages/admin/category/EditCategory";
+import AddProduct from "./pages/admin/product/AddProduct";
+import AddBrand from "./pages/admin/brand/AddBrand";
+import EditBrand from "./pages/admin/brand/EditBrand";
 
 function App() {
   return (
@@ -50,7 +53,10 @@ function App() {
             <Route path="/admin/user" element={<User />} />
             <Route path="/admin/orders" element={<OrderPage />} />
             <Route path="/admin/product" element={<Products />} />
+            <Route path="/admin/product/add" element={<AddProduct />} />
             <Route path="/admin/brand" element={<Brand />} />
+            <Route path="/admin/brand/add" element={<AddBrand />} />
+            <Route path="/admin/brand/:id" element={<EditBrand />} />
             <Route path="/admin/category" element={<Category />} />
             <Route path="/admin/category/add" element={<AddCategory />} />
             <Route path="/admin/category/:id" element={<EditCategory />} />
