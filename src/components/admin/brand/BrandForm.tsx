@@ -2,7 +2,6 @@ import { Input } from "../../../shared/designSystem/form/input/Input";
 import { TextArea } from "../../../shared/designSystem/form/input/TextArea";
 import { Button } from "../../../shared/designSystem/form/button/Button";
 import { useForm } from "react-hook-form";
-
 import { useMutation } from "@tanstack/react-query";
 import { createBrand } from "../../../api/brand.api";
 import toast from "react-hot-toast";
