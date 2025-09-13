@@ -28,11 +28,20 @@ export const createBrand = async (data: {
 
   const response = await api.post<TResponse<IBrand>>(`/brand`, formData, {
     headers: {
-      "Content-Type": "multipart/form-data", // 👈 force multipart
+      "Content-Type": "multipart/form-data",
     },
   });
 
   console.log(response);
+
+  return response.data;
+};
+
+// * removing brand
+export const removeBrand = async (id: string) => {
+  const response = await api.delete(`/brand/${id}`);
+
+  console.log(response.data);
 
   return response.data;
 };

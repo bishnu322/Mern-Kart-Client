@@ -8,7 +8,7 @@ const AddBrand = () => {
       <PageHeader
         title="Add New Brand"
         subTitle="Add brand"
-        buttonText="All brand field"
+        buttonText="Brand list"
         linkTo="/admin/brand"
       />
       <AdminBodyWrapper>

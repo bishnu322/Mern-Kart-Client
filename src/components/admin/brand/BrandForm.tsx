@@ -2,7 +2,6 @@ import { Input } from "../../../shared/designSystem/form/input/Input";
 import { TextArea } from "../../../shared/designSystem/form/input/TextArea";
 import { Button } from "../../../shared/designSystem/form/button/Button";
 import { useForm } from "react-hook-form";
-
 import { useMutation } from "@tanstack/react-query";
 import { createBrand } from "../../../api/brand.api";
 import toast from "react-hot-toast";
@@ -21,7 +20,7 @@ const BrandForm = () => {
     formState: { errors },
   } = useForm<IBrandType>();
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: createBrand,
     mutationKey: ["createBrand"],
     onSuccess: () => {
@@ -79,7 +78,7 @@ const BrandForm = () => {
       </div>
 
       <div className="mt-3 w-1/4">
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{isPending ? "Submitting" : "Submit"}</Button>
       </div>
     </form>
   );
