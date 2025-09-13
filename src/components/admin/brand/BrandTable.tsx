@@ -1,11 +1,28 @@
 import React from "react";
 import type { IBrand } from "../../../types/brand.types";
 import { Link } from "react-router";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { removeBrand } from "../../../api/brand.api";
+import toast from "react-hot-toast";
 
 interface IProps {
   brandData: IBrand[];
 }
 const BrandTable: React.FC<IProps> = ({ brandData }) => {
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: removeBrand,
+    mutationKey: ["removeBrand"],
+    onSuccess: (response) => {
+      toast.success(response.message ?? "Brand removed");
+      queryClient.invalidateQueries({ queryKey: ["getAllBrand"] });
+    },
+    onError: (error) => {
+      toast.error(error.message ?? "something went wrong");
+    },
+  });
+
   return (
     <table className="w-full border border-gray-400 text-left rounded mt-3 overflow-hidden  ">
       <thead className="bg-violet-600 text-gray-100">
@@ -58,9 +75,11 @@ const BrandTable: React.FC<IProps> = ({ brandData }) => {
             {/* remove category */}
             <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">
               <button
-                // onClick={() => removeCategory(items._id)}
                 className="bg-red-600 text-gray-100 px-5 py-1 rounded cursor-pointer hover:bg-red-600"
                 value={items._id}
+                onClick={() => {
+                  mutate(items._id);
+                }}
               >
                 Delete
               </button>
