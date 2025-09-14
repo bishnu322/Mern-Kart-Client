@@ -6,7 +6,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getCategoryById, updateCategoryById } from "../../../api/category.api";
 import { useParams } from "react-router";
 import { Button } from "../../../shared/designSystem/form/button/Button";
-import type { FormValues } from "./RegisterCategoryForm";
+import type { FormValues } from "../../../components/admin/category/RegisterCategoryForm";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useEffect } from "react";

@@ -1,6 +1,6 @@
 import AdminBodyWrapper from "../../../components/admin/form/AdminBodyWrapper";
 import PageHeader from "../../../components/admin/header/PageHeader";
-import RegisterCategoryForm from "./RegisterCategoryForm";
+import RegisterCategoryForm from "../../../components/admin/category/RegisterCategoryForm";
 
 const AddCategory = () => {
   return (
