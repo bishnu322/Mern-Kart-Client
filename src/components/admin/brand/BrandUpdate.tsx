@@ -2,8 +2,10 @@ import { Input } from "../../../shared/designSystem/form/input/Input";
 import { TextArea } from "../../../shared/designSystem/form/input/TextArea";
 import { Button } from "../../../shared/designSystem/form/button/Button";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
-import { createBrand } from "../../../api/brand.api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getBrandById, UpdateBrand } from "../../../api/brand.api";
+// import toast from "react-hot-toast";
+import { useParams } from "react-router";
 import toast from "react-hot-toast";
 
 export interface IBrandType {
@@ -11,41 +13,52 @@ export interface IBrandType {
   logo: FileList;
   description: string;
 }
+export type FormValues = {
+  brand_name: string;
+  logo: FileList;
+  description: string;
+};
 
 //* brand form
 const BrandUpdate = () => {
+  const { id } = useParams();
+
+  //* brand query
+
+  const { data } = useQuery({
+    queryFn: () => getBrandById(id as string),
+    queryKey: ["getBrandById", id],
+  });
+
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<IBrandType>();
 
-  //* brand query
-
   //*brand mutation
   const { mutate, isPending } = useMutation({
-    mutationFn: createBrand,
+    mutationFn: (data: FormValues) => UpdateBrand(id as string, data),
     mutationKey: ["createBrand"],
     onSuccess: () => {
-      toast.success("Brand created...");
+      toast.success("Brand updated...");
     },
     onError: (error) => {
-      toast.error(error.message ?? "Unable to create brand!");
+      toast.error(error.message ?? "Unable to update brand!");
     },
   });
-  console.log(watch);
+  // console.log(watch);
+  console.log(data);
 
   //* handling brand form
-  const handleFormSubmit = (data: IBrandType) => {
-    mutate(data);
-    console.log(data);
+  const onSubmit = (formData: FormValues) => {
+    mutate(formData);
   };
 
   return (
     <form
       className="w-full h-screen flex flex-col gap-2"
-      onSubmit={handleSubmit(handleFormSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div className="grid  gap-2 sm:grid-cols-2">
         {/* brand name field */}
@@ -87,7 +100,7 @@ const BrandUpdate = () => {
       </div>
 
       <div className="mt-3 w-1/4">
-        <Button type="submit">{isPending ? "Submitting" : "Submit"}</Button>
+        <Button type="submit">{isPending ? "Updating" : "Update"}</Button>
       </div>
     </form>
   );
