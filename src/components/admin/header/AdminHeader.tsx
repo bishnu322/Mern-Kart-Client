@@ -3,8 +3,14 @@ import { useAuth } from "../../../context/auth.context";
 import { logoutApi } from "../../../api/auth.api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import { IoMdMenu } from "react-icons/io";
+import { type Dispatch, type SetStateAction } from "react";
 
-const AdminHeader = () => {
+interface Props {
+  setToggleMenuBar: Dispatch<SetStateAction<boolean>>;
+}
+
+const AdminHeader = ({ setToggleMenuBar }: Props) => {
   const navigate = useNavigate();
   const { user, setUser } = useAuth();
 
@@ -25,10 +31,17 @@ const AdminHeader = () => {
     },
     mutationKey: ["logout_mutation"],
   });
+
   return (
     <div className="w-full h-full">
       <div className="flex justify-between items-center px-5 py-2">
-        <div className="font-bold  ">
+        <div className="font-bold flex items-center gap-2">
+          <span>
+            <IoMdMenu
+              size={30}
+              onClick={() => setToggleMenuBar((prev) => !prev)}
+            />
+          </span>
           <span className="text-violet-600 italic">Welcome back, </span>
           <span className="text-gray-600 text-xl">{user?.role ?? "Admin"}</span>
         </div>

@@ -37,6 +37,30 @@ export const createBrand = async (data: {
   return response.data;
 };
 
+//* update brand by id
+
+export const UpdateBrand = async (data: {
+  brand_name: string;
+  logo: FileList;
+  description: string;
+}): TResponse<IBrand> => {
+  const formData = new FormData();
+
+  formData.append("brand_name", data.brand_name);
+  formData.append("logo", data.logo[0]);
+  formData.append("description", data.description);
+
+  const response = await api.post<TResponse<IBrand>>(`/brand`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  console.log(response);
+
+  return response.data;
+};
+
 // * removing brand
 export const removeBrand = async (id: string) => {
   const response = await api.delete(`/brand/${id}`);

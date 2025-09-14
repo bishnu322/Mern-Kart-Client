@@ -12,7 +12,8 @@ export interface IBrandType {
   description: string;
 }
 
-const BrandForm = () => {
+//* brand form
+const BrandUpdate = () => {
   const {
     register,
     watch,
@@ -20,6 +21,9 @@ const BrandForm = () => {
     formState: { errors },
   } = useForm<IBrandType>();
 
+  //* brand query
+
+  //*brand mutation
   const { mutate, isPending } = useMutation({
     mutationFn: createBrand,
     mutationKey: ["createBrand"],
@@ -32,6 +36,7 @@ const BrandForm = () => {
   });
   console.log(watch);
 
+  //* handling brand form
   const handleFormSubmit = (data: IBrandType) => {
     mutate(data);
     console.log(data);
@@ -41,9 +46,9 @@ const BrandForm = () => {
     <form
       className="w-full h-screen flex flex-col gap-2"
       onSubmit={handleSubmit(handleFormSubmit)}
-      //   onClick={handleFormSubmit}
     >
       <div className="grid  gap-2 sm:grid-cols-2">
+        {/* brand name field */}
         <div>
           <Input
             label="Name"
@@ -54,6 +59,8 @@ const BrandForm = () => {
             error={errors.brand_name ? errors.brand_name.message : ""}
           />
         </div>
+
+        {/* brand logo field */}
         <div>
           <Input
             label="Brand logo"
@@ -66,6 +73,8 @@ const BrandForm = () => {
           />
         </div>
       </div>
+
+      {/* brand description field */}
       <div className="w-full grid">
         <TextArea
           label="Brand description"
@@ -84,4 +93,4 @@ const BrandForm = () => {
   );
 };
 
-export default BrandForm;
+export default BrandUpdate;

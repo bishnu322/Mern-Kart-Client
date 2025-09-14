@@ -1,5 +1,5 @@
 import PageHeader from "../../../components/admin/header/PageHeader";
-import BrandForm from "../../../components/admin/brand/BrandForm";
+import BrandForm from "../../../components/admin/brand/BrandRegistration";
 import AdminBodyWrapper from "../../../components/admin/form/AdminBodyWrapper";
 
 const AddBrand = () => {
