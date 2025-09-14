@@ -1,7 +1,7 @@
 import AdminBodyWrapper from "../../../components/admin/form/AdminBodyWrapper";
 
 import PageHeader from "../../../components/admin/header/PageHeader";
-import FetchCategory from "./FetchCategory";
+import FetchCategory from "../../../components/admin/category/FetchCategory";
 
 const Category = () => {
   return (
