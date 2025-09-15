@@ -12,8 +12,6 @@ interface IProps {
 }
 
 const Table: React.FC<IProps> = ({ columns, data = [] }) => {
-  // const [data, _setData] = React.useState(() => [...defaultData]);
-
   const table = useReactTable({
     data,
     columns,
