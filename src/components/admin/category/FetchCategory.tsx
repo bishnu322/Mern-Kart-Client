@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "../../../shared/designSystem/form/input/Input";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getAllCategory, removeCategoryData } from "../../../api/category.api";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Table from "../../../shared/designSystem/table/Table";
+import { createColumnHelper } from "@tanstack/react-table";
+import { FaEdit } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const FetchCategory = () => {
   const [querySearch, setQuerySearch] = useState("");
@@ -31,6 +36,8 @@ const FetchCategory = () => {
     },
   });
 
+  console.log(categoryData?.data);
+
   useEffect(() => {
     const interval = setTimeout(() => {
       setQuerySearch(tempSearch);
@@ -42,6 +49,69 @@ const FetchCategory = () => {
   const removeCategory = (id: string) => {
     mutate(id);
   };
+
+  const columnHelper = createColumnHelper<any>();
+
+  const columns = [
+    columnHelper.accessor("name", {
+      header: () => "Name",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("description", {
+      header: () => (
+        <span className="line-clamp-1 max-w-[300px]">Description</span>
+      ),
+      cell: (info) => (
+        <span className="line-clamp-1 max-w-[300px]">
+          <i>{info.getValue()}</i>
+        </span>
+      ),
+    }),
+    columnHelper.accessor("createdAt", {
+      header: () => "Created At",
+      cell: (info) => (
+        <span>
+          {new Intl.DateTimeFormat("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+          }).format(new Date(info.getValue()))}
+        </span>
+      ),
+    }),
+    columnHelper.accessor("updatedAt", {
+      header: () => "Updated At",
+      cell: (info) => (
+        <span>
+          {new Intl.DateTimeFormat("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+          }).format(new Date(info.getValue()))}
+        </span>
+      ),
+    }),
+    columnHelper.accessor(" ", {
+      header: () => <span>Action</span>,
+      footer: (info) => info.column.id,
+      cell: ({ row: { original } }) => (
+        <div className="flex justify-center gap-4">
+          <Link
+            to={`/admin/category/${original?._id}`}
+            className="text-orange-500 cursor-pointer"
+          >
+            <FaEdit size={20} />
+          </Link>
+          <span className="text-red-600 cursor-pointer">
+            <FaRegTrashAlt
+              size={20}
+              onClick={() => removeCategory(original?._id)}
+            />
+          </span>
+        </div>
+      ),
+    }),
+  ];
 
   return (
     <div className="w-full h-full">
@@ -63,58 +133,8 @@ const FetchCategory = () => {
 
       {/* category data table  */}
 
-      <div className="w-full h-full ">
-        <table className="w-full border border-gray-400 text-left rounded mt-3 overflow-hidden  ">
-          <thead className="bg-violet-600 text-gray-100">
-            <tr>
-              <th className="border border-gray-300 px-4 py-2">S.N</th>
-              <th className="border border-gray-300 px-4 py-2">Name</th>
-              <th className="border border-gray-300 px-4 py-2">Description</th>
-              <th className="border border-gray-300 px-4 py-2">Update</th>
-              <th className="border border-gray-300 px-4 py-2 text-center">
-                Delete
-              </th>
-            </tr>
-          </thead>
-          <tbody className="text-sm font-semibold text-gray-700">
-            {categoryData?.data.map((items, index) => (
-              <tr className="hover:bg-gray-200 bg-gray-300 " key={items._id}>
-                <td className="border border-gray-100 px-4 py-2 text-center">
-                  {index + 1}.
-                </td>
-                <td className="border border-gray-100 px-4 py-2">
-                  {items.name}
-                </td>
-                <td className="border border-gray-100 px-4 py-2 ">
-                  {items.description}
-                </td>
-
-                {/* edit category */}
-                <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">
-                  <Link to={`/admin/category/${items._id}`}>
-                    <button
-                      className="bg-orange-500 text-gray-100 px-5 py-1 rounded cursor-pointer hover:bg-orange-600"
-                      value={items._id}
-                    >
-                      Edit
-                    </button>
-                  </Link>
-                </td>
-
-                {/* remove category */}
-                <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">
-                  <button
-                    onClick={() => removeCategory(items._id)}
-                    className="bg-red-600 text-gray-100 px-5 py-1 rounded cursor-pointer hover:bg-red-600"
-                    value={items._id}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="w-full h-full mt-4">
+        <Table columns={columns} data={categoryData?.data ?? []} />
       </div>
     </div>
   );
