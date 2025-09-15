@@ -1,4 +1,3 @@
-// import React from "react";
 import CountCard from "../../components/admin/dashboard/CountCard";
 
 const Dashboard = () => {
