@@ -40,6 +40,7 @@ const AdminHeader = ({ setToggleMenuBar }: Props) => {
             <IoMdMenu
               size={30}
               onClick={() => setToggleMenuBar((prev) => !prev)}
+              className="cursor-pointer"
             />
           </span>
           <span className="text-violet-600 italic">Welcome back, </span>

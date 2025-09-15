@@ -17,7 +17,7 @@ const AdminLayout = () => {
 
       {/* nav & outlet */}
       <div className="flex-1 h-full flex-col overflow-auto">
-        <div className="border-b  mb-3 shadow border-gray-300">
+        <div className="border-b  mb-3 shadow border-gray-300 ">
           <AdminHeader setToggleMenuBar={setToggleMenuBar} />
         </div>
 
