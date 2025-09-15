@@ -2,13 +2,11 @@
 import { Input } from "../../../shared/designSystem/form/input/Input";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getAllCategory, removeCategoryData } from "../../../api/category.api";
-import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Table from "../../../shared/designSystem/table/Table";
 import { createColumnHelper } from "@tanstack/react-table";
-import { FaEdit } from "react-icons/fa";
-import { FaRegTrashAlt } from "react-icons/fa";
+import ActionButton from "../ActionButton";
 
 const FetchCategory = () => {
   const [querySearch, setQuerySearch] = useState("");
@@ -24,6 +22,7 @@ const FetchCategory = () => {
     queryKey: ["get_All_category", querySearch],
   });
 
+  //* deleting category
   const { mutate } = useMutation({
     mutationFn: removeCategoryData,
     mutationKey: ["removeCategoryData"],
@@ -53,6 +52,10 @@ const FetchCategory = () => {
   const columnHelper = createColumnHelper<any>();
 
   const columns = [
+    columnHelper.accessor("s.n", {
+      header: () => "S.N",
+      cell: (info) => <span>{Number(info.cell.row.id) + 1}.</span>,
+    }),
     columnHelper.accessor("name", {
       header: () => "Name",
       cell: (info) => info.getValue(),
@@ -95,20 +98,10 @@ const FetchCategory = () => {
       header: () => <span>Action</span>,
       footer: (info) => info.column.id,
       cell: ({ row: { original } }) => (
-        <div className="flex justify-center gap-4">
-          <Link
-            to={`/admin/category/${original?._id}`}
-            className="text-orange-500 cursor-pointer"
-          >
-            <FaEdit size={20} />
-          </Link>
-          <span className="text-red-600 cursor-pointer">
-            <FaRegTrashAlt
-              size={20}
-              onClick={() => removeCategory(original?._id)}
-            />
-          </span>
-        </div>
+        <ActionButton
+          LinkTo={original?._id as string}
+          onClick={() => removeCategory(original?._id)}
+        />
       ),
     }),
   ];

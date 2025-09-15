@@ -49,7 +49,7 @@ const Table: React.FC<IProps> = ({ columns, data = [] }) => {
               {row.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
-                  className="p-2 border border-gray-100 text-gray-600 px-4"
+                  className="p-2 border border-gray-100 text-gray-800 px-4"
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
