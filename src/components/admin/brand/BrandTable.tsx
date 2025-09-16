@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import type { IBrand } from "../../../types/brand.types";
-import { Link } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { removeBrand } from "../../../api/brand.api";
 import toast from "react-hot-toast";
+import { createColumnHelper } from "@tanstack/react-table";
+import ActionButton from "../ActionButton";
+import Table from "../../../shared/designSystem/table/Table";
 
 interface IProps {
   brandData: IBrand[];
@@ -11,6 +14,7 @@ interface IProps {
 const BrandTable: React.FC<IProps> = ({ brandData }) => {
   const queryClient = useQueryClient();
 
+  //* removing brand
   const { mutate } = useMutation({
     mutationFn: removeBrand,
     mutationKey: ["removeBrand"],
@@ -23,71 +27,82 @@ const BrandTable: React.FC<IProps> = ({ brandData }) => {
     },
   });
 
+  //* tanstack table column creation
+  const columnHelper = createColumnHelper<any>();
+
+  const columns = [
+    columnHelper.accessor("s.n", {
+      header: () => "S.N",
+      cell: (info) => <span>{Number(info.cell.row.id) + 1}.</span>,
+    }),
+    columnHelper.accessor("brand_name", {
+      header: () => "Name",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("description", {
+      header: () => (
+        <span className="line-clamp-1 max-w-[300px]">Description</span>
+      ),
+      cell: (info) => (
+        <span className="line-clamp-1 max-w-[300px]">
+          <i>{info.getValue()}</i>
+        </span>
+      ),
+    }),
+
+    columnHelper.accessor("logo", {
+      header: () => <span>Logo</span>,
+      cell: ({
+        row: {
+          original: { logo },
+        },
+      }) => (
+        <span className="flex justify-center items-center">
+          <img src={logo.path} alt="brandLogo" className="w-10 object-cover" />
+        </span>
+      ),
+    }),
+
+    columnHelper.accessor("createdAt", {
+      header: () => "Created At",
+      cell: (info) => (
+        <span>
+          {new Intl.DateTimeFormat("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+          }).format(new Date(info.getValue()))}
+        </span>
+      ),
+    }),
+    columnHelper.accessor("updatedAt", {
+      header: () => "Updated At",
+      cell: (info) => (
+        <span>
+          {new Intl.DateTimeFormat("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+          }).format(new Date(info.getValue()))}
+        </span>
+      ),
+    }),
+    columnHelper.accessor(" ", {
+      header: () => <span>Action</span>,
+      footer: (info) => info.column.id,
+      cell: ({ row: { original } }) => (
+        <ActionButton
+          LinkTo={`brand/${original?._id}`}
+          onClick={() => mutate(original?._id)}
+        />
+      ),
+    }),
+  ];
+
   return (
-    <table className="w-full border border-gray-400 text-left rounded mt-3 overflow-hidden  ">
-      <thead className="bg-violet-600 text-gray-100">
-        <tr>
-          <th className="border border-gray-300 px-4 py-2">S.N</th>
-          <th className="border border-gray-300 px-4 py-2">Name</th>
-          <th className="border border-gray-300 px-4 py-2">Description</th>
-          <th className="border border-gray-300 px-4 py-2"> Logo</th>
-          <th className="border border-gray-300 px-4 py-2">Update</th>
-          <th className="border border-gray-300 px-4 py-2 text-center">
-            Delete
-          </th>
-        </tr>
-      </thead>
-
-      <tbody className="text-sm font-semibold text-gray-700">
-        {brandData.map((items, index) => (
-          <tr className="hover:bg-gray-200 bg-gray-300 " key={items._id}>
-            <td className="border border-gray-100 px-4 py-2 text-center">
-              {index + 1}.
-            </td>
-            <td className="border border-gray-100 px-4 py-2">
-              {items.brand_name}
-            </td>
-            <td className="border border-gray-100 px-4 py-2">
-              {items.description}
-            </td>
-
-            {/* logo */}
-            <td className="border border-gray-100 px-4 py-2">
-              <img
-                src={items.logo.path}
-                alt="brandLogo"
-                className="w-15 object-fit"
-              />
-            </td>
-
-            {/* edit category */}
-            <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">
-              <Link to={`/admin/brand/${items._id}`}>
-                <button
-                  className="bg-orange-500 text-gray-100 px-5 py-1 rounded cursor-pointer hover:bg-orange-600"
-                  value={items._id}
-                >
-                  Edit
-                </button>
-              </Link>
-            </td>
-
-            {/* remove category */}
-            <td className="border border-gray-100 px-4 py-2 text-blue-600 cursor-pointer text-center">
-              <button
-                className="bg-red-600 text-gray-100 px-5 py-1 rounded cursor-pointer hover:bg-red-600"
-                value={items._id}
-                onClick={() => {
-                  mutate(items._id);
-                }}
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <>
+      <Table data={brandData ?? []} columns={columns} />
+    </>
   );
 };
 

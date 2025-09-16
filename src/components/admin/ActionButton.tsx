@@ -11,10 +11,7 @@ const ActionButton: React.FC<IProps> = ({ LinkTo, onClick }) => {
   console.log(LinkTo);
   return (
     <div className="flex justify-center gap-4">
-      <Link
-        to={`/admin/category/${LinkTo}`}
-        className="text-orange-500 cursor-pointer"
-      >
+      <Link to={`/admin/${LinkTo}`} className="text-orange-500 cursor-pointer">
         <FaEdit size={20} />
       </Link>
       <span className="text-red-600 cursor-pointer">

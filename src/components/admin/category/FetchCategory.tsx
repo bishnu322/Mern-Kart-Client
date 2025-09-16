@@ -99,7 +99,7 @@ const FetchCategory = () => {
       footer: (info) => info.column.id,
       cell: ({ row: { original } }) => (
         <ActionButton
-          LinkTo={original?._id as string}
+          LinkTo={`category/${original?._id as string}`}
           onClick={() => removeCategory(original?._id)}
         />
       ),
