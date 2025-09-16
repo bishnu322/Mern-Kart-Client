@@ -23,11 +23,11 @@ const Table: React.FC<IProps> = ({ columns, data = [] }) => {
       <table className="w-full rounded-t-lg overflow-hidden">
         <thead className="bg-violet-600 text-white font-bold">
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <tr key={headerGroup.id} className="">
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
-                  className="p-2 border border-gray-100 text-start px-4"
+                  className="p-2 border border-gray-100 text-center px-4"
                 >
                   {header.isPlaceholder
                     ? null

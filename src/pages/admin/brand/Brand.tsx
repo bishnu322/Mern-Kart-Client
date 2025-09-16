@@ -4,7 +4,7 @@ import BrandList from "../../../components/admin/brand/BrandList";
 
 const Brand = () => {
   return (
-    <main className="w-full h-screen">
+    <main className="w-full">
       <PageHeader
         title="Brand list"
         subTitle="All product brand list"

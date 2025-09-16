@@ -26,7 +26,7 @@ const BrandList = () => {
   }, [tempSearch]);
 
   return (
-    <main className="w-full h-screen flex flex-col gap-2">
+    <main className="w-full  flex flex-col gap-2">
       <h1 className="text-xl font-semibold text-gray-600">Brand list</h1>
       <div className="mt-2 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3">
         {/* search button  */}

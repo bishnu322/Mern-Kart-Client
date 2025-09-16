@@ -54,7 +54,11 @@ const FetchCategory = () => {
   const columns = [
     columnHelper.accessor("s.n", {
       header: () => "S.N",
-      cell: (info) => <span>{Number(info.cell.row.id) + 1}.</span>,
+      cell: (info) => (
+        <span className="flex justify-center items-center">
+          {Number(info.cell.row.id) + 1}.
+        </span>
+      ),
     }),
     columnHelper.accessor("name", {
       header: () => "Name",
@@ -73,7 +77,7 @@ const FetchCategory = () => {
     columnHelper.accessor("createdAt", {
       header: () => "Created At",
       cell: (info) => (
-        <span>
+        <span className="flex justify-center items-center">
           {new Intl.DateTimeFormat("en-us", {
             year: "numeric",
             month: "short",
@@ -85,7 +89,7 @@ const FetchCategory = () => {
     columnHelper.accessor("updatedAt", {
       header: () => "Updated At",
       cell: (info) => (
-        <span>
+        <span className="flex justify-center items-center">
           {new Intl.DateTimeFormat("en-us", {
             year: "numeric",
             month: "short",

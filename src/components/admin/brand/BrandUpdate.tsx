@@ -26,7 +26,7 @@ const BrandUpdate = () => {
 
   //* brand query
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: () => getBrandById(id as string),
     queryKey: ["getBrandById", id],
   });
@@ -55,6 +55,8 @@ const BrandUpdate = () => {
   const onSubmit = (formData: FormValues) => {
     mutate(formData);
   };
+
+  if (isLoading) return <div>Loading..</div>;
 
   return (
     <>
