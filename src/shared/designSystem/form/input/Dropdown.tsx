@@ -1,6 +1,7 @@
 interface Data {
   _id: string;
-  name: string;
+  name?: string;
+  brand_name?: string;
 }
 
 interface IdropDownInput {
@@ -35,7 +36,7 @@ const Dropdown: React.FC<IdropDownInput> = ({
         {data ? (
           data.map((item, index) => (
             <option value={item._id} key={index}>
-              {item.name}
+              {item.name ?? item.brand_name}
             </option>
           ))
         ) : (
