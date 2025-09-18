@@ -1,5 +1,5 @@
 interface Data {
-  _id: string;
+  _id?: string;
   name?: string;
   brand_name?: string;
 }

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from "@tanstack/react-query";
 import Dropdown from "../../../shared/designSystem/form/input/Dropdown";
 import { getAllBrand } from "../../../api/brand.api";
 
-const BrandDropdown = () => {
+const BrandDropdown = ({ register }: any) => {
   const { data, isLoading } = useQuery({
     queryFn: () => getAllBrand(),
     queryKey: ["getAllBrand"],
@@ -19,6 +20,7 @@ const BrandDropdown = () => {
         label="Brand"
         labelFor="brand"
         name="brand"
+        {...register("brand")}
         data={data?.data ?? []}
       />
     </>

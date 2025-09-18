@@ -11,6 +11,7 @@ const ProductTable = () => {
     queryKey: ["getAllProduct"],
   });
 
+  console.log(data);
   if (isLoading) return <div>Loading...</div>;
 
   if (!data?.data) return [];
