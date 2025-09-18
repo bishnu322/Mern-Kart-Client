@@ -1,7 +1,11 @@
-import React from "react";
+import PageHeader from "../../components/admin/header/PageHeader";
 
 const User = () => {
-  return <div>User</div>;
+  return (
+    <main>
+      <PageHeader title="All user" subTitle="Detail of users" />
+    </main>
+  );
 };
 
 export default User;
