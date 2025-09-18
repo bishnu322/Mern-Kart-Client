@@ -4,7 +4,7 @@ import api from "./index";
 
 //* fetching all the brand
 
-export const getAllBrand = async (params: {
+export const getAllBrand = async (params?: {
   query?: string;
 }): TResponse<IBrand[]> => {
   const response = await api.get<TResponse<IBrand[]>>(`/brand`, { params });
