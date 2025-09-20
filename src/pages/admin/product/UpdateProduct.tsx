@@ -1,6 +1,7 @@
-import React from "react";
 import { useParams } from "react-router";
 import PageHeader from "../../../components/admin/header/PageHeader";
+import UpdateProductForm from "../../../components/admin/product/UpdateProductForm";
+import AdminBodyWrapper from "../../../components/admin/form/AdminBodyWrapper";
 
 const UpdateProduct = () => {
   const params = useParams();
@@ -14,6 +15,10 @@ const UpdateProduct = () => {
         buttonText="Product list"
         linkTo="/admin/product"
       />
+
+      <AdminBodyWrapper>
+        <UpdateProductForm />
+      </AdminBodyWrapper>
     </main>
   );
 };
