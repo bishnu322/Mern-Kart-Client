@@ -40,7 +40,7 @@ const BrandUpdate = () => {
   //*brand mutation
   const { mutate, isPending } = useMutation({
     mutationFn: (data: FormValues) => UpdateBrand(id as string, data),
-    mutationKey: ["createBrand"],
+    mutationKey: ["updateBrand"],
     onSuccess: () => {
       toast.success("Brand updated...");
     },
