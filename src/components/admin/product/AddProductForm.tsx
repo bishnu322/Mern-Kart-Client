@@ -6,15 +6,30 @@ import { TextArea } from "../../../shared/designSystem/form/input/TextArea";
 import BrandDropdown from "./BrandDropdown";
 import CategoryDropdown from "./CategoryDropdown";
 import { Button } from "../../../shared/designSystem/form/button/Button";
+import { useMutation } from "@tanstack/react-query";
+import { createProduct } from "../../../api/product.api";
+import toast from "react-hot-toast";
 
 const AddProductForm = () => {
-  const { register, watch, handleSubmit } = useForm({});
+  const { register, handleSubmit } = useForm({});
+
+  //* query mutation
+  const { mutate } = useMutation({
+    mutationFn: createProduct,
+    mutationKey: ["createProduct"],
+    onSuccess: (response) => {
+      toast.success(response.message ?? "Product created successfully");
+    },
+    onError: (error) => {
+      toast.error(error.message ?? "Product creation failed!");
+    },
+  });
 
   const onSubmit = (formData: any) => {
     console.log(formData);
+    mutate(formData);
   };
 
-  console.log(watch);
   return (
     <>
       <AdminBodyTitle>Add Product Form</AdminBodyTitle>
@@ -82,9 +97,7 @@ const AddProductForm = () => {
               id="isFeatured"
               className="w-full border border-violet-600 p-2 rounded outline-none"
               defaultValue="true"
-              {...register("isFeatured", {
-                setValueAs: (v) => v === "true", // convert string → boolean
-              })}
+              {...register("isFeatured")}
             >
               <option value="true">True</option>
               <option value="false">False</option>
@@ -114,6 +127,7 @@ const AddProductForm = () => {
               type="file"
               className="w-full border border-dashed border-violet-600 p-2 rounded outline-none"
               {...register("images")}
+              multiple
               // {...register("logo")}
               // error={errors.logo ? errors.logo.message : ""}
             />
