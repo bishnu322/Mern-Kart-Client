@@ -1,20 +1,41 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useQuery } from "@tanstack/react-query";
-import { getAllProduct } from "../../../api/product.api";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getAllProduct, removeProduct } from "../../../api/product.api";
 import { createColumnHelper } from "@tanstack/react-table";
 import ActionButton from "../ActionButton";
 import Table from "../../../shared/designSystem/table/Table";
+import toast from "react-hot-toast";
 
 const ProductTable = () => {
+  const queryClient = useQueryClient();
+  //* fetching product
+
   const { data, isLoading } = useQuery({
     queryFn: getAllProduct,
     queryKey: ["getAllProduct"],
   });
 
   console.log(data);
+
+  //* remove product
+
+  const { mutate } = useMutation({
+    mutationFn: removeProduct,
+    mutationKey: ["removeProduct"],
+    onSuccess: () => {
+      toast.success("Product removed successfully!");
+      queryClient.invalidateQueries({ queryKey: ["getAllProduct"] });
+    },
+    onError: (error) => {
+      toast.error(error.message ?? "error while removing product");
+    },
+  });
+
   if (isLoading) return <div>Loading...</div>;
 
   if (!data?.data) return [];
+
+  //* header for product list
 
   const columnHelper = createColumnHelper<any>();
 
@@ -90,12 +111,18 @@ const ProductTable = () => {
       header: () => <span>Action</span>,
       footer: (info) => info.column.id,
       cell: ({ row: { original } }) => (
-        <ActionButton LinkTo={`product/${original?._id}`} onClick={() => {}} />
+        <ActionButton
+          LinkTo={`product/${original?._id}`}
+          onClick={() => {
+            mutate(original._id);
+          }}
+        />
       ),
     }),
   ];
 
   console.log({ data });
+
   return (
     <main className="mt-3">
       <Table columns={columns} data={data?.data} />
