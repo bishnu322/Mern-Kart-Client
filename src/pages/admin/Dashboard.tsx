@@ -2,7 +2,7 @@ import CountCard from "../../components/admin/dashboard/CountCard";
 
 const Dashboard = () => {
   return (
-    <main className="flex flex-wrap justify-items-start items-center gap-3 sm:grid sm:grid-cols-2 md:grid md:grid-cols-5">
+    <main className="flex flex-wrap justify-items-start items-center gap-3 sm:grid sm:grid-cols-2 md:grid md:grid-cols-4">
       <CountCard label={"Products"} count={1000} />
       <CountCard label={"Categories"} count={50} />
       <CountCard label={"Orders"} count={200} />

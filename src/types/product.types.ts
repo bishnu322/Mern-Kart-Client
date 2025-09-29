@@ -18,6 +18,7 @@ export interface IProduct extends IResponse {
 }
 
 export interface IUpdateProductData {
+  _id: string;
   name: string;
   description: string;
   price: number;

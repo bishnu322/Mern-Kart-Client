@@ -123,13 +123,13 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
           <span>
             {/* <IoMdPricetag /> */}
             <img
-              src={product.brand.logo.path}
+              src={product.brand?.logo.path}
               alt="brand_logo"
               className="w-5"
             />
           </span>
           <span className="text-gray-700 font-semibold">
-            {product.brand.brand_name}
+            {product.brand?.brand_name}
           </span>
         </div>
 
@@ -148,7 +148,7 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
 
       <div>
         <p className="text-xl text-gray-500 ">
-          {product.description ?? product.brand.description}
+          {product?.description ?? product.brand?.description}
         </p>
       </div>
 

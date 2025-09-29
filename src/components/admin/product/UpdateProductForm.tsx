@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
 import AdminBodyTitle from "../../../shared/designSystem/AdminBodyTitle";
 import { Input } from "../../../shared/designSystem/form/input/Input";
@@ -6,43 +5,45 @@ import { TextArea } from "../../../shared/designSystem/form/input/TextArea";
 import BrandDropdown from "./BrandDropdown";
 import CategoryDropdown from "./CategoryDropdown";
 import { Button } from "../../../shared/designSystem/form/button/Button";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { useParams } from "react-router";
-import { getProductById, updateProduct } from "../../../api/product.api";
+import { useNavigate, useParams } from "react-router";
+import { updateProduct } from "../../../api/product.api";
 import type { IUpdateProductData } from "../../../types/product.types";
 
 const UpdateProductForm = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   console.log(id);
-  const { register, handleSubmit } = useForm({});
+  const { register, handleSubmit, watch } = useForm<IUpdateProductData>({});
 
   //* get product by id
 
-  const { data } = useQuery({
-    queryFn: () => getProductById(id as string),
-    queryKey: ["getProductById"],
-  });
+  // const { data } = useQuery({
+  //   queryFn: () => getProductById(id as string),
+  //   queryKey: ["getProductById"],
+  // });
 
-  console.log(data);
+  console.log(watch);
 
   //* query mutation
   const { mutate } = useMutation({
-    mutationFn: ({ id, data }: { id: string; data: IUpdateProductData }) =>
-      updateProduct(id, data),
-    mutationKey: ["createProduct"],
+    mutationFn: (formData: IUpdateProductData) =>
+      updateProduct(formData._id, formData),
+    mutationKey: ["updateProduct"],
     onSuccess: (response) => {
-      toast.success(response.message ?? "Product created successfully");
+      toast.success(response.message ?? "Product updated successfully");
+      navigate("/admin/product");
     },
     onError: (error) => {
-      toast.error(error.message ?? "Product creation failed!");
+      toast.error(error.message ?? "Product update failed!");
     },
   });
 
-  const onSubmit = (formData: any) => {
+  const onSubmit = (formData: IUpdateProductData) => {
     console.log(formData);
-    mutate(formData);
+    mutate({ ...formData, _id: id as string });
   };
 
   return (

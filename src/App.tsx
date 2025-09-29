@@ -29,7 +29,7 @@ import UpdateProduct from "./pages/admin/product/UpdateProduct";
 
 function App() {
   return (
-    <main className="h-full w-full bg-gray-200">
+    <main className="min-h-screen w-screen">
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />

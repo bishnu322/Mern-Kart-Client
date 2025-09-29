@@ -3,20 +3,26 @@ import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
 import { Link } from "react-router";
 
 interface IProps {
-  LinkTo: string;
-  onClick: () => void;
+  LinkTo?: string;
+  onClick?: () => void;
 }
 
 const ActionButton: React.FC<IProps> = ({ LinkTo, onClick }) => {
-  console.log(LinkTo);
   return (
-    <div className="flex justify-center gap-4">
-      <Link to={`/admin/${LinkTo}`} className="text-orange-500 cursor-pointer">
-        <FaEdit size={20} />
-      </Link>
-      <span className="text-red-600 cursor-pointer">
-        <FaRegTrashAlt size={20} onClick={onClick} />
-      </span>
+    <div className="flex justify-center gap-2">
+      {LinkTo && (
+        <Link
+          to={`/admin/${LinkTo}`}
+          className="text-orange-500 cursor-pointer hover:text-orange-400"
+        >
+          <FaEdit size={22} />
+        </Link>
+      )}
+      {onClick && (
+        <span className="text-red-500 cursor-pointer hover:text-red-400">
+          <FaRegTrashAlt size={22} onClick={onClick} />
+        </span>
+      )}
     </div>
   );
 };

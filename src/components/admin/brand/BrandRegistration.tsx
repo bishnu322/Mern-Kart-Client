@@ -16,7 +16,6 @@ export interface IBrandType {
 const BrandForm = () => {
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<IBrandType>();
@@ -31,11 +30,9 @@ const BrandForm = () => {
       toast.error(error.message ?? "Unable to create brand!");
     },
   });
-  console.log(watch);
 
   const handleFormSubmit = (data: IBrandType) => {
     mutate(data);
-    console.log(data);
   };
 
   return (

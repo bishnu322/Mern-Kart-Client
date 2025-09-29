@@ -1,5 +1,5 @@
 import type { TResponse } from "../types/generic";
-import type { IProduct } from "../types/product.types";
+import type { IProduct, IUpdateProductData } from "../types/product.types";
 import api from "./index";
 
 //* get all product
@@ -68,20 +68,7 @@ export const createProduct = async (data: {
 };
 
 //* update product
-export const updateProduct = async (
-  id: string,
-  data: {
-    name: string;
-    description: string;
-    price: number;
-    stock: number;
-    category: string;
-    brand: string;
-    isFeatured: boolean;
-    cover_img: FileList;
-    images: FileList;
-  }
-) => {
+export const updateProduct = async (id: string, data: IUpdateProductData) => {
   const formData = new FormData();
 
   formData.append("name", data.name);
@@ -102,7 +89,9 @@ export const updateProduct = async (
     });
   }
 
-  const response = await api.put(`/product/${id}`, formData);
+  const response = await api.put(`/product/${id}`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
 
   console.log(response.data);
 
