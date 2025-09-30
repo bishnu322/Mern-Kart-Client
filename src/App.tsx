@@ -25,10 +25,11 @@ import EditCategory from "./pages/admin/category/EditCategory";
 import AddProduct from "./pages/admin/product/AddProduct";
 import AddBrand from "./pages/admin/brand/AddBrand";
 import EditBrand from "./pages/admin/brand/EditBrand";
+import UpdateProduct from "./pages/admin/product/UpdateProduct";
 
 function App() {
   return (
-    <main className="h-full w-full bg-gray-200">
+    <main className="min-h-screen w-screen">
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -54,6 +55,7 @@ function App() {
             <Route path="/admin/orders" element={<OrderPage />} />
             <Route path="/admin/product" element={<Products />} />
             <Route path="/admin/product/add" element={<AddProduct />} />
+            <Route path="/admin/product/:id" element={<UpdateProduct />} />
             <Route path="/admin/brand" element={<Brand />} />
             <Route path="/admin/brand/add" element={<AddBrand />} />
             <Route path="/admin/brand/:id" element={<EditBrand />} />

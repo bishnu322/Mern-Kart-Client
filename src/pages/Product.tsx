@@ -10,14 +10,14 @@ const Product = () => {
     queryKey: ["get_all_product"],
   });
 
-  if (!data) return null;
+  // if (!data) return null;
 
   if (isLoading) return <Loader />;
 
   return (
-    <div className="w-full ">
+    <div className="w-full min-h-screen px-4">
       <div className="flex justify-between flex-wrap items-center">
-        {data.data.map((data) => (
+        {data?.data.map((data) => (
           <ProductCard key={data._id} product={data} />
         ))}
       </div>

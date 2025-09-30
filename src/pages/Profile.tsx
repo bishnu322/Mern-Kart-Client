@@ -1,7 +1,12 @@
+
+import ProfileDetails from "../components/profile/ProfileDetails";
+
 const Profile = () => {
+
+
   return (
-    <div className="h-full bg-gray-300">
-      <h1 className="min-h-full">Profile</h1>
+    <div className="h-screen bg-white">
+      <ProfileDetails />
     </div>
   );
 };

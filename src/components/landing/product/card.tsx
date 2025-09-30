@@ -12,7 +12,7 @@ const ProductCard = ({ product }: IProductCardProps) => {
   const { mutate, isPending } = useMutation({
     mutationFn: addToWishlist,
     onSuccess: (response) => {
-      toast.success(response.data.message);
+      toast.success(response.data.message ?? "Product added to wishlist");
     },
     onError: (error) => {
       toast.error(error.message);
@@ -25,7 +25,7 @@ const ProductCard = ({ product }: IProductCardProps) => {
   };
 
   return (
-    <div className="p-3 m-5  w-[300px] rounded shadow-2xl bg-white shadow-gray-400">
+    <div className="p-3 my-5  w-[300px] rounded shadow-2xl bg-white shadow-gray-400">
       {/* image section */}
 
       <div>
@@ -39,18 +39,18 @@ const ProductCard = ({ product }: IProductCardProps) => {
       {/* name */}
 
       <h2 className="text-lg text-violet-800 font-semibold my-2">
-        {product.name}
+        {product?.name}
       </h2>
       {/* description */}
 
       <p className="text-gray-500 text-sm line-clamp-3 my-1">
-        {product.brand.description}
+        {product?.description ?? product.brand?.description}
       </p>
       {/* price */}
 
       <div className="py-3 flex justify-between ">
         <p className="text-md text-violet-800 font-semibold ">
-          NPR. {product.price}
+          NPR. {product?.price}
         </p>
         <p
           className={`text-md  font-semibold ${

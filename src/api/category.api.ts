@@ -4,7 +4,7 @@ import api from "./index";
 
 // get all category data
 type TGetAllCategoryResponse = TResponse<ICategoryResponse[]>;
-export const getAllCategory = async (params: {
+export const getAllCategory = async (params?: {
   query?: string;
 }): TGetAllCategoryResponse => {
   const response = await api.get<TGetAllCategoryResponse>(`/category`, {

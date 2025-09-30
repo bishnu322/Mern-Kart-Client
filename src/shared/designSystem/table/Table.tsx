@@ -23,11 +23,11 @@ const Table: React.FC<IProps> = ({ columns, data = [] }) => {
       <table className="w-full rounded-t-lg overflow-hidden">
         <thead className="bg-violet-600 text-white font-bold">
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <tr key={headerGroup.id} className="">
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
-                  className="p-2 border border-gray-100 text-start px-4"
+                  className="py-2 border border-gray-100 text-center px-4"
                 >
                   {header.isPlaceholder
                     ? null
@@ -40,7 +40,7 @@ const Table: React.FC<IProps> = ({ columns, data = [] }) => {
             </tr>
           ))}
         </thead>
-        <tbody className="bg-gray-300">
+        <tbody className="bg-gray-200 ">
           {table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
@@ -49,7 +49,7 @@ const Table: React.FC<IProps> = ({ columns, data = [] }) => {
               {row.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
-                  className="p-2 border border-gray-100 text-gray-600 px-4"
+                  className="p-1 border border-gray-100 text-gray-800 px-4 "
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>

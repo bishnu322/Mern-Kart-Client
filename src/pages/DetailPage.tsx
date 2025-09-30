@@ -16,7 +16,7 @@ const DetailPage = () => {
   const item = data?.data;
 
   if (isLoading) return <Loader />;
-  if (!data?.data) return <div>Product not found</div>;
+  if (!data?.data) return <div>Product not found!</div>;
 
   console.log({ data });
 

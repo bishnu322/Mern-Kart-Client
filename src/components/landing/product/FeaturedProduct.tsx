@@ -1,15 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import TitleComponent from "../../common/TitleComponent";
 import ProductCard from "./card";
-import { getAllProduct } from "../../../api/product.api";
+import { getAllFeaturedProduct } from "../../../api/product.api";
 import Loader from "../../loader/loader";
 
 const FeaturedProduct = () => {
   const { data, isLoading } = useQuery({
-    queryFn: getAllProduct,
+    queryFn: getAllFeaturedProduct,
     queryKey: ["get_all_product"],
   });
 
+  console.log(data);
   if (!data) return null;
 
   if (isLoading) return <Loader />;

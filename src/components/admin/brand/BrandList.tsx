@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllBrand } from "../../../api/brand.api";
 import BrandTable from "./BrandTable";
 import { useEffect, useState } from "react";
+import AdminBodyTitle from "../../../shared/designSystem/AdminBodyTitle";
 
 const BrandList = () => {
   const [searchBrand, setSearchBrand] = useState("");
@@ -26,8 +27,8 @@ const BrandList = () => {
   }, [tempSearch]);
 
   return (
-    <main className="w-full h-screen flex flex-col gap-2">
-      <h1 className="text-xl font-semibold text-gray-600">Brand list</h1>
+    <main className="w-full  flex flex-col gap-2">
+      <AdminBodyTitle>Search Brand</AdminBodyTitle>
       <div className="mt-2 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3">
         {/* search button  */}
 

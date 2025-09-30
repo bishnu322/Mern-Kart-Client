@@ -16,12 +16,12 @@ const AdminLayout = () => {
       )}
 
       {/* nav & outlet */}
-      <div className="flex-1 h-full flex-col overflow-auto">
+      <div className="flex-1 flex-col overflow-auto">
         <div className="border-b  mb-3 shadow border-gray-300 ">
           <AdminHeader setToggleMenuBar={setToggleMenuBar} />
         </div>
 
-        <div className="h-full  px-4 py-2 flex-1">
+        <div className="px-4 py-2 flex-1">
           <Outlet />
         </div>
       </div>

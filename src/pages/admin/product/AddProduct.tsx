@@ -1,5 +1,6 @@
-import React from "react";
 import PageHeader from "../../../components/admin/header/PageHeader";
+import AdminBodyWrapper from "../../../components/admin/form/AdminBodyWrapper";
+import AddProductForm from "../../../components/admin/product/AddProductForm";
 
 const AddProduct = () => {
   return (
@@ -10,6 +11,10 @@ const AddProduct = () => {
         linkTo="/admin/product"
         buttonText="view product"
       />
+
+      <AdminBodyWrapper>
+        <AddProductForm />
+      </AdminBodyWrapper>
     </main>
   );
 };

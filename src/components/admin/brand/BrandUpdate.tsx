@@ -26,7 +26,7 @@ const BrandUpdate = () => {
 
   //* brand query
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: () => getBrandById(id as string),
     queryKey: ["getBrandById", id],
   });
@@ -40,7 +40,7 @@ const BrandUpdate = () => {
   //*brand mutation
   const { mutate, isPending } = useMutation({
     mutationFn: (data: FormValues) => UpdateBrand(id as string, data),
-    mutationKey: ["createBrand"],
+    mutationKey: ["updateBrand"],
     onSuccess: () => {
       toast.success("Brand updated...");
     },
@@ -55,6 +55,8 @@ const BrandUpdate = () => {
   const onSubmit = (formData: FormValues) => {
     mutate(formData);
   };
+
+  if (isLoading) return <div>Loading..</div>;
 
   return (
     <>

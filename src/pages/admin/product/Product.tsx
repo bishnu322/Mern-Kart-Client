@@ -13,7 +13,6 @@ const Products = () => {
       />
 
       <AdminBodyWrapper>
-        <h1>product</h1>
         <ProductList />
       </AdminBodyWrapper>
     </main>

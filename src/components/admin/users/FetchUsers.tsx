@@ -1,35 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-import type { IBrand } from "../../../types/brand.types";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { removeBrand } from "../../../api/brand.api";
-import toast from "react-hot-toast";
 import { createColumnHelper } from "@tanstack/react-table";
-import ActionButton from "../ActionButton";
 import Table from "../../../shared/designSystem/table/Table";
+import AdminBodyTitle from "../../../shared/designSystem/AdminBodyTitle";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getAllUser, removeUser } from "../../../api/user.api";
+import ActionButton from "../ActionButton";
+import toast from "react-hot-toast";
 
-interface IProps {
-  brandData: IBrand[];
-}
-const BrandTable: React.FC<IProps> = ({ brandData }) => {
+const FetchUsers = () => {
   const queryClient = useQueryClient();
+  const columnHelper = createColumnHelper<any>();
 
-  //* removing brand
+  //* fetching data of user
+  const { data } = useQuery({
+    queryFn: getAllUser,
+    queryKey: ["getAllUser"],
+  });
+
+  //* remove mutation of user
   const { mutate } = useMutation({
-    mutationFn: removeBrand,
-    mutationKey: ["removeBrand"],
+    mutationFn: removeUser,
+    mutationKey: ["removeUser"],
     onSuccess: (response) => {
-      toast.success(response.message ?? "Brand removed");
-      queryClient.invalidateQueries({ queryKey: ["getAllBrand"] });
+      toast.success(response.message ?? "user removed successfully");
+      queryClient.invalidateQueries({ queryKey: ["getAllUser"] });
     },
     onError: (error) => {
-      toast.error(error.message ?? "something went wrong");
+      toast.error(error.message ?? "Failed to remove user");
     },
   });
 
-  //* tanstack table column creation
-  const columnHelper = createColumnHelper<any>();
-
+  console.log({ data });
   const columns = [
     columnHelper.accessor("s.n", {
       header: () => "S.N",
@@ -39,34 +40,27 @@ const BrandTable: React.FC<IProps> = ({ brandData }) => {
         </span>
       ),
     }),
-    columnHelper.accessor("brand_name", {
+    columnHelper.accessor((row) => `${row.first_name} ${row.last_name}`, {
+      id: "fullName",
       header: () => "Name",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("description", {
-      header: () => (
-        <span className="line-clamp-1 max-w-[300px]">Description</span>
-      ),
+    columnHelper.accessor("email", {
+      header: () => <span className="line-clamp-1 max-w-[300px]">E-mail</span>,
       cell: (info) => (
         <span className="line-clamp-1 max-w-[300px]">
           <i>{info.getValue()}</i>
         </span>
       ),
     }),
-
-    columnHelper.accessor("logo", {
-      header: () => <span>Logo</span>,
-      cell: ({
-        row: {
-          original: { logo },
-        },
-      }) => (
-        <span className="flex justify-center items-center">
-          <img src={logo.path} alt="brandLogo" className="w-10 object-cover" />
+    columnHelper.accessor("phone_number", {
+      header: () => <span className="line-clamp-1 max-w-[300px]">Phone</span>,
+      cell: (info) => (
+        <span className="line-clamp-1 max-w-[300px]">
+          <i>{info.getValue()}</i>
         </span>
       ),
     }),
-
     columnHelper.accessor("createdAt", {
       header: () => "Created At",
       cell: (info) => (
@@ -79,6 +73,7 @@ const BrandTable: React.FC<IProps> = ({ brandData }) => {
         </span>
       ),
     }),
+
     columnHelper.accessor("updatedAt", {
       header: () => "Updated At",
       cell: (info) => (
@@ -95,19 +90,18 @@ const BrandTable: React.FC<IProps> = ({ brandData }) => {
       header: () => <span>Action</span>,
       footer: (info) => info.column.id,
       cell: ({ row: { original } }) => (
-        <ActionButton
-          LinkTo={`brand/${original?._id}`}
-          onClick={() => mutate(original?._id)}
-        />
+        <ActionButton onClick={() => mutate(original._id)} />
       ),
     }),
   ];
-
   return (
-    <>
-      <Table data={brandData ?? []} columns={columns} />
-    </>
+    <main>
+      <AdminBodyTitle>Fetched User</AdminBodyTitle>
+      <div className="mt-2">
+        <Table columns={columns} data={data?.data} />
+      </div>
+    </main>
   );
 };
 
-export default BrandTable;
+export default FetchUsers;

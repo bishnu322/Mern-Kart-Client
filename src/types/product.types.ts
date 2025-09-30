@@ -16,3 +16,16 @@ export interface IProduct extends IResponse {
   description: string;
   size?: string;
 }
+
+export interface IUpdateProductData {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  category: string;
+  brand: string;
+  isFeatured: boolean;
+  cover_img: FileList;
+  images: FileList;
+}

@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import heroImg from "../../assets/heroimg3.jpg";
 
 const Hero = () => {
@@ -22,9 +23,12 @@ const Hero = () => {
           <p className="text-base sm:text-lg md:text-xl text-gray-100 font-semibold mb-4 sm:mb-6 md:mb-8 max-w-2xl mx-auto">
             Endless choices, one-click ease!
           </p>
-          <button className="px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-3 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-lg cursor-pointer transition-colors duration-300 text-sm sm:text-base md:text-lg">
+          <Link
+            to={"/products"}
+            className="px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-3 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-lg cursor-pointer transition-colors duration-300 text-sm sm:text-base md:text-lg"
+          >
             Shop now
-          </button>
+          </Link>
         </div>
       </div>
     </div>

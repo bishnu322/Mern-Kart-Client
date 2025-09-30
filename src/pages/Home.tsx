@@ -9,7 +9,7 @@ const Home = () => {
       <Hero />
 
       <CategoryList />
-      <div className="px-10 py-5 min-h-full">
+      <div className="px-5 py-5 min-h-full">
         <FeaturedProduct />
       </div>
     </div>

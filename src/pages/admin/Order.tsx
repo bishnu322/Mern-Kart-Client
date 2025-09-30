@@ -1,7 +1,11 @@
-import React from "react";
+import PageHeader from "../../components/admin/header/PageHeader";
 
 const OrderPage = () => {
-  return <div>OrderPage</div>;
+  return (
+    <main>
+      <PageHeader title="Orders" subTitle="Order details" />
+    </main>
+  );
 };
 
 export default OrderPage;
