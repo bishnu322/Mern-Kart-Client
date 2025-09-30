@@ -14,7 +14,7 @@ export const strings = {
       email: "example@gmail.com",
       phone_number: "000000000000",
       password: "**************",
-      confirm_password: "****************",
+      confirm_password: "**************",
     },
   },
 
