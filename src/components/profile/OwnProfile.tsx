@@ -50,14 +50,14 @@ const OwnProfile = () => {
     console.log("profiles", { data });
 
     return (
-        <main className={`min-h-[400px]`}>
+        <main className={`min-h-[400px] flex justify-center items-center flex-wrap`}>
 
-            <div className={`grid grid-cols-1 text-center sm:text-start sm:grid-cols-3 md:grid-cols-5 `}>
-                <div className={`sm:col-span-1 p-3 h-40 mt-10 mx-5 text-center text-gray-400 flex justify-center sm:justify-items-start`}><FaUserGraduate size={150}/></div>
+            <div className={`flex flex-col justify-between flex-wrap sm:justify-between sm:flex-row  items-center text-center gap-10  `}>
+                <div className={` p-3 h-40  mx-5 text-center text-gray-400`}><FaUserGraduate size={150}/></div>
 
-                <div className={`col-span-1 sm:col-span-2 mt-14`}>
+                <div className={``}>
                     <h1 className={`font-mono text-gray-500 text-sm my-3`}>PERSONAL INFORMATION</h1>
-                    <div className={`flex flex-col justify-center  items-center sm:items-start sm:justify-between gap-3`}>
+                    <div className={`flex flex-col gap-1 justify-center text-center`}>
                         {
                             profileDataConfig.map(({Icon, key}:{Icon:IconType,key:string}) =>(
                                 <div className={`flex items-center text-center gap-1 font-semibold text-md`} key={key}>
@@ -69,7 +69,7 @@ const OwnProfile = () => {
                     </div>
                 </div>
 
-                <div className={`col-span-1 sm:col-span-2 mt-5 sm:mt-24`}>
+                <div className={`text-center  `}>
                    <div>
                        <h1 className={`font-semibold`}>Account Created Date</h1>
                        <p className={`text-gray-600`}>{createdAtDate}</p>
