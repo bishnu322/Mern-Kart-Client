@@ -51,7 +51,7 @@ const ProfileDetails = () => {
       </div>
 
       {ownProfile && !changePass && (
-        <div className="bg-gray-200 min-h-[400px] p-4 rounded-b-md rounded-r-md">
+        <div className="bg-gray-200 min-h-[200px] p-4 rounded-b-md rounded-r-md">
           <OwnProfile />
         </div>
       )}
@@ -66,4 +66,3 @@ const ProfileDetails = () => {
 };
 
 export default ProfileDetails;
-

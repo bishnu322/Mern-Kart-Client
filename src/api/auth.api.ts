@@ -50,3 +50,24 @@ export const profileApi = async () => {
     throw error.response.data;
   }
 };
+
+export interface IChangePassword {
+  email: string;
+  old_password: string;
+  new_password: string;
+}
+
+// change password Api
+export const changePasswordApi = async (
+  id: string,
+  data: IChangePassword
+): Promise<IChangePassword> => {
+  const response = await api.post<IChangePassword>(
+    `/auth/changePassword?${id}`,
+    data
+  );
+
+  console.log(response);
+
+  return response.data;
+};

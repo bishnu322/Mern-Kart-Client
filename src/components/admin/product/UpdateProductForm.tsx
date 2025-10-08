@@ -18,12 +18,6 @@ const UpdateProductForm = () => {
   console.log(id);
   const { register, handleSubmit, watch } = useForm<IUpdateProductData>({});
 
-  //* get product by id
-
-  // const { data } = useQuery({
-  //   queryFn: () => getProductById(id as string),
-  //   queryKey: ["getProductById"],
-  // });
 
   console.log(watch);
 
