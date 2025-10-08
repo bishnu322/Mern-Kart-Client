@@ -18,3 +18,4 @@ export const removeUser = async (id?: string) => {
 
   return response.data;
 };
+
