@@ -15,7 +15,7 @@ const Product = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="w-full min-h-screen px-4">
+    <div className="w-full min-h-screen px-4 bg-white">
       <div className="flex justify-between flex-wrap items-center">
         {data?.data.map((data) => (
           <ProductCard key={data._id} product={data} />

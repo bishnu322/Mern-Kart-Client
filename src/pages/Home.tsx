@@ -5,7 +5,7 @@ import Hero from "../components/landing/Hero";
 
 const Home = () => {
   return (
-    <div className=" bg-gray-50 w-full">
+    <div className=" bg-white w-full">
       <Hero />
 
       <CategoryList />

@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import type { IProduct } from "../../../types/product.types";
 import { addToWishlist } from "../../../api/wishlist.api";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
-import { CiHeart } from "react-icons/ci";
-import { MdViewList } from "react-icons/md";
+import { FaHeart } from "react-icons/fa";
+import { FaAnglesRight } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
 
@@ -28,7 +28,7 @@ const ProductCard = ({ product }: IProductCardProps) => {
   };
 
   return (
-    <div className="my-5 w-[250px] rounded shadow-md bg-white shadow-gray-300 border-gray-200 overflow-hidden h-[320px]">
+    <div className="my-5 w-[250px] rounded bg-purple-50 border border-violet-200  overflow-hidden h-[320px]">
       {/* image section */}
 
       <div className="w-full">
@@ -53,15 +53,15 @@ const ProductCard = ({ product }: IProductCardProps) => {
         {/* price */}
 
         <div className=" flex justify-between ">
-          <div className="text-[14px] text-violet-800 font-semibold flex ">
+          <div className="text-[14px]  font-semibold flex ">
             <div className="mt-1">
               <TbCurrencyRupeeNepalese />
             </div>
             {product?.price}
           </div>
           <p
-            className={`text-[14px]  font-semibold ${
-              product.stock > 0 ? "text-green-500" : "text-red-500"
+            className={`text-[10px]  font-semibold border p-1 rounded text-white ${
+              product.stock > 0 ? "text-green-500" : "bg-red-500"
             }`}
           >
             {product.stock > 0 ? "In stock" : "Out of stock"}
@@ -69,21 +69,23 @@ const ProductCard = ({ product }: IProductCardProps) => {
         </div>
         {/* button */}
 
-        <div className="flex justify-end gap-2">
+        <div className="flex justify-end gap-2 mt-0.5">
           {/* view detail */}
-          <Link to={`/product/${product?._id}?name=${product?.name}`}>
-            <button className="border border-gray-300 px-3 py-2 rounded text-md font-semibold cursor-pointer hover:bg-black hover:text-white transition-all duration-300">
-              <MdViewList />
-            </button>
-          </Link>
+
           {/* add to cart */}
           <button
             onClick={addToList}
             disabled={isPending}
             className="disabled:cursor-not-allowed border border-gray-300  px-3 py-2 rounded text-md font-semibold  cursor-pointer hover:text-white hover:bg-black transition-all duration-300"
           >
-            {isPending ? "Adding.." : <CiHeart />}
+            {isPending ? "Adding.." : <FaHeart />}
           </button>
+
+          <Link to={`/product/${product?._id}?name=${product?.name}`}>
+            <button className="border border-gray-300 px-3 py-2 rounded text-md font-semibold cursor-pointer hover:bg-black hover:text-white transition-all duration-300">
+              <FaAnglesRight />
+            </button>
+          </Link>
         </div>
       </div>
     </div>

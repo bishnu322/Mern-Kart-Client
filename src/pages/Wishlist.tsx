@@ -88,22 +88,22 @@ const Wishlist = () => {
         </div>
       </div>
 
+      {/* card design  */}
       <div className="flex justify-center flex-wrap items-center sm:flex sm:flex-wrap sm:my-5 sm:justify-start">
         {data.data.map((value) => (
           <div
             className="m-5  w-[300px] rounded  shadow-xl shadow-gray-300 bg-white"
             key={value._id}
           >
-            <button
-              onClick={() => removeProduct(value._id)}
-              className="transition-all duration-300  text-end bg-gray-300 p-2 rounded text-red-600 hover:bg-red-200 cursor-pointer"
-            >
-              <FaRegTrashCan size={20} />
-            </button>
-
             {/* image section */}
 
-            <div>
+            <div className="relative">
+              <button
+                onClick={() => removeProduct(value._id)}
+                className="absolute transition-all duration-300  text-end bg-gray-300 p-2 rounded text-red-600 hover:bg-red-200 cursor-pointer"
+              >
+                <FaRegTrashCan size={20} />
+              </button>
               <img
                 src={value.cover_img.path}
                 alt={""}
@@ -129,12 +129,6 @@ const Wishlist = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
               temporibus magnam deleniti, quam quas eligendi.
             </div>
-
-            {/* button */}
-
-            {/* view detail */}
-
-            {/* add to cart */}
           </div>
         ))}
       </div>
