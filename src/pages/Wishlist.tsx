@@ -12,6 +12,7 @@ import Loader from "../components/loader/loader";
 import toast from "react-hot-toast";
 import { query_client } from "../providers/queryClient";
 import { useAuth } from "../context/auth.context";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 const Wishlist = () => {
   const { user } = useAuth();
@@ -69,6 +70,7 @@ const Wishlist = () => {
 
   return (
     <div className="p-5 sm:px-10">
+      {/* heading for wishlist */}
       <div className="flex justify-between">
         <div>
           <h1 className="font-bold text-2xl text-violet-600">My Wishlist</h1>
@@ -85,25 +87,33 @@ const Wishlist = () => {
           </button>
         </div>
       </div>
+
       <div className="flex justify-center flex-wrap items-center sm:flex sm:flex-wrap sm:my-5 sm:justify-start">
         {data.data.map((value) => (
           <div
-            className="p-4 m-5  w-[300px] rounded  shadow-xl shadow-gray-700 bg-white"
+            className="m-5  w-[300px] rounded  shadow-xl shadow-gray-300 bg-white"
             key={value._id}
           >
+            <button
+              onClick={() => removeProduct(value._id)}
+              className="transition-all duration-300  text-end bg-gray-300 p-2 rounded text-red-600 hover:bg-red-200 cursor-pointer"
+            >
+              <FaRegTrashCan size={20} />
+            </button>
+
             {/* image section */}
 
             <div>
               <img
                 src={value.cover_img.path}
                 alt={""}
-                className="object-contain w-full h-[200px]  transition-all duration-500 hover:object-fill hover:cursor-pointer"
+                className="object-cover w-full h-[150px]  transition-all duration-500  hover:cursor-pointer"
               />
             </div>
 
             {/* name */}
 
-            <div className="flex justify-between my-1">
+            <div className="flex justify-between my-1 p-4">
               <h2 className="text-lg text-violet-800 font-semibold">
                 {value.name}
               </h2>
@@ -123,12 +133,7 @@ const Wishlist = () => {
             {/* button */}
 
             {/* view detail */}
-            <button
-              onClick={() => removeProduct(value._id)}
-              className="border-1 px-3 py-2 rounded text-md font-semibold cursor-pointer hover:bg-black hover:text-white transition-all duration-300 w-full"
-            >
-              Remove
-            </button>
+
             {/* add to cart */}
           </div>
         ))}
