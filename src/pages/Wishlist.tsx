@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { query_client } from "../providers/queryClient";
 import { useAuth } from "../context/auth.context";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { TbCurrencyRupeeNepalese } from "react-icons/tb";
 
 const Wishlist = () => {
   const { user } = useAuth();
@@ -81,7 +82,7 @@ const Wishlist = () => {
         <div>
           <button
             onClick={onClearingWishlist}
-            className="bg-gray-400 text-white font-semibold px-3 py-2 rounded hover:cursor-pointer hover:bg-gray-500 transition-all duration-300"
+            className="bg-orange-500 text-white p-2 text-[10px] rounded hover:cursor-pointer hover:bg-red-600 transition-all duration-300"
           >
             Clear all
           </button>
@@ -89,10 +90,10 @@ const Wishlist = () => {
       </div>
 
       {/* card design  */}
-      <div className="flex justify-center flex-wrap items-center sm:flex sm:flex-wrap sm:my-5 sm:justify-start">
+      <div className="flex justify-center flex-wrap items-center sm:flex sm:flex-wrap sm:my-5 sm:justify-start ">
         {data.data.map((value) => (
           <div
-            className="m-5  w-[300px] rounded  shadow-xl shadow-gray-300 bg-white"
+            className="m-5  rounded   bg-purple-50 border border-violet-200 h-[300px] w-[250px]"
             key={value._id}
           >
             {/* image section */}
@@ -100,35 +101,34 @@ const Wishlist = () => {
             <div className="relative">
               <button
                 onClick={() => removeProduct(value._id)}
-                className="absolute transition-all duration-300  text-end bg-gray-300 p-2 rounded text-red-600 hover:bg-red-200 cursor-pointer"
+                className="absolute right-2 top-2 transition-all duration-300  text-end bg-orange-500 p-2 rounded text-white hover:bg-red-600 cursor-pointer"
               >
-                <FaRegTrashCan size={20} />
+                <FaRegTrashCan size={15} />
               </button>
               <img
                 src={value.cover_img.path}
-                alt={""}
-                className="object-cover w-full h-[150px]  transition-all duration-500  hover:cursor-pointer"
+                alt={"coverImg"}
+                className="object-fit w-full h-[150px]  transition-all duration-500  hover:cursor-pointer"
               />
             </div>
 
             {/* name */}
 
-            <div className="flex justify-between my-1 p-4">
-              <h2 className="text-lg text-violet-800 font-semibold">
-                {value.name}
-              </h2>
-              {/* description */}
+            <div className="flex justify-between px-2 py-1 items-center">
+              <h2 className="text-[16px] font-semibold">{value.name}</h2>
 
               {/* price */}
-              <p className="text-md text-violet-800 font-semibold">
-                NPR. {value.price}
+              <p className="text-[12px] text-violet-800 font-semibold flex justify-center items-center ">
+                <TbCurrencyRupeeNepalese /> {value.price}
               </p>
             </div>
 
-            <div className="line-clamp-2 my-3 text-gray-500">
+            <div className="line-clamp-3 text-gray-500 text-[12px] p-2">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
               temporibus magnam deleniti, quam quas eligendi.
             </div>
+
+            {/* add to cart */}
           </div>
         ))}
       </div>

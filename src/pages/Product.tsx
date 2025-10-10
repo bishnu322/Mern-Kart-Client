@@ -16,10 +16,24 @@ const Product = () => {
 
   return (
     <div className="w-full min-h-screen px-4 bg-white">
-      <div className="flex justify-between flex-wrap items-center">
-        {data?.data.map((data) => (
-          <ProductCard key={data._id} product={data} />
-        ))}
+      <div className="px-2 py-4">
+        <h1 className="font-semibold text-violet-500 text-2xl ">
+          MERN-Products
+        </h1>
+        <p className="text-md text-gray-400">Our most popular products.</p>
+      </div>
+
+      <div className="grid grid-cols-5">
+        <div className="col-span-1  text-md px-2 pb-2">
+          Filter Product
+          <hr />
+        </div>
+
+        <div className="flex justify-between flex-wrap items-center px-2 gap-2 col-span-4">
+          {data?.data.map((data) => (
+            <ProductCard key={data._id} product={data} />
+          ))}
+        </div>
       </div>
     </div>
   );

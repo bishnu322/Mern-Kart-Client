@@ -3,7 +3,7 @@ import type { IProduct } from "../../../types/product.types";
 import { addToWishlist } from "../../../api/wishlist.api";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
 import { FaHeart } from "react-icons/fa";
-import { FaAnglesRight } from "react-icons/fa6";
+import { FaEye } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
 
@@ -61,7 +61,7 @@ const ProductCard = ({ product }: IProductCardProps) => {
           </div>
           <p
             className={`text-[10px]  font-semibold border p-1 rounded text-white ${
-              product.stock > 0 ? "text-green-500" : "bg-red-500"
+              product.stock > 0 ? "bg-green-600" : "bg-red-500"
             }`}
           >
             {product.stock > 0 ? "In stock" : "Out of stock"}
@@ -76,14 +76,14 @@ const ProductCard = ({ product }: IProductCardProps) => {
           <button
             onClick={addToList}
             disabled={isPending}
-            className="disabled:cursor-not-allowed border border-gray-300  px-3 py-2 rounded text-md font-semibold  cursor-pointer hover:text-white hover:bg-black transition-all duration-300"
+            className="disabled:cursor-not-allowed border border-gray-300  px-2 py-2 rounded text-md font-semibold  cursor-pointer hover:text-white hover:bg-black transition-all duration-300"
           >
             {isPending ? "Adding.." : <FaHeart />}
           </button>
 
           <Link to={`/product/${product?._id}?name=${product?.name}`}>
-            <button className="border border-gray-300 px-3 py-2 rounded text-md font-semibold cursor-pointer hover:bg-black hover:text-white transition-all duration-300">
-              <FaAnglesRight />
+            <button className="border border-gray-300 px-2 py-2 rounded text-md font-semibold cursor-pointer hover:bg-black hover:text-white transition-all duration-300">
+              <FaEye />
             </button>
           </Link>
         </div>
