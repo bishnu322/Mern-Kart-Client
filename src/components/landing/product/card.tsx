@@ -28,14 +28,14 @@ const ProductCard = ({ product }: IProductCardProps) => {
   };
 
   return (
-    <div className="my-5 w-[250px] rounded bg-purple-50 border border-violet-200  overflow-hidden h-[320px]">
+    <div className="my-5 w-[250px] rounded bg-purple-50 border border-violet-200  overflow-hidden h-[320px] hover:shadow-lg hover:shadow-gray-400 transition-all duration-200">
       {/* image section */}
 
       <div className="w-full">
         <img
           src={product.cover_img.path}
           alt={"product_img"}
-          className="object-fit w-full h-[150px]"
+          className="object-fit w-full h-[150px] "
         />
       </div>
 

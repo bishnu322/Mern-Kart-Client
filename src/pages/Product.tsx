@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllProduct } from "../api/product.api";
 import Loader from "../components/loader/loader";
 import ProductCard from "../components/landing/product/card";
+import ProductFilter from "../components/productFilter/ProductFilter";
 
 const Product = () => {
   const { data, isLoading } = useQuery({
@@ -27,6 +28,7 @@ const Product = () => {
         <div className="col-span-1  text-md px-2 pb-2">
           Filter Product
           <hr />
+          <ProductFilter />
         </div>
 
         <div className="flex justify-between flex-wrap items-center px-2 gap-2 col-span-4">
