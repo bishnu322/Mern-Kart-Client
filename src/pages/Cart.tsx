@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllCartData } from "../api/cart.api";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
+import { Link } from "react-router";
 
 const Cart = () => {
   const { data } = useQuery({
@@ -92,9 +93,12 @@ const Cart = () => {
         </h1>
 
         <div className="flex justify-end">
-          <button className="bg-orange-500 px-3 py-2 rounded text-gray-50 font-semibold cursor-pointer hover:bg-orange-700 my-5">
+          <Link
+            to={`/cart/placeOrder`}
+            className="bg-orange-500 px-3 py-2 rounded text-gray-50 font-semibold cursor-pointer hover:bg-orange-700 my-5"
+          >
             Proceed to Checkout
-          </button>
+          </Link>
         </div>
       </div>
     </div>

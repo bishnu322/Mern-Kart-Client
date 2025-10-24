@@ -26,6 +26,7 @@ import AddProduct from "./pages/admin/product/AddProduct";
 import AddBrand from "./pages/admin/brand/AddBrand";
 import EditBrand from "./pages/admin/brand/EditBrand";
 import UpdateProduct from "./pages/admin/product/UpdateProduct";
+import OrderPlace from "./pages/OrderPlace";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/About-us" element={<AboutUs />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/cart/placeOrder" element={<OrderPlace />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/:id" element={<Profile />} />
