@@ -22,28 +22,24 @@ const ProductFilter = () => {
   return (
     <div className="mt-1">
       {/* filter title */}
-      <h1 className="text-violet-800 text-md font-semibold">
-        Filter by Category
-      </h1>
+      <h1 className="text-gray-500 text-md font-semibold">Categories</h1>
 
       {/* filter category option */}
 
       {data?.data.map((item) => (
         <div key={item.createdAt} className="my-1">
-          <input type="radio" id={item._id} name="vehicle1" value={item._id} />
+          <input type="radio" id={item._id} name="category" value={item._id} />
           <label htmlFor={item._id}> {item.name}</label>
         </div>
       ))}
 
       {/* filter by brand title*/}
-      <h1 className="text-violet-800 text-md font-semibold mt-2">
-        Filter by Brand
-      </h1>
+      <h1 className="text-gray-500 text-md font-semibold mt-2">Brands</h1>
 
       {/* filter by brand */}
       {brandData?.data.map((item) => (
         <div key={item.createdAt} className="my-1">
-          <input type="radio" id={item._id} name="vehicle1" value={item._id} />
+          <input type="radio" id={item._id} name="brand" value={item._id} />
           <label htmlFor={item._id}> {item.brand_name}</label>
         </div>
       ))}
