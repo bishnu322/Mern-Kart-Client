@@ -7,7 +7,7 @@ import ProductFilter from "../components/productFilter/ProductFilter";
 
 const Product = () => {
   const { data, isLoading } = useQuery({
-    queryFn: getAllProduct,
+    queryFn: () => getAllProduct(),
     queryKey: ["get_all_product"],
   });
 
@@ -17,16 +17,16 @@ const Product = () => {
 
   return (
     <div className="w-full min-h-screen px-4 bg-white">
-      <div className="px-2 py-4">
-        <h1 className="font-semibold text-violet-500 text-2xl ">
+      <div className="px-2 py-4  mt-2">
+        <h1 className="font-semibold text-violet-500 text-2xl">
           MERN-Products
         </h1>
         <p className="text-md text-gray-400">Our most popular products.</p>
       </div>
 
       <div className="grid grid-cols-5">
-        <div className="col-span-1  text-md px-2 pb-2">
-          Filter Product
+        <div className="col-span-1 text-md px-2 pb-2">
+          <p className="text-gray-800 text-lg font-semibold">Filter Product</p>
           <hr />
           <ProductFilter />
         </div>

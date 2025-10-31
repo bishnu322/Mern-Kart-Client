@@ -4,8 +4,11 @@ import api from "./index";
 
 //* get all product
 type TGetAllProduct = TResponse<IProduct[]>;
-export const getAllProduct = async (): TGetAllProduct => {
-  const response = await api.get<TGetAllProduct>("/product");
+export const getAllProduct = async (params?: {
+  category?: string;
+  brand?: string;
+}): TGetAllProduct => {
+  const response = await api.get<TGetAllProduct>("/product", { params });
   return response.data;
 };
 
