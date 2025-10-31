@@ -7,7 +7,7 @@ import ProductFilter from "../components/productFilter/ProductFilter";
 
 const Product = () => {
   const { data, isLoading } = useQuery({
-    queryFn: getAllProduct,
+    queryFn: () => getAllProduct(),
     queryKey: ["get_all_product"],
   });
 

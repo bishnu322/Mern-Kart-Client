@@ -28,7 +28,7 @@ const ProductCard = ({ product }: IProductCardProps) => {
   };
 
   return (
-    <div className="my-5 w-[250px] rounded bg-purple-50 border border-violet-200  overflow-hidden h-[320px] hover:shadow-lg hover:shadow-gray-400 transition-all duration-200">
+    <div className="my-5 w-[250px] rounded bg-purple-100 border border-purple-200    overflow-hidden h-[320px] hover:shadow-lg hover:shadow-gray-400 transition-all duration-200">
       {/* image section */}
 
       <div className="w-full">
