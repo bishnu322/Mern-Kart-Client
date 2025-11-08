@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllCategory } from "../../api/category.api";
 import { getAllBrand } from "../../api/brand.api";
+// import { getAllProduct } from "../../api/product.api";
 
-const ProductFilter = () => {
+const ProductFilter = ({ handleFilterProduct }) => {
   const { data, isLoading } = useQuery({
     queryFn: () => getAllCategory(),
     queryKey: ["filterByCategory"],
@@ -13,11 +14,20 @@ const ProductFilter = () => {
     queryKey: ["filterByBrand"],
   });
 
-  if (isLoading) return <div>Loading...</div>;
-
-  if (brandDataIsLoading) return <div>Loading...</div>;
-
   console.log(data?.data);
+
+  // const { mutate } = useMutation({
+  //   mutationFn: (category: string) => getAllProduct({ category }),
+  //   mutationKey: ["filterCat"],
+  // });
+
+  const handleCategory = (categoryData: string) => {
+    // mutate(categoryData);
+    handleFilterProduct(categoryData as string);
+    console.log(categoryData);
+  };
+
+  if (isLoading || brandDataIsLoading) return <div>Loading...</div>;
 
   return (
     <div className="mt-1">
@@ -28,7 +38,13 @@ const ProductFilter = () => {
 
       {data?.data.map((item) => (
         <div key={item.createdAt} className="my-1">
-          <input type="radio" id={item._id} name="category" value={item._id} />
+          <input
+            type="radio"
+            id={item._id}
+            name="category"
+            value={item._id}
+            onChange={(e) => handleCategory(e.target.value)}
+          />
           <label htmlFor={item._id}> {item.name}</label>
         </div>
       ))}
