@@ -1,17 +1,30 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { getAllProduct } from "../api/product.api";
 import Loader from "../components/loader/loader";
 import ProductCard from "../components/landing/product/card";
 import ProductFilter from "../components/productFilter/ProductFilter";
+import { useState } from "react";
 
 const Product = () => {
+  const [category, setCategory] = useState("");
+
   const { data, isLoading } = useQuery({
-    queryFn: () => getAllProduct(),
-    queryKey: ["get_all_product"],
+    queryKey: ["get_all_product", category],
+    queryFn: ({ queryKey }) => {
+      const [, categoryFromKey] = queryKey as [string, string];
+      return getAllProduct({ category: categoryFromKey });
+    },
+    enabled: true,
   });
 
   // if (!data) return null;
+
+  const handleFilterProduct = (newData: string) => {
+    setCategory(newData);
+    console.log({ newData });
+  };
+
+  console.log({ data });
 
   if (isLoading) return <Loader />;
 
@@ -28,13 +41,17 @@ const Product = () => {
         <div className="col-span-1 text-md px-2 pb-2">
           <p className="text-gray-800 text-lg font-semibold">Filter Product</p>
           <hr />
-          <ProductFilter />
+          <ProductFilter handleFilterProduct={handleFilterProduct} />
         </div>
 
-        <div className="flex justify-between flex-wrap items-center px-2 gap-2 col-span-4">
-          {data?.data.map((data) => (
-            <ProductCard key={data._id} product={data} />
-          ))}
+        <div className="col-span-4 flex justify-between flex-wrap items-center px-2 gap-2 ">
+          {!data?.data || data?.data.length === 0 ? (
+            <div className="text-2xl text-red-600">product not found!</div>
+          ) : (
+            data?.data.map((data) => (
+              <ProductCard key={data._id} product={data} />
+            ))
+          )}
         </div>
       </div>
     </div>
