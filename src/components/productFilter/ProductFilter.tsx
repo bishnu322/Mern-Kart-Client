@@ -3,7 +3,7 @@ import { getAllCategory } from "../../api/category.api";
 import { getAllBrand } from "../../api/brand.api";
 // import { getAllProduct } from "../../api/product.api";
 
-const ProductFilter = ({ handleFilterProduct }) => {
+const ProductFilter = ({ handleFilterProduct, handleFilterBrand }) => {
   const { data, isLoading } = useQuery({
     queryFn: () => getAllCategory(),
     queryKey: ["filterByCategory"],
@@ -14,17 +14,15 @@ const ProductFilter = ({ handleFilterProduct }) => {
     queryKey: ["filterByBrand"],
   });
 
-  console.log(data?.data);
-
-  // const { mutate } = useMutation({
-  //   mutationFn: (category: string) => getAllProduct({ category }),
-  //   mutationKey: ["filterCat"],
-  // });
-
   const handleCategory = (categoryData: string) => {
     // mutate(categoryData);
     handleFilterProduct(categoryData as string);
     console.log(categoryData);
+  };
+
+  const handleBrand = (brandData: string) => {
+    handleFilterBrand(brandData);
+    console.log(brandData);
   };
 
   if (isLoading || brandDataIsLoading) return <div>Loading...</div>;
@@ -55,7 +53,13 @@ const ProductFilter = ({ handleFilterProduct }) => {
       {/* filter by brand */}
       {brandData?.data.map((item) => (
         <div key={item.createdAt} className="my-1">
-          <input type="radio" id={item._id} name="brand" value={item._id} />
+          <input
+            type="radio"
+            id={item._id}
+            name="brand"
+            value={item._id}
+            onChange={(e) => handleBrand(e.target.value)}
+          />
           <label htmlFor={item._id}> {item.brand_name}</label>
         </div>
       ))}

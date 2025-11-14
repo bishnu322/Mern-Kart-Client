@@ -24,8 +24,9 @@ const Product = () => {
     console.log({ newData });
   };
 
-  console.log({ data });
-
+  const handleFilterBrand = (filteredBrandData: string) => {
+    console.log(filteredBrandData);
+  };
   if (isLoading) return <Loader />;
 
   return (
@@ -41,7 +42,10 @@ const Product = () => {
         <div className="col-span-1 text-md px-2 pb-2">
           <p className="text-gray-800 text-lg font-semibold">Filter Product</p>
           <hr />
-          <ProductFilter handleFilterProduct={handleFilterProduct} />
+          <ProductFilter
+            handleFilterProduct={handleFilterProduct}
+            handleFilterBrand={handleFilterBrand}
+          />
         </div>
 
         <div className="col-span-4 flex justify-between flex-wrap items-center px-2 gap-2 ">
