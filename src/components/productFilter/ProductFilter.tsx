@@ -1,28 +1,36 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllCategory } from "../../api/category.api";
 import { getAllBrand } from "../../api/brand.api";
-// import { getAllProduct } from "../../api/product.api";
 
-const ProductFilter = ({ handleFilterProduct, handleFilterBrand }) => {
+interface ProductFilterProps {
+  handleFilterProduct: (categoryId: string) => void;
+  handleFilterBrand: (brandId: string) => void;
+}
+
+const ProductFilter = ({
+  handleFilterProduct,
+  handleFilterBrand,
+}: ProductFilterProps) => {
+  // fetching category for filter
   const { data, isLoading } = useQuery({
     queryFn: () => getAllCategory(),
     queryKey: ["filterByCategory"],
   });
 
+  // fetching brand for filter
   const { data: brandData, isLoading: brandDataIsLoading } = useQuery({
     queryFn: () => getAllBrand(),
     queryKey: ["filterByBrand"],
   });
 
+  // handling the value of category
   const handleCategory = (categoryData: string) => {
-    // mutate(categoryData);
-    handleFilterProduct(categoryData as string);
-    console.log(categoryData);
+    handleFilterProduct(categoryData);
   };
 
+  // handling the value of brand
   const handleBrand = (brandData: string) => {
     handleFilterBrand(brandData);
-    console.log(brandData);
   };
 
   if (isLoading || brandDataIsLoading) return <div>Loading...</div>;
@@ -42,6 +50,7 @@ const ProductFilter = ({ handleFilterProduct, handleFilterBrand }) => {
             name="category"
             value={item._id}
             onChange={(e) => handleCategory(e.target.value)}
+            // onChange={handleFilterForProduct}
           />
           <label htmlFor={item._id}> {item.name}</label>
         </div>
@@ -59,6 +68,7 @@ const ProductFilter = ({ handleFilterProduct, handleFilterBrand }) => {
             name="brand"
             value={item._id}
             onChange={(e) => handleBrand(e.target.value)}
+            // onChange={handleFilterForProduct}
           />
           <label htmlFor={item._id}> {item.brand_name}</label>
         </div>
