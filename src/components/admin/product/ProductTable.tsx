@@ -11,8 +11,15 @@ const ProductTable = () => {
   //* fetching product
 
   const { data, isLoading } = useQuery({
-    queryFn: () => getAllProduct(),
-    queryKey: ["getAllProduct"],
+    queryKey: ["getAllProduct", { category: "", brand: "" }],
+    queryFn: ({ queryKey }) => {
+      const [, filters] = queryKey as [
+        string,
+        { category?: string; brand?: string }
+      ];
+
+      return getAllProduct(filters);
+    },
   });
 
   console.log(data);
@@ -33,7 +40,7 @@ const ProductTable = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (!data?.data) return [];
+  if (!data?.data) return null;
 
   //* header for product list
 
