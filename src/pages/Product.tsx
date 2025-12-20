@@ -3,21 +3,25 @@ import { getAllProduct } from "../api/product.api";
 import Loader from "../components/loader/loader";
 import ProductCard from "../components/landing/product/card";
 import ProductFilter from "../components/productFilter/ProductFilter";
+import { useState } from "react";
 
 const Product = () => {
-  // const [brand, setBrand] = useState("");
+  const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
 
   const { data, isLoading } = useQuery({
-    queryKey: ["get_all_product"],
-    queryFn: () => getAllProduct(),
+    queryKey: ["get_all_product", category, brand],
+    queryFn: () => getAllProduct({ category, brand }),
     enabled: true,
   });
 
   const handleFilterProduct = (category: string) => {
+    setCategory(category);
     console.log({ category });
   };
 
   const handleFilterBrand = (filteredBrandData: string) => {
+    setBrand(filteredBrandData);
     console.log({ filteredBrandData });
   };
 

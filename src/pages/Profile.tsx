@@ -1,11 +1,8 @@
-
 import ProfileDetails from "../components/profile/ProfileDetails";
 
 const Profile = () => {
-
-
   return (
-    <div className="h-screen bg-white">
+    <div className="bg-white">
       <ProfileDetails />
     </div>
   );

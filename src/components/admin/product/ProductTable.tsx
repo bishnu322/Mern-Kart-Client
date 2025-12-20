@@ -11,7 +11,7 @@ const ProductTable = () => {
   //* fetching product
 
   const { data, isLoading } = useQuery({
-    queryFn: getAllProduct,
+    queryFn: () => getAllProduct(),
     queryKey: ["getAllProduct"],
   });
 

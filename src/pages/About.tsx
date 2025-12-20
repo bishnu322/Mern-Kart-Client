@@ -7,10 +7,10 @@ const AboutUs: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-              About MERN-Kart
+              About Welcome Shringar
             </h1>
             <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-              Your trusted e-commerce destination built with the MERN stack
+              From Classic to Contemporary - Bangles for Every You
             </p>
           </div>
 
@@ -19,7 +19,7 @@ const AboutUs: React.FC = () => {
               <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:h-full">
                 <img
                   alt="Team"
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                  src="https://banglesking.com/wp-content/uploads/2024/12/IMG_20241220_144118_982.webp"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>
@@ -31,11 +31,14 @@ const AboutUs: React.FC = () => {
                       Our Story
                     </h2>
                     <p className="mt-4 text-gray-600">
-                      Founded in 2023, MERN-Kart began as a small project to
-                      demonstrate the power of the MERN stack (MongoDB, Express,
-                      React, Node.js) in building modern e-commerce solutions.
-                      Today, we've grown into a full-fledged platform serving
-                      thousands of customers worldwide.
+                      At Welcome Shringar, we believe every wrist tells a story.
+                      What started as a passion for timeless elegance has grown
+                      into a curated collection of bangles that celebrate
+                      tradition, style, and self-expression. Each piece is
+                      crafted to add a sparkle to your everyday moments and make
+                      special occasions unforgettable. From classic designs to
+                      modern trends, we're here to help you shine one bangle at
+                      a time.
                     </p>
                   </div>
 
@@ -44,11 +47,10 @@ const AboutUs: React.FC = () => {
                       Our Mission
                     </h2>
                     <p className="mt-4 text-gray-600">
-                      We're committed to providing a seamless shopping
-                      experience with cutting-edge technology, competitive
-                      prices, and exceptional customer service. Our platform is
-                      constantly evolving to incorporate the latest web
-                      technologies and best practices.
+                      To bring beauty, tradition, and style to every wrist by
+                      offering exquisite bangles that blend timeless
+                      craftsmanship with modern design, making every wearer feel
+                      confident and celebrated.
                     </p>
                   </div>
 
@@ -57,11 +59,11 @@ const AboutUs: React.FC = () => {
                       The Technology
                     </h2>
                     <p className="mt-4 text-gray-600">
-                      Built entirely with JavaScript technologies, MERN-Kart
-                      showcases how modern web applications can deliver
-                      performance, scalability, and great user experiences. We
-                      use TypeScript for type safety and Tailwind CSS for rapid,
-                      responsive UI development.
+                      We combine the art of handcrafted jewelry with advanced
+                      e-commerce technology featuring secure payments,
+                      personalized recommendations, and real time inventory
+                      updates to give you a seamless shopping experience from
+                      selection to delivery.
                     </p>
                   </div>
                 </div>
@@ -69,6 +71,7 @@ const AboutUs: React.FC = () => {
             </div>
           </div>
 
+          {/* 
           <div className="mt-24">
             <h2 className="text-3xl font-bold text-center text-gray-900 sm:text-4xl">
               Meet Our Team
@@ -116,12 +119,12 @@ const AboutUs: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div className="mt-24 bg-white shadow-lg rounded-lg p-8">
             <div className="text-center">
               <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-                Why Choose MERN-Kart?
+                Why Choose Welcome Shringar?
               </h2>
               <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
                 Here's what makes us different
@@ -131,9 +134,9 @@ const AboutUs: React.FC = () => {
             <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
               {[
                 {
-                  title: "Modern Technology",
+                  title: "Wide Range of Variety",
                   description:
-                    "Built with the latest web technologies for a fast, reliable shopping experience.",
+                    "We have various kinds of Bangles made from materials such as Glass, Metal, Plastic etc",
                   icon: (
                     <svg
                       className="h-8 w-8 text-indigo-600"
@@ -151,9 +154,9 @@ const AboutUs: React.FC = () => {
                   ),
                 },
                 {
-                  title: "Secure Payments",
+                  title: "Top-notch Quality",
                   description:
-                    "Your transactions are protected with industry-leading security measures.",
+                    "Our product arrives only from trusted manufacturing partners",
                   icon: (
                     <svg
                       className="h-8 w-8 text-indigo-600"
@@ -171,9 +174,9 @@ const AboutUs: React.FC = () => {
                   ),
                 },
                 {
-                  title: "Customer Focus",
+                  title: "20 years of operation",
                   description:
-                    "We prioritize your satisfaction with responsive support and easy returns.",
+                    "We have served tens of thousands of customers over 20 years of running our business.",
                   icon: (
                     <svg
                       className="h-8 w-8 text-indigo-600"

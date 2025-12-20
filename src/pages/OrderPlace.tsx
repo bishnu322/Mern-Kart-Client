@@ -1,7 +1,11 @@
-import React from "react";
+import OrderForm from "../components/Order/OrderForm";
 
 const OrderPlace = () => {
-  return <main>OrderPlace</main>;
+  return (
+    <main className="p-4 flex justify-center">
+      <OrderForm />
+    </main>
+  );
 };
 
 export default OrderPlace;
