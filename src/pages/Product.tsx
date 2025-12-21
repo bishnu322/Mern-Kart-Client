@@ -7,26 +7,24 @@ import { useState } from "react";
 
 const Product = () => {
   const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
 
   const { data, isLoading } = useQuery({
-    queryKey: ["get_all_product", category],
-    queryFn: ({ queryKey }) => {
-      const [, categoryFromKey] = queryKey as [string, string];
-      return getAllProduct({ category: categoryFromKey });
-    },
+    queryKey: ["get_all_product", category, brand],
+    queryFn: () => getAllProduct({ category, brand }),
     enabled: true,
   });
 
-  // if (!data) return null;
-
-  const handleFilterProduct = (newData: string) => {
-    setCategory(newData);
-    console.log({ newData });
+  const handleFilterProduct = (category: string) => {
+    setCategory(category);
+    console.log({ category });
   };
 
   const handleFilterBrand = (filteredBrandData: string) => {
-    console.log(filteredBrandData);
+    setBrand(filteredBrandData);
+    console.log({ filteredBrandData });
   };
+
   if (isLoading) return <Loader />;
 
   return (

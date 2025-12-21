@@ -38,4 +38,20 @@ export const strings = {
     Cart: "My cart",
     Account: "Account",
   },
+
+  address: {
+    country: "Country",
+    state: "State",
+    city: "City",
+    street: "Street",
+    placeholder: {
+      country: "Enter your country",
+      state: "Enter your state",
+      city: "Enter your city",
+      street: "Enter street address",
+    },
+    button: {
+      placeOrder: "Place Order",
+    },
+  },
 };

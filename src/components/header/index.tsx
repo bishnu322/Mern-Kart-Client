@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useLocation, useNavigate } from "react-router";
-import logo from "../../assets/mernKart.png";
+import logo from "../../assets/logo.png";
 import { FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";

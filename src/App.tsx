@@ -15,7 +15,7 @@ import Profile from "./pages/Profile";
 import ClientLayout from "./layout/ClientLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import User from "./pages/admin/User";
-import OrderPage from "./pages/admin/Order";
+import OrderPage from "./pages/admin/order/Order";
 import AdminLayout from "./layout/admin.layout";
 import Products from "./pages/admin/product/Product";
 import Brand from "./pages/admin/brand/Brand";

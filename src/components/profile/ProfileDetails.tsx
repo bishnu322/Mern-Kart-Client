@@ -1,25 +1,29 @@
 import { useState } from "react";
 import ChangePassword from "./ChangePassword";
 import OwnProfile from "./OwnProfile";
+import { MyOrders } from "./myOrders/MyOrders";
 
 const ProfileDetails = () => {
   const [ownProfile, setOwnProfile] = useState<boolean>(true);
   const [changePass, setChangePass] = useState<boolean>(false);
+  const [myOrders, setMyOrders] = useState<boolean>(false);
 
   const handleProfileToggle = () => {
     setOwnProfile(true);
-
-    if (ownProfile) {
-      setChangePass(false);
-    }
+    setChangePass(false);
+    setMyOrders(false);
   };
 
   const handleChangePassword = () => {
+    setOwnProfile(false);
     setChangePass(true);
+    setMyOrders(false);
+  };
 
-    if (changePass) {
-      setOwnProfile(false);
-    }
+  const handleMyOrders = () => {
+    setOwnProfile(false);
+    setChangePass(false);
+    setMyOrders(true);
   };
 
   return (
@@ -48,6 +52,17 @@ const ProfileDetails = () => {
         >
           Change Password
         </button>
+
+        <button
+          onClick={handleMyOrders}
+          className={` text-gray-600 px-4 py-2 rounded-t-sm font-semibold ${
+            myOrders
+              ? "bg-gray-200 border-t-2 border-t-violet-500 text-violet-700"
+              : "bg-gray-300 border-t-2 border-t-gray-300"
+          } transition-all duration-200`}
+        >
+          My Orders
+        </button>
       </div>
 
       {ownProfile && !changePass && (
@@ -59,6 +74,12 @@ const ProfileDetails = () => {
       {changePass && (
         <div className="bg-gray-200 min-h-[400px] p-4 rounded-b-md rounded-r-md">
           <ChangePassword />
+        </div>
+      )}
+
+      {myOrders && (
+        <div className="bg-gray-200 p-4 rounded-b-md rounded-r-md">
+          <MyOrders />
         </div>
       )}
     </main>
