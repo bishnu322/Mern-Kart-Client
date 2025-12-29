@@ -2,6 +2,8 @@ import { Outlet } from "react-router";
 import Sidebar from "../components/admin/sidebar";
 import AdminHeader from "../components/admin/header/AdminHeader";
 import { useState } from "react";
+import { withAuth } from "../hoc/with.auth.hoc";
+import { allAdmin } from "../types/global.types";
 
 const AdminLayout = () => {
   const [toggleMenuBar, setToggleMenuBar] = useState(true);
@@ -29,4 +31,6 @@ const AdminLayout = () => {
   );
 };
 
-export default AdminLayout;
+const AdminLayoutWithAuth = withAuth(AdminLayout, allAdmin);
+
+export default AdminLayoutWithAuth;
