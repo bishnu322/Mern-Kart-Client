@@ -1,6 +1,6 @@
-import CategoryFilter from "./CategoryFilter.tsx";
-import BrandFilter from "./BrandFilter.tsx";
 import type React from "react";
+import CategoryFilter from "./CategoryFilter";
+import BrandFilter from "./BrandFilter";
 interface IProps {
   handleFilterProduct: (category: string) => void;
   handleFilterBrand: (brand: string) => void;
