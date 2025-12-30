@@ -198,7 +198,6 @@ const IconSection = ({ className }: { className?: string }) => {
   const { mutate } = useMutation({
     mutationFn: logoutApi,
     onSuccess: (response: any) => {
-      console.log(response);
       localStorage.removeItem("user");
 
       toast.success(response?.message ?? "logout successful");
@@ -208,7 +207,6 @@ const IconSection = ({ className }: { className?: string }) => {
     },
 
     onError: (error) => {
-      console.log(error);
       toast.error(error?.message ?? "logout failed");
     },
     mutationKey: ["logout_mutation"],

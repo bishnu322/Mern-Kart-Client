@@ -61,8 +61,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           setUser(null);
           localStorage.removeItem("user");
         }
-      } catch (error) {
-        console.log("session validation failed", error);
+      } catch {
         setUser(null);
         localStorage.removeItem("user");
       }
@@ -86,7 +85,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
 export const useAuth = () => {
   if (!AuthContext) {
-    console.log("useAuth hook must used inside auth provide");
+    // AuthContext must be used inside an AuthProvider
   }
 
   return useContext(AuthContext);

@@ -36,7 +36,6 @@ const OwnProfile = () => {
         day: "numeric",
       })
     : null;
-  console.log({ createdAtDate });
 
   const updatedAtDate: string | null = data?.data?.updatedAt
     ? new Date(data.data.createdAt).toLocaleDateString("en-US", {
@@ -45,8 +44,6 @@ const OwnProfile = () => {
         day: "numeric",
       })
     : null;
-
-  console.log("profiles", { data });
 
   return (
     <main className={`flex justify-center items-center flex-wrap`}>

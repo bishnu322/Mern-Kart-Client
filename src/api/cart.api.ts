@@ -17,8 +17,6 @@ interface ICartResponse {
 export const getAllCartData = async (): TResponse<ICartResponse> => {
   const response = await api.get<TResponse<ICartResponse>>("/cart");
 
-  console.log(response.data);
-
   return response.data;
 };
 
@@ -37,8 +35,6 @@ export const pushProductToCart = async (data: {
   quantity: number;
 }): TResponse<ICart> => {
   const response = await api.post<TResponse<ICart>>("/cart", data);
-
-  console.log(response.data);
 
   return response.data;
 };

@@ -31,7 +31,6 @@ const FetchUsers = () => {
     },
   });
 
-  console.log({ data });
   const columns = [
     columnHelper.accessor("s.n", {
       header: () => "S.N",

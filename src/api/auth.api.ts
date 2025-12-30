@@ -13,7 +13,6 @@ export const loginApi = async (data: IloginData): Promise<IloginData> => {
 export const signUpApi = async (data: ISignup): Promise<ISignup> => {
   const response = await api.post(`/auth/register`, data);
 
-  console.log(response);
   return response.data;
 };
 

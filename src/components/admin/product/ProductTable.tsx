@@ -23,8 +23,6 @@ const ProductTable = () => {
     },
   });
 
-  console.log(data);
-
   //* remove product
 
   const { mutate } = useMutation({
@@ -128,8 +126,6 @@ const ProductTable = () => {
       ),
     }),
   ];
-
-  console.log({ data });
 
   return (
     <main className="mt-3">

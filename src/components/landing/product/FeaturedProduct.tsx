@@ -10,7 +10,6 @@ const FeaturedProduct = () => {
     queryKey: ["get_all_product"],
   });
 
-  console.log(data);
   if (!data) return null;
 
   if (isLoading) return <Loader />;

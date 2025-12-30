@@ -17,7 +17,6 @@ const AdminHeader = ({ setToggleMenuBar }: Props) => {
   const { mutate } = useMutation({
     mutationFn: logoutApi,
     onSuccess: (response) => {
-      console.log(response);
       localStorage.removeItem("user");
 
       toast.success(response?.message ?? "logout successful");
@@ -26,7 +25,6 @@ const AdminHeader = ({ setToggleMenuBar }: Props) => {
       navigate("/");
     },
     onError: (error) => {
-      console.log(error);
       toast.error(error.message ?? "something went wrong while logout");
     },
     mutationKey: ["logout_mutation"],

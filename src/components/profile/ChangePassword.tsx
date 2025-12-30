@@ -16,8 +16,6 @@ const ChangePassword = () => {
 
   const auth = useAuth();
 
-  console.log("auth", { auth });
-
   const { mutate } = useMutation({
     mutationFn: (data: IChangePassword) =>
       changePasswordApi(auth?.user?._id as string, data),
@@ -32,10 +30,7 @@ const ChangePassword = () => {
 
   const submitForm = (data: IChangePassword) => {
     mutate(data);
-    console.log("onSubmit", data);
   };
-
-  console.log(watch);
 
   return (
     <main

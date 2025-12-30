@@ -9,8 +9,6 @@ const BrandDropdown = ({ register }: any) => {
     queryKey: ["getAllBrand"],
   });
 
-  console.log(data?.data);
-
   if (isLoading) return <div>Loading...</div>;
 
   if (!data?.data) return;
