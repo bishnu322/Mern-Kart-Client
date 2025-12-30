@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllProduct } from "../api/product.api";
-import Loader from "../components/loader/loader";
 import ProductCard from "../components/landing/product/card";
 import ProductFilter from "../components/productFilter/ProductFilter";
+import ProductCardSkeleton from "../components/skeleton/ProductCardSkeleton";
 import { useState } from "react";
 
 const Product = () => {
@@ -17,7 +17,7 @@ const Product = () => {
 
   const handleFilterProduct = (category: string) => {
     setCategory(category);
-    setShowFilter(false); // close on mobile after select
+    setShowFilter(false);
   };
 
   const handleFilterBrand = (brand: string) => {
@@ -25,54 +25,77 @@ const Product = () => {
     setShowFilter(false);
   };
 
-  if (isLoading) return <Loader />;
-
   return (
-    <div className="w-full min-h-screen bg-white px-4">
-      {/* Mobile Filter Button */}
-      <div className="md:hidden flex justify-end py-3">
-        <button
-          onClick={() => setShowFilter(true)}
-          className="px-4 py-2 bg-violet-500 text-white rounded-md"
+    <main className="m-3">
+      {/* Mobile Filter Toggle Button */}
+      <button
+        onClick={() => setShowFilter(!showFilter)}
+        className="lg:hidden mb-4 px-4 py-2 bg-violet-500 text-white rounded-lg flex items-center gap-2 hover:bg-violet-600 transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
         >
-          Filter
-        </button>
-      </div>
+          <path
+            fillRule="evenodd"
+            d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+            clipRule="evenodd"
+          />
+        </svg>
+        {showFilter ? "Hide Filters" : "Show Filters"}
+      </button>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        {/* FILTER SECTION */}
+      <div className="flex gap-4">
+        {/* Filter Sidebar */}
         <div
           className={`
-            fixed md:static top-0 left-0 z-40
-            h-full w-full bg-white
-            transform transition-transform duration-300
-            ${showFilter ? "translate-x-0" : "-translate-x-full"}
-            md:translate-x-0
-            md:col-span-1
-            overflow-y-auto
-            border-r
+            fixed lg:static inset-0 z-50 lg:z-auto
+            w-full lg:w-[300px]
+            bg-white lg:bg-transparent
+            transition-transform duration-300 ease-in-out
+            ${
+              showFilter
+                ? "translate-x-0"
+                : "-translate-x-full lg:translate-x-0"
+            }
           `}
         >
-          {/* Mobile Close Button */}
-          <div className="md:hidden flex justify-end p-4">
-            <button
+          {/* Mobile Overlay */}
+          {showFilter && (
+            <div
+              className="lg:hidden fixed inset-0 bg-gray-200 bg-opacity-50 -z-10"
               onClick={() => setShowFilter(false)}
-              className="text-gray-600 text-lg"
-            >
-              ✕
-            </button>
-          </div>
+            />
+          )}
 
-          <div className="px-4 pb-4">
-            <h1 className="font-semibold text-violet-500 text-2xl mt-2">
-              MERN-Products
-            </h1>
-            <p className="text-gray-400 mb-4">Our most popular products.</p>
-
-            <p className="text-gray-800 text-lg font-semibold">
-              Filter Product
-            </p>
-            <hr className="my-2" />
+          {/* Filter Content */}
+          <div className="h-full lg:h-auto overflow-y-auto p-4 lg:p-0">
+            <div className="flex justify-between items-center lg:block mb-4">
+              <h1 className="font-semibold text-violet-500 text-2xl">
+                Filter Product
+              </h1>
+              <button
+                onClick={() => setShowFilter(false)}
+                className="lg:hidden text-gray-500 hover:text-gray-700"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
 
             <ProductFilter
               handleFilterProduct={handleFilterProduct}
@@ -81,17 +104,14 @@ const Product = () => {
           </div>
         </div>
 
-        {/* OVERLAY (mobile only) */}
-        {showFilter && (
-          <div
-            onClick={() => setShowFilter(false)}
-            className="fixed inset-0 bg-black bg-opacity-30 z-30 md:hidden"
-          />
-        )}
-
-        {/* PRODUCT LIST */}
-        <div className="col-span-4 flex flex-wrap justify-around gap-2">
-          {!data?.data || data.data.length === 0 ? (
+        {/* Product Grid */}
+        <div className="flex-1 flex flex-wrap justify-around gap-2">
+          {isLoading ? (
+            // Show skeleton loaders while loading
+            Array.from({ length: 8 }).map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))
+          ) : !data?.data || data.data.length === 0 ? (
             <div className="text-2xl text-red-600">Product not found!</div>
           ) : (
             data.data.map((product) => (
@@ -100,7 +120,7 @@ const Product = () => {
           )}
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
