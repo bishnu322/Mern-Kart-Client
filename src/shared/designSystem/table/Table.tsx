@@ -19,8 +19,9 @@ const Table: React.FC<IProps> = ({ columns, data = [] }) => {
   });
 
   return (
-    <div>
-      <table className="w-full rounded-t-lg overflow-hidden">
+    // wrapper provides horizontal scrolling on small screens while keeping full width on larger screens
+    <div className="w-full overflow-x-auto">
+      <table className="min-w-[640px] w-full rounded-t-lg">
         <thead className="bg-violet-600 text-white font-bold">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} className="">
