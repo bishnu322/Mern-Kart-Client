@@ -15,7 +15,7 @@ const CategoryFilter = () => {
         (item: { _id: string; name: string; createdAt: string }) => (
           <div
             key={item.createdAt}
-            className=" p-1 rounded hover:bg-violet-200 hover:cursor-pointer"
+            className=" p-1 rounded hover:bg-violet-200 hover:cursor-pointer flex items-start gap-2 "
           >
             <input
               type="radio"
@@ -24,8 +24,9 @@ const CategoryFilter = () => {
               value={item._id}
               // onChange={(e) => handleCategory(e.target.value)}
               // onChange={handleFilterForProduct}
+              className="mt-1.5"
             />
-            <label htmlFor={item._id}> {item.name}</label>
+            <label htmlFor={item._id}>{item.name}</label>
           </div>
         )
       )}

@@ -14,7 +14,7 @@ const BrandFilter = () => {
         (item: { _id: string; brand_name: string; createdAt: string }) => (
           <div
             key={item.createdAt}
-            className="p-1 rounded hover:bg-violet-200 hover:cursor-pointer"
+            className=" p-1 rounded hover:bg-violet-200 hover:cursor-pointer flex items-start gap-2 "
           >
             <input
               type="radio"
@@ -23,6 +23,7 @@ const BrandFilter = () => {
               value={item._id}
               // onChange={(e) => handleBrand(e.target.value)}
               // onChange={handleFilterForProduct}
+              className="mt-1.5"
             />
             <label htmlFor={item._id}> {item.brand_name}</label>
           </div>
