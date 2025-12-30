@@ -30,28 +30,45 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<IUser | null>(null);
-  // const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchUser() {
+    //Try to read a cached user from localStorage synchronously so the UI can render quickly
+    try {
+      const saved = localStorage.getItem("user");
+      if (saved) {
+        setUser(JSON.parse(saved) as IUser);
+      } else {
+        setUser(null);
+      }
+    } catch (e) {
+      console.warn("Failed to parse cached user", e);
+      setUser(null);
+    }
+
+    setIsLoading(false);
+
+    async function validate() {
       try {
         const data = await profileApi();
-        console.log(data);
         if (data && typeof data === "object" && "data" in data) {
           setUser((data as { data: IUser }).data);
+          localStorage.setItem(
+            "user",
+            JSON.stringify((data as { data: IUser }).data)
+          );
         } else {
           setUser(null);
+          localStorage.removeItem("user");
         }
       } catch (error) {
+        console.log("session validation failed", error);
         setUser(null);
-        console.log(error);
-      } finally {
-        setIsLoading(false);
+        localStorage.removeItem("user");
       }
     }
 
-    fetchUser();
+    validate();
   }, []);
 
   const logout = (cb = () => {}) => {

@@ -6,13 +6,14 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getAllUser, removeUser } from "../../../api/user.api";
 import ActionButton from "../ActionButton";
 import toast from "react-hot-toast";
+import { UserSkeleton } from "../../../components/skeleton";
 
 const FetchUsers = () => {
   const queryClient = useQueryClient();
   const columnHelper = createColumnHelper<any>();
 
   //* fetching data of user
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: getAllUser,
     queryKey: ["getAllUser"],
   });
@@ -98,7 +99,11 @@ const FetchUsers = () => {
     <main>
       <AdminBodyTitle>Fetched User</AdminBodyTitle>
       <div className="mt-2">
-        <Table columns={columns} data={data?.data} />
+        {isLoading ? (
+          <UserSkeleton />
+        ) : (
+          <Table columns={columns} data={data?.data} />
+        )}
       </div>
     </main>
   );

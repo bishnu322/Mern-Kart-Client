@@ -4,6 +4,7 @@ import { getAllProduct, removeProduct } from "../../../api/product.api";
 import { createColumnHelper } from "@tanstack/react-table";
 import ActionButton from "../ActionButton";
 import Table from "../../../shared/designSystem/table/Table";
+import { ProductSkeleton } from "../../../components/skeleton";
 import toast from "react-hot-toast";
 
 const ProductTable = () => {
@@ -38,7 +39,7 @@ const ProductTable = () => {
     },
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <ProductSkeleton />;
 
   if (!data?.data) return null;
 

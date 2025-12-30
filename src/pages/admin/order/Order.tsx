@@ -1,11 +1,12 @@
 import { Link } from "react-router";
 import PageHeader from "../../../components/admin/header/PageHeader";
 import { useGetAllOrder } from "./useGetAllOrder";
+import { OrderSkeleton } from "../../../components/skeleton";
 
 const OrderPage = () => {
   const { data, isLoading } = useGetAllOrder();
 
-  if (isLoading) return <>Thinking...</>;
+  if (isLoading) return <OrderSkeleton />;
   if (!data) return null;
 
   const orders = data.data;
