@@ -4,19 +4,18 @@ import Header from "../components/header";
 
 const ClientLayout = () => {
   return (
-    <main className="h-screen w-full flex flex-col overflow-hidden">
+    <main className="h-screen w-full flex flex-col">
       {/* Fixed Header */}
       <div className="sticky top-0 z-50">
         <Header />
       </div>
 
       {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto">
+      <div>
         <Outlet />
       </div>
 
-      {/* Optional Footer (fixed at bottom) */}
-      <div className="sticky bottom-0">
+      <div>
         <Footer />
       </div>
     </main>
