@@ -1,9 +1,10 @@
-import { Input } from "../../shared/designSystem/form/input/Input.tsx";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { changePasswordApi, type IChangePassword } from "../../api/auth.api.ts";
-import { useAuth } from "../../context/auth.context.tsx";
+
+import { useAuth } from "../../context/auth.context.js";
+import { changePasswordApi, type IChangePassword } from "../../api/auth.api.js";
+import { Input } from "../../shared/designSystem/form/input/Input.js";
 
 // interface FieldValues {
 //   email: string;
@@ -12,7 +13,7 @@ import { useAuth } from "../../context/auth.context.tsx";
 // }
 
 const ChangePassword = () => {
-  const { register, watch, handleSubmit } = useForm<IChangePassword>({});
+  const { register, handleSubmit } = useForm<IChangePassword>({});
 
   const auth = useAuth();
 

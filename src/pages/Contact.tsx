@@ -1,37 +1,6 @@
 import React from "react";
 
 const ContactUs: React.FC = () => {
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   subject: "",
-  //   message: "",
-  // });
-
-  // const handleChange = (
-  //   e: React.ChangeEvent<
-  //     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-  //   >
-  // ) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prev) => ({
-  //     ...prev,
-  //     [name]: value,
-  //   }));
-  // };
-
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   // Handle form submission here
-  //   alert("Thank you for your message! We will get back to you soon.");
-  //   setFormData({
-  //     name: "",
-  //     email: "",
-  //     subject: "",
-  //     message: "",
-  //   });
-  // };
-
   return (
     <>
       <div className="w-full min-h-full bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
@@ -239,6 +208,7 @@ const ContactUs: React.FC = () => {
                   <div className="ml-3">
                     <p className="text-lg font-medium text-gray-900">Email</p>
                     <p className="text-gray-600">murarigupta28598@gmail.com</p>
+                    <p className="text-gray-600">welcomeshreengar@gmail.com</p>
                   </div>
                 </div>
               </div>

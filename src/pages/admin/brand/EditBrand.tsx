@@ -1,12 +1,9 @@
-import { useParams } from "react-router";
 import PageHeader from "../../../components/admin/header/PageHeader";
 import AdminBodyWrapper from "../../../components/admin/form/AdminBodyWrapper";
 import BrandUpdate from "../../../components/admin/brand/BrandUpdate";
 
 const EditBrand = () => {
-  const params = useParams();
-
-  console.log(params);
+  // params are available via useParams if needed
   return (
     <main>
       <PageHeader

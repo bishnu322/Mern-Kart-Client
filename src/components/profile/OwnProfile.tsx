@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { profileApi } from "../../api/auth.api.ts";
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
 import { MdOutlinePhone } from "react-icons/md";
 import { FaUserGraduate } from "react-icons/fa";
 import type { IconType } from "react-icons";
+import { profileApi } from "../../api/auth.api";
 
 const profileDataConfig: { Icon: IconType; key: string }[] = [
   {
@@ -54,7 +54,7 @@ const OwnProfile = () => {
           <FaUserGraduate size={150} />
         </div>
 
-        <div className={``}>
+        <div>
           <h1 className={`font-mono text-gray-500 text-sm my-3 md:text-start`}>
             PERSONAL INFORMATION
           </h1>
