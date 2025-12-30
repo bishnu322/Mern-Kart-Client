@@ -27,8 +27,6 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
     return;
   };
 
-  console.log(quantity);
-
   const { mutate } = useMutation({
     mutationFn: pushProductToCart,
     onSuccess: (response: any) => {
@@ -43,8 +41,6 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
   const addProductToCart = () => {
     mutate({ productId: product._id, quantity });
   };
-
-  console.log(product._id);
 
   return (
     <div className="flex flex-col gap-5">

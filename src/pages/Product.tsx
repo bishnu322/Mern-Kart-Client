@@ -1,62 +1,126 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllProduct } from "../api/product.api";
-import Loader from "../components/loader/loader";
 import ProductCard from "../components/landing/product/card";
 import ProductFilter from "../components/productFilter/ProductFilter";
+import ProductCardSkeleton from "../components/skeleton/ProductCardSkeleton";
 import { useState } from "react";
 
 const Product = () => {
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
+  const [showFilter, setShowFilter] = useState(false);
 
   const { data, isLoading } = useQuery({
     queryKey: ["get_all_product", category, brand],
     queryFn: () => getAllProduct({ category, brand }),
-    enabled: true,
   });
 
   const handleFilterProduct = (category: string) => {
     setCategory(category);
-    console.log({ category });
+    setShowFilter(false);
   };
 
-  const handleFilterBrand = (filteredBrandData: string) => {
-    setBrand(filteredBrandData);
-    console.log({ filteredBrandData });
+  const handleFilterBrand = (brand: string) => {
+    setBrand(brand);
+    setShowFilter(false);
   };
-
-  if (isLoading) return <Loader />;
 
   return (
-    <div className="w-full min-h-screen px-4 bg-white">
-      <div className="px-2 py-4  mt-2">
-        <h1 className="font-semibold text-violet-500 text-2xl">
-          MERN-Products
-        </h1>
-        <p className="text-md text-gray-400">Our most popular products.</p>
-      </div>
-
-      <div className="grid grid-cols-5">
-        <div className="col-span-1 text-md px-2 pb-2">
-          <p className="text-gray-800 text-lg font-semibold">Filter Product</p>
-          <hr />
-          <ProductFilter
-            handleFilterProduct={handleFilterProduct}
-            handleFilterBrand={handleFilterBrand}
+    <main className="m-3">
+      {/* Mobile Filter Toggle Button */}
+      <button
+        onClick={() => setShowFilter(!showFilter)}
+        className="lg:hidden mb-4 px-4 py-2 bg-violet-500 text-white rounded-lg flex items-center gap-2 hover:bg-violet-600 transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+            clipRule="evenodd"
           />
+        </svg>
+        {showFilter ? "Hide Filters" : "Show Filters"}
+      </button>
+
+      <div className="flex gap-4">
+        {/* Filter Sidebar */}
+        <div
+          className={`
+            fixed lg:static inset-0 z-50 lg:z-auto
+            w-full lg:w-[300px]
+            bg-white lg:bg-transparent
+            transition-transform duration-300 ease-in-out
+            ${
+              showFilter
+                ? "translate-x-0"
+                : "-translate-x-full lg:translate-x-0"
+            }
+          `}
+        >
+          {/* Mobile Overlay */}
+          {showFilter && (
+            <div
+              className="lg:hidden fixed inset-0 bg-gray-200 bg-opacity-50 -z-10"
+              onClick={() => setShowFilter(false)}
+            />
+          )}
+
+          {/* Filter Content */}
+          <div className="h-full lg:h-auto overflow-y-auto p-4 lg:p-0">
+            <div className="flex justify-between items-center lg:block mb-4">
+              <h1 className="font-semibold text-violet-500 text-2xl">
+                Filter Product
+              </h1>
+              <button
+                onClick={() => setShowFilter(false)}
+                className="lg:hidden text-gray-500 hover:text-gray-700"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <ProductFilter
+              handleFilterProduct={handleFilterProduct}
+              handleFilterBrand={handleFilterBrand}
+            />
+          </div>
         </div>
 
-        <div className="col-span-4 flex justify-between flex-wrap items-center px-2 gap-2 ">
-          {!data?.data || data?.data.length === 0 ? (
-            <div className="text-2xl text-red-600">product not found!</div>
+        {/* Product Grid */}
+        <div className="flex-1 flex flex-wrap justify-around gap-2">
+          {isLoading ? (
+            // Show skeleton loaders while loading
+            Array.from({ length: 8 }).map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))
+          ) : !data?.data || data.data.length === 0 ? (
+            <div className="text-2xl text-red-600">Product not found!</div>
           ) : (
-            data?.data.map((data) => (
-              <ProductCard key={data._id} product={data} />
+            data.data.map((product) => (
+              <ProductCard key={product._id} product={product} />
             ))
           )}
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

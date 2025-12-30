@@ -8,7 +8,6 @@ const CategoryDropdown = ({ register }: any) => {
     queryFn: () => getAllCategory(),
     queryKey: ["get_All_category"],
   });
-  console.log(data?.data);
 
   if (isLoading) return <div>Loading...</div>;
 

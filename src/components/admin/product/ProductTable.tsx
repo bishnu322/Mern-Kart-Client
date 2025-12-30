@@ -4,6 +4,7 @@ import { getAllProduct, removeProduct } from "../../../api/product.api";
 import { createColumnHelper } from "@tanstack/react-table";
 import ActionButton from "../ActionButton";
 import Table from "../../../shared/designSystem/table/Table";
+import { ProductSkeleton } from "../../../components/skeleton";
 import toast from "react-hot-toast";
 
 const ProductTable = () => {
@@ -22,8 +23,6 @@ const ProductTable = () => {
     },
   });
 
-  console.log(data);
-
   //* remove product
 
   const { mutate } = useMutation({
@@ -38,7 +37,7 @@ const ProductTable = () => {
     },
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <ProductSkeleton />;
 
   if (!data?.data) return null;
 
@@ -127,8 +126,6 @@ const ProductTable = () => {
       ),
     }),
   ];
-
-  console.log({ data });
 
   return (
     <main className="mt-3">

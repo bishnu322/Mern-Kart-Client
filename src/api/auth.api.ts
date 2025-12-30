@@ -2,37 +2,32 @@
 import type { IloginData, ISignup } from "../types/auth.types";
 import api from "./";
 
-export const loginApi = async (data: IloginData) => {
+export const loginApi = async (data: IloginData): Promise<IloginData> => {
   const response = await api.post(`/auth/login`, data, {
     withCredentials: true,
   });
-  console.log(response);
+
   return response.data;
 };
 
-export const signUpApi = async (data: ISignup) => {
+export const signUpApi = async (data: ISignup): Promise<ISignup> => {
   const response = await api.post(`/auth/register`, data);
 
-  console.log(response);
   return response.data;
 };
 
 export const logoutApi = async () => {
   try {
     const response = await api.post(`/auth/logout`);
-    console.log(response);
+
     return response.data;
   } catch (error: any) {
-    console.log(error);
     throw error.response.data;
   }
 };
 
 export const profileApi = async () => {
   const response = await api.get("/auth/me");
-
-  console.log(response.data);
-
   return response.data;
 };
 
@@ -51,8 +46,5 @@ export const changePasswordApi = async (
     `/auth/changePassword?${id}`,
     data
   );
-
-  console.log(response);
-
   return response.data;
 };

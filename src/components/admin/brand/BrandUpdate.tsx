@@ -26,7 +26,7 @@ const BrandUpdate = () => {
 
   //* brand query
 
-  const { data, isLoading } = useQuery({
+  const { isLoading } = useQuery({
     queryFn: () => getBrandById(id as string),
     queryKey: ["getBrandById", id],
   });
@@ -48,8 +48,6 @@ const BrandUpdate = () => {
       toast.error(error.message ?? "Unable to update brand!");
     },
   });
-  // console.log(watch);
-  console.log(data);
 
   //* handling brand form
   const onSubmit = (formData: FormValues) => {

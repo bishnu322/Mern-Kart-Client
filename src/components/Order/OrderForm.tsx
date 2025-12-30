@@ -41,13 +41,10 @@ const OrderForm = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: placeOrder,
     onSuccess: (response) => {
-      console.log(response);
       toast.success(response.data.message);
-
       // navigate(navigate_to, { replace: true });
     },
     onError: (error) => {
-      console.log(error);
       toast.error(error?.message ?? "Order failed");
     },
   });

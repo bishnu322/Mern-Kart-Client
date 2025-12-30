@@ -16,8 +16,6 @@ interface WishlistItem {
 export const wishlistApi = async (): TResponse<WishlistItem[]> => {
   const response = await api.get<TResponse<WishlistItem[]>>("/wishlist");
 
-  console.log(response.data);
-
   return response.data;
 };
 
@@ -30,28 +28,20 @@ export const addToWishlist = async (_id: string): TResponse<AddToWishlist> => {
   const response = await api.post<TResponse<AddToWishlist>>("/wishlist", {
     _id,
   });
-  console.log(response.data);
 
   return response.data;
 };
 
 export const removeWishlistProductApi = async (productId: string) => {
-  try {
-    const response = await api.delete("/wishlist/remove", {
-      data: { _id: productId },
-    });
+  const response = await api.delete("/wishlist/remove", {
+    data: { _id: productId },
+  });
 
-    console.log(response.data);
-
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return response.data;
 };
 
 export const clearAllProductFromWishlist = async (userId: any) => {
   const response = await api.post("wishlist/clear", userId);
 
-  console.log(response.data);
   return response.data;
 };

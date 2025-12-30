@@ -10,10 +10,13 @@ const CategoryFilter = () => {
   if (isLoading) return <div>Loading</div>;
 
   return (
-    <div>
+    <>
       {data?.data.map(
         (item: { _id: string; name: string; createdAt: string }) => (
-          <div key={item.createdAt} className="my-1">
+          <div
+            key={item.createdAt}
+            className=" p-1 rounded hover:bg-violet-200 hover:cursor-pointer"
+          >
             <input
               type="radio"
               id={item._id}
@@ -26,7 +29,7 @@ const CategoryFilter = () => {
           </div>
         )
       )}
-    </div>
+    </>
   );
 };
 

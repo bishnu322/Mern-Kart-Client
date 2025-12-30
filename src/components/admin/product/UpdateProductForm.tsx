@@ -14,12 +14,7 @@ import type { IUpdateProductData } from "../../../types/product.types";
 const UpdateProductForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-
-  console.log(id);
-  const { register, handleSubmit, watch } = useForm<IUpdateProductData>({});
-
-
-  console.log(watch);
+  const { register, handleSubmit } = useForm<IUpdateProductData>({});
 
   //* query mutation
   const { mutate } = useMutation({
@@ -36,7 +31,6 @@ const UpdateProductForm = () => {
   });
 
   const onSubmit = (formData: IUpdateProductData) => {
-    console.log(formData);
     mutate({ ...formData, _id: id as string });
   };
 

@@ -18,8 +18,6 @@ const DetailPage = () => {
   if (isLoading) return <Loader />;
   if (!data?.data) return <div>Product not found!</div>;
 
-  console.log({ data });
-
   return (
     <div className=" h-full w-full p-10">
       <div className="flex flex-col gap-10 md:grid md:grid-cols-3 ">

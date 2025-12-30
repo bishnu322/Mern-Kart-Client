@@ -2,6 +2,7 @@ import { Input } from "../../../shared/designSystem/form/input/Input";
 import { useQuery } from "@tanstack/react-query";
 import { getAllBrand } from "../../../api/brand.api";
 import BrandTable from "./BrandTable";
+import { BrandSkeleton } from "../../../components/skeleton";
 import { useEffect, useState } from "react";
 import AdminBodyTitle from "../../../shared/designSystem/AdminBodyTitle";
 
@@ -11,7 +12,7 @@ const BrandList = () => {
 
   //*  fetching all the brands
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: () => getAllBrand({ query: searchBrand }),
     queryKey: ["getAllBrand", searchBrand],
   });
@@ -43,7 +44,11 @@ const BrandList = () => {
       {/* brand details */}
 
       <div>
-        <BrandTable brandData={data?.data ?? []} />
+        {isLoading ? (
+          <BrandSkeleton />
+        ) : (
+          <BrandTable brandData={data?.data ?? []} />
+        )}
       </div>
     </main>
   );

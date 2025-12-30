@@ -36,19 +36,16 @@ const SignUpForm = () => {
     mutationFn: signUpApi,
 
     onSuccess: (response: any) => {
-      console.log(response);
       toast.success(response?.message ?? "sign up successful");
       navigate("/login", { replace: true });
     },
     onError: (error: any) => {
-      console.log(error);
       toast.error(error?.message ?? "sign up failed");
     },
     mutationKey: ["signup_mutation"],
   });
 
   const signUpFormSubmitHandler = async (data: ISignup) => {
-    console.log(data);
     mutate(data);
   };
 

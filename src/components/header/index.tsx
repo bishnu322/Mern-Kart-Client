@@ -7,6 +7,8 @@ import { useMutation } from "@tanstack/react-query";
 import { logoutApi } from "../../api/auth.api";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/auth.context";
+import { RiLogoutBoxRFill } from "react-icons/ri";
+import { RiLoginBoxFill } from "react-icons/ri";
 
 const links: { label: string; link: string }[] = [
   {
@@ -39,8 +41,8 @@ const Header = () => {
         {/* navLink - Desktop */}
         <NavLinks className="hidden md:flex" />
 
-        {/* icon section */}
-        <IconSection />
+        {/* icon section (hidden on small screens; mobile auth will live in the menu) */}
+        <IconSection className="hidden md:flex" />
 
         {/* Mobile menu button */}
         <button
@@ -107,6 +109,27 @@ const NavLinksMobile = ({
   const location = useLocation();
   const activePath = location.pathname;
 
+  // local auth + logout handling for mobile menu
+  const { user, setUser } = useAuth();
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation({
+    mutationFn: logoutApi,
+    onSuccess: (response: any) => {
+      localStorage.removeItem("user");
+      toast.success(response?.message ?? "logout successful");
+      setUser(null);
+      setIsMenuOpen(false);
+      navigate("/");
+    },
+    onError: (error: any) => {
+      toast.error(error?.message ?? "logout failed");
+    },
+    mutationKey: ["logout_mutation_mobile"],
+  });
+
+  const get_user_data = (user: any) => `${user?.first_name} ${user?.last_name}`;
+
   return (
     <div className="flex flex-col space-y-3 mt-2">
       {links.map((items) => (
@@ -126,13 +149,43 @@ const NavLinksMobile = ({
           </span>
         </Link>
       ))}
+
+      {/* Auth area for mobile: show profile + logout or login */}
+      <div className="pt-2 border-t mt-2">
+        {user ? (
+          <div className="flex items-center justify-between">
+            <Link
+              to="/profile"
+              onClick={() => setIsMenuOpen(false)}
+              className="py-2 px-4 block font-semibold text-violet-600"
+            >
+              {get_user_data(user)}
+            </Link>
+
+            <button
+              onClick={() => mutate()}
+              className="py-2 px-4 text-left text-gray-700 hover:text-violet-600"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            onClick={() => setIsMenuOpen(false)}
+            className="block py-2 px-4 rounded-md text-md hover:bg-violet-50 text-gray-700 font-semibold"
+          >
+            Login
+          </Link>
+        )}
+      </div>
     </div>
   );
 };
 
 //! icon section
 
-const IconSection = () => {
+const IconSection = ({ className }: { className?: string }) => {
   const { user } = useAuth();
   const { setUser } = useAuth();
 
@@ -145,7 +198,6 @@ const IconSection = () => {
   const { mutate } = useMutation({
     mutationFn: logoutApi,
     onSuccess: (response: any) => {
-      console.log(response);
       localStorage.removeItem("user");
 
       toast.success(response?.message ?? "logout successful");
@@ -155,7 +207,6 @@ const IconSection = () => {
     },
 
     onError: (error) => {
-      console.log(error);
       toast.error(error?.message ?? "logout failed");
     },
     mutationKey: ["logout_mutation"],
@@ -166,7 +217,11 @@ const IconSection = () => {
   };
 
   return (
-    <div className="flex justify-between gap-4 md:gap-2 items-center">
+    <div
+      className={`flex justify-between gap-4 md:gap-2 items-center ${
+        className ?? ""
+      }`}
+    >
       <Link
         to="/cart"
         className="p-2 text-gray-700 hover:text-violet-600 transition-colors"
@@ -186,22 +241,21 @@ const IconSection = () => {
             to="/profile"
             className="p-2 hover:text-violet-600 transition-colors text-lg font-semibold text-violet-500"
           >
-            {/* <FaUser size={"20px"} /> */}
             <span>{get_user_data(user)}</span>
           </Link>
 
           <button
             onClick={logoutHandler}
-            className="px-3 py-2 bg-violet-600 text-sm rounded font-semibold text-white cursor-pointer transition-all duration-500 hover:bg-violet-500"
+            className="p-1 text-2xl font-bold rounded  cursor-pointer transition-all duration-500 "
           >
-            Logout
+            <RiLogoutBoxRFill />
           </button>
         </div>
       ) : (
         <div>
           <Link to={"/login"}>
-            <button className="px-3 py-2 bg-violet-600 text-sm rounded font-semibold text-white cursor-pointer transition-all duration-500 hover:bg-violet-500">
-              Login
+            <button className="p-1 text-2xl font-bold rounded  cursor-pointer transition-all duration-500 ">
+              <RiLoginBoxFill />
             </button>
           </Link>
         </div>

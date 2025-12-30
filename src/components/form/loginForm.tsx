@@ -20,7 +20,6 @@ const LoginForm = () => {
   const location = useLocation();
 
   const navigate_to = location.state?.from ?? "/";
-  console.log(location);
 
   const {
     register,
@@ -40,7 +39,6 @@ const LoginForm = () => {
     mutationFn: loginApi,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onSuccess: (response: any) => {
-      console.log(response);
       toast.success(response?.message ?? "login success");
       localStorage.setItem("user", JSON.stringify(response.data.data));
       // localStorage.setItem("token", response.data.access_token);
@@ -49,7 +47,6 @@ const LoginForm = () => {
       navigate(navigate_to, { replace: true });
     },
     onError: (error) => {
-      console.log(error);
       toast.error(error?.message ?? "login failed");
     },
     mutationKey: ["login_mutation"],

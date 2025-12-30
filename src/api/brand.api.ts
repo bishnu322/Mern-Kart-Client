@@ -8,7 +8,6 @@ export const getAllBrand = async (params?: {
   query?: string;
 }): TResponse<IBrand[]> => {
   const response = await api.get<TResponse<IBrand[]>>(`/brand`, { params });
-  console.log(response.data);
 
   return response.data;
 };
@@ -31,9 +30,6 @@ export const createBrand = async (data: {
       "Content-Type": "multipart/form-data",
     },
   });
-
-  console.log(response);
-
   return response.data;
 };
 
@@ -58,16 +54,12 @@ export const UpdateBrand = async (
       "Content-Type": "multipart/form-data",
     },
   });
-
-  console.log(response);
-
   return response.data;
 };
 
 // *get brand data by id
 export const getBrandById = async (id: string): TResponse<IBrand[]> => {
   const response = await api.get<TResponse<IBrand[]>>(`/brand/${id}`);
-  console.log(response.data);
 
   return response.data;
 };
@@ -75,8 +67,6 @@ export const getBrandById = async (id: string): TResponse<IBrand[]> => {
 // * removing brand
 export const removeBrand = async (id: string) => {
   const response = await api.delete(`/brand/${id}`);
-
-  console.log(response.data);
 
   return response.data;
 };

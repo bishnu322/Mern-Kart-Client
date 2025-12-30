@@ -9,7 +9,6 @@ const CategoryList = () => {
     queryKey: ["get_all_category"],
   });
 
-  console.log(data);
   if (isLoading) {
     return (
       <div className="flex justify-center items-center w-full h-full mt-6 min-h-[100px]">

@@ -3,6 +3,7 @@ import { Input } from "../../../shared/designSystem/form/input/Input";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getAllCategory, removeCategoryData } from "../../../api/category.api";
 import { useEffect, useState } from "react";
+import CategorySkeleton from "../../skeleton/CategorySkeleton";
 import toast from "react-hot-toast";
 import Table from "../../../shared/designSystem/table/Table";
 import { createColumnHelper } from "@tanstack/react-table";
@@ -14,7 +15,7 @@ const FetchCategory = () => {
 
   const queryClient = useQueryClient();
 
-  const { data: categoryData } = useQuery({
+  const { data: categoryData, isLoading } = useQuery({
     queryFn: () =>
       getAllCategory({
         query: querySearch,
@@ -34,8 +35,6 @@ const FetchCategory = () => {
       toast.error(error.message ?? "cannot remove");
     },
   });
-
-  console.log(categoryData?.data);
 
   useEffect(() => {
     const interval = setTimeout(() => {
@@ -131,7 +130,11 @@ const FetchCategory = () => {
       {/* category data table  */}
 
       <div className="w-full h-full mt-4">
-        <Table columns={columns} data={categoryData?.data ?? []} />
+        {isLoading ? (
+          <CategorySkeleton />
+        ) : (
+          <Table columns={columns} data={categoryData?.data ?? []} />
+        )}
       </div>
     </div>
   );

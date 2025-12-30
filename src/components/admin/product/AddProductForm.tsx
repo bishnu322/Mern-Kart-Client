@@ -26,7 +26,6 @@ const AddProductForm = () => {
   });
 
   const onSubmit = (formData: any) => {
-    console.log(formData);
     mutate(formData);
   };
 
