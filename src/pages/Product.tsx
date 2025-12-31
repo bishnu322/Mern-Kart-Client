@@ -26,7 +26,7 @@ const Product = () => {
   };
 
   return (
-    <main className="m-3">
+    <main className="p-5">
       {/* Mobile Filter Toggle Button */}
       <button
         onClick={() => setShowFilter(!showFilter)}

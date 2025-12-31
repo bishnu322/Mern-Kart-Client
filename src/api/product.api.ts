@@ -43,6 +43,11 @@ export const createProduct = async (data: {
 }) => {
   const formData = new FormData();
 
+  // Ensure cover_img exists
+  if (!data.cover_img || data.cover_img.length === 0) {
+    throw new Error("Please select a cover image before uploading.");
+  }
+
   formData.append("name", data.name);
   formData.append("description", data.description);
   formData.append("price", data.price.toString());
@@ -51,17 +56,19 @@ export const createProduct = async (data: {
   formData.append("brand", data.brand);
   formData.append("isFeatured", data.isFeatured.toString());
 
-  if (data.cover_img && data.cover_img.length > 0) {
-    formData.append("cover_img", data.cover_img[0]);
-  }
+  // Append the cover image
+  formData.append("cover_img", data.cover_img[0]);
 
+  // Append additional images if present
   if (data.images && data.images.length > 0) {
     Array.from(data.images).forEach((file) => {
       formData.append("images", file);
     });
   }
 
-  const response = await api.post(`/product`, formData);
+  const response = await api.post(`/product`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
 
   return response.data;
 };
