@@ -14,7 +14,7 @@ const AddProductForm = () => {
   const { register, handleSubmit } = useForm({});
 
   //* query mutation
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: createProduct,
     mutationKey: ["createProduct"],
     onSuccess: (response) => {
@@ -145,7 +145,9 @@ const AddProductForm = () => {
           />
         </div>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending ? "Submitting" : "Submit"}
+        </Button>
       </form>
     </>
   );
