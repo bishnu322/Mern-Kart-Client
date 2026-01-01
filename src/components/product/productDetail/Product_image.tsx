@@ -1,7 +1,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React from "react";
-import type { IImage } from "../../types/global.types";
+import type { IImage } from "../../../types/global.types";
 import Slider from "react-slick";
 
 interface IProps {

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
-import type { IProduct } from "../../types/product.types";
+import type { IProduct } from "../../../types/product.types";
 import { TiStarFullOutline } from "react-icons/ti";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
 import { IoMdPricetag } from "react-icons/io";
 import { useMutation } from "@tanstack/react-query";
-import { pushProductToCart } from "../../api/cart.api";
+import { pushProductToCart } from "../../../api/cart.api";
 import toast from "react-hot-toast";
 
 interface IProps {
