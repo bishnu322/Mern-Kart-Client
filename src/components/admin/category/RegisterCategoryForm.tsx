@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { createCategory } from "../../../api/category.api";
 import toast from "react-hot-toast";
@@ -19,11 +19,12 @@ export interface ICategoryData {
 }
 
 const RegisterCategoryForm = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
@@ -38,7 +39,8 @@ const RegisterCategoryForm = () => {
     mutationFn: createCategory,
     onSuccess: () => {
       toast.success("Category created successfully");
-      queryClient.invalidateQueries({ queryKey: ["createCategory"] });
+      reset();
+      // queryClient.invalidateQueries({ queryKey: ["createCategory"] });
     },
     onError: (error) => {
       toast.error(error.message ?? "cannot push, something went wrong");

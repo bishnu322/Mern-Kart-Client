@@ -11,7 +11,7 @@ import { createProduct } from "../../../api/product.api";
 import toast from "react-hot-toast";
 
 const AddProductForm = () => {
-  const { register, handleSubmit } = useForm({});
+  const { register, handleSubmit, reset } = useForm({});
 
   //* query mutation
   const { mutate, isPending } = useMutation({
@@ -19,6 +19,7 @@ const AddProductForm = () => {
     mutationKey: ["createProduct"],
     onSuccess: (response) => {
       toast.success(response.message ?? "Product created successfully");
+      reset();
     },
     onError: (error) => {
       toast.error(error.message ?? "Product creation failed!");
