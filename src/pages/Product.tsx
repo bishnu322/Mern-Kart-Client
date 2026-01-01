@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllProduct } from "../api/product.api";
 import ProductCard from "../components/landing/product/card";
-import ProductFilter from "../components/productFilter/ProductFilter";
+import ProductFilter from "../components/product/productFilter/ProductFilter";
 import ProductCardSkeleton from "../components/skeleton/ProductCardSkeleton";
 import { useState } from "react";
 

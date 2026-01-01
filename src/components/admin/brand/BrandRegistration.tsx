@@ -17,6 +17,7 @@ const BrandForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<IBrandType>();
 
@@ -25,6 +26,7 @@ const BrandForm = () => {
     mutationKey: ["createBrand"],
     onSuccess: () => {
       toast.success("Brand created...");
+      reset();
     },
     onError: (error) => {
       toast.error(error.message ?? "Unable to create brand!");

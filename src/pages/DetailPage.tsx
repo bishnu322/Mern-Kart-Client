@@ -3,8 +3,8 @@ import { useParams } from "react-router";
 import { getProductById } from "../api/product.api";
 
 import Loader from "../components/loader/loader";
-import Product_image from "../components/productDetail/Product_image";
-import Product_detail from "../components/productDetail/product_detail";
+import Product_image from "../components/product/productDetail/Product_image";
+import Product_detail from "../components/product/productDetail/product_detail";
 
 const DetailPage = () => {
   const { id } = useParams();
