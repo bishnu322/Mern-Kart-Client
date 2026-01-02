@@ -7,8 +7,11 @@ type TGetAllProduct = TResponse<IProduct[]>;
 export const getAllProduct = async (params?: {
   category?: string;
   brand?: string;
+  query?: string;
 }): TGetAllProduct => {
-  const response = await api.get<TGetAllProduct>("/product", { params });
+  const response = await api.get<TGetAllProduct>(`/product/`, {
+    params,
+  });
   return response.data;
 };
 
