@@ -1,6 +1,6 @@
 const PageNotFound = () => {
   return (
-    <div className="min-h-full h-full bg-gray-300 flex justify-center items-center">
+    <div className="min-h-full h-full w-full bg-gray-300 flex justify-center items-center">
       <div className="text-center my-20  mx-10 p-10 bg-white rounded">
         <h1 className="text-5xl font-bold">404 Page Not Found !</h1>
         <p className="text-gray-400 p-5">
