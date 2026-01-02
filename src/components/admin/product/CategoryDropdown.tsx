@@ -1,26 +1,37 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from "@tanstack/react-query";
 import Dropdown from "../../../shared/designSystem/form/input/Dropdown";
-import { getAllCategory } from "../../../api/category.api";
+import { getAllCategory } from "../../../api/category.api"; // Assuming this exists
+import { type Control, Controller } from "react-hook-form";
 
-const CategoryDropdown = ({ register }: any) => {
+interface CategoryDropdownProps {
+  control: Control<any>;
+}
+
+const CategoryDropdown = ({ control }: CategoryDropdownProps) => {
   const { data, isLoading } = useQuery({
     queryFn: () => getAllCategory(),
-    queryKey: ["get_All_category"],
+    queryKey: ["getAllCategory"],
   });
 
   if (isLoading) return <div>Loading...</div>;
 
+  if (!data?.data) return null;
+
   return (
-    <>
-      <Dropdown
-        label="Category"
-        labelFor="category"
-        name="category"
-        data={data?.data ?? []}
-        {...register("category")}
-      />
-    </>
+    <Controller
+      name="category"
+      control={control}
+      render={({ field }) => (
+        <Dropdown
+          label="Category"
+          labelFor="category"
+          name="category"
+          {...field}
+          data={data?.data ?? []}
+        />
+      )}
+    />
   );
 };
 
