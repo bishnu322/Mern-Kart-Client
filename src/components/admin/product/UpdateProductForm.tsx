@@ -5,16 +5,36 @@ import { TextArea } from "../../../shared/designSystem/form/input/TextArea";
 import BrandDropdown from "./BrandDropdown";
 import CategoryDropdown from "./CategoryDropdown";
 import { Button } from "../../../shared/designSystem/form/button/Button";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
-import { updateProduct } from "../../../api/product.api";
+import { getProductById, updateProduct } from "../../../api/product.api";
 import type { IUpdateProductData } from "../../../types/product.types";
+import { useEffect } from "react";
 
 const UpdateProductForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { register, handleSubmit } = useForm<IUpdateProductData>({});
+  const { register, handleSubmit, reset, control } =
+    useForm<IUpdateProductData>({
+      defaultValues: {
+        name: "",
+        description: "",
+        price: 0,
+        stock: 0,
+        category: "",
+        brand: "",
+        isFeatured: true,
+      },
+    });
+
+  // get product by id
+  const { data: productData } = useQuery({
+    queryKey: ["getProductById"],
+    queryFn: () => getProductById(id),
+  });
+
+  console.log(productData);
 
   //* query mutation
   const { mutate } = useMutation({
@@ -29,6 +49,23 @@ const UpdateProductForm = () => {
       toast.error(error.message ?? "Product update failed!");
     },
   });
+
+  useEffect(() => {
+    if (!productData?.data) {
+      return null;
+    }
+
+    const product = productData.data;
+    reset({
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      stock: product.stock,
+      // category: product.category,
+      // brand: product.brand,
+      isFeatured: product.isFeatured,
+    });
+  }, [reset, productData]);
 
   const onSubmit = (formData: IUpdateProductData) => {
     mutate({ ...formData, _id: id as string });
@@ -80,12 +117,12 @@ const UpdateProductForm = () => {
 
           {/* brand dropdown */}
           <div>
-            <BrandDropdown register={register} />
+            <BrandDropdown control={control} />
           </div>
 
           {/* category dropdown */}
           <div>
-            <CategoryDropdown register={register} />
+            <CategoryDropdown control={control} />
           </div>
 
           {/* featured as a boolean */}
