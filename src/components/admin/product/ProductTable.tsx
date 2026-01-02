@@ -7,20 +7,34 @@ import Table from "../../../shared/designSystem/table/Table";
 import { ProductSkeleton } from "../../../components/skeleton";
 import toast from "react-hot-toast";
 
-const ProductTable = () => {
+interface IProps {
+  queryInputValue: string;
+  category?: string;
+  brand?: string;
+}
+
+const ProductTable: React.FC<IProps> = ({
+  queryInputValue,
+  category,
+  brand,
+}) => {
   const queryClient = useQueryClient();
   //* fetching product
-
   const { data, isLoading } = useQuery({
-    queryKey: ["getAllProduct", { category: "", brand: "" }],
-    queryFn: ({ queryKey }) => {
-      const [, filters] = queryKey as [
-        string,
-        { category?: string; brand?: string }
-      ];
-
-      return getAllProduct(filters);
-    },
+    queryKey: [
+      "getAllProduct",
+      {
+        query: queryInputValue,
+        category: "",
+        brand: "",
+      },
+    ],
+    queryFn: () =>
+      getAllProduct({
+        query: queryInputValue,
+        category,
+        brand,
+      }),
   });
 
   //* remove product
