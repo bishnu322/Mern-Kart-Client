@@ -11,7 +11,7 @@ import { createProduct } from "../../../api/product.api";
 import toast from "react-hot-toast";
 
 const AddProductForm = () => {
-  const { register, handleSubmit, reset } = useForm({});
+  const { register, handleSubmit, reset, control } = useForm({});
 
   //* query mutation
   const { mutate, isPending } = useMutation({
@@ -76,12 +76,12 @@ const AddProductForm = () => {
 
           {/* brand dropdown */}
           <div>
-            <BrandDropdown register={register} />
+            <BrandDropdown control={control} />
           </div>
 
           {/* category dropdown */}
           <div>
-            <CategoryDropdown register={register} />
+            <CategoryDropdown control={control} />
           </div>
 
           {/* featured as a boolean */}

@@ -38,9 +38,9 @@ export const createBrand = async (data: {
 export const UpdateBrand = async (
   id: string,
   data: {
-    brand_name: string;
-    logo: FileList;
-    description: string;
+    brand_name?: string;
+    logo?: FileList;
+    description?: string;
   }
 ): TResponse<IBrand> => {
   const formData = new FormData();
@@ -58,8 +58,8 @@ export const UpdateBrand = async (
 };
 
 // *get brand data by id
-export const getBrandById = async (id: string): TResponse<IBrand[]> => {
-  const response = await api.get<TResponse<IBrand[]>>(`/brand/${id}`);
+export const getBrandById = async (id: string): TResponse<IBrand> => {
+  const response = await api.get<TResponse<IBrand>>(`/brand/${id}`);
 
   return response.data;
 };

@@ -2,8 +2,13 @@
 import { useQuery } from "@tanstack/react-query";
 import Dropdown from "../../../shared/designSystem/form/input/Dropdown";
 import { getAllBrand } from "../../../api/brand.api";
+import { type Control, Controller } from "react-hook-form";
 
-const BrandDropdown = ({ register }: any) => {
+interface BrandDropdownProps {
+  control: Control<any>;
+}
+
+const BrandDropdown = ({ control }: BrandDropdownProps) => {
   const { data, isLoading } = useQuery({
     queryFn: () => getAllBrand(),
     queryKey: ["getAllBrand"],
@@ -11,17 +16,22 @@ const BrandDropdown = ({ register }: any) => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (!data?.data) return;
+  if (!data?.data) return null;
+
   return (
-    <>
-      <Dropdown
-        label="Brand"
-        labelFor="brand"
-        name="brand"
-        {...register("brand")}
-        data={data?.data ?? []}
-      />
-    </>
+    <Controller
+      name="brand"
+      control={control}
+      render={({ field }) => (
+        <Dropdown
+          label="Brand"
+          labelFor="brand"
+          name="brand"
+          {...field}
+          data={data?.data ?? []}
+        />
+      )}
+    />
   );
 };
 
