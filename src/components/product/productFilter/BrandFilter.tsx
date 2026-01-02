@@ -1,7 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllBrand } from "../../../api/brand.api";
+import type React from "react";
 
-const BrandFilter = () => {
+interface IProps {
+  handleFilterBrand: (brand: string) => void;
+}
+
+const BrandFilter: React.FC<IProps> = ({ handleFilterBrand }) => {
   const { data, isLoading } = useQuery({
     queryFn: () => getAllBrand(),
     queryKey: ["filterByBrand"],
@@ -21,8 +26,7 @@ const BrandFilter = () => {
               id={item._id}
               name="brand"
               value={item._id}
-              // onChange={(e) => handleBrand(e.target.value)}
-              // onChange={handleFilterForProduct}
+              onChange={(e) => handleFilterBrand(e.target.value)}
               className="mt-1.5"
             />
             <label htmlFor={item._id}> {item.brand_name}</label>

@@ -1,7 +1,12 @@
 import { getAllCategory } from "../../../api/category.api";
 import { useQuery } from "@tanstack/react-query";
 
-const CategoryFilter = () => {
+interface IProps {
+  handleFilterCategory: (category: string) => void;
+}
+
+const CategoryFilter: React.FC<IProps> = ({ handleFilterCategory }) => {
+  // const [category, setCategory] =useState("")
   const { data, isLoading } = useQuery({
     queryFn: () => getAllCategory(),
     queryKey: ["filterByCategory"],
@@ -22,8 +27,7 @@ const CategoryFilter = () => {
               id={item._id}
               name="category"
               value={item._id}
-              // onChange={(e) => handleCategory(e.target.value)}
-              // onChange={handleFilterForProduct}
+              onChange={(e) => handleFilterCategory(e.target.value)}
               className="mt-1.5"
             />
             <label htmlFor={item._id}>{item.name}</label>
