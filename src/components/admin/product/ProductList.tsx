@@ -1,8 +1,20 @@
+import { useEffect, useState } from "react";
 import AdminBodyTitle from "../../../shared/designSystem/AdminBodyTitle";
 import { Input } from "../../../shared/designSystem/form/input/Input";
 import ProductTable from "./ProductTable";
 
 const ProductList = () => {
+  const [inputTempValue, setInputTempValue] = useState("");
+  const [queryInputValue, setQueryInputValue] = useState("");
+
+  useEffect(() => {
+    const interval = setTimeout(() => {
+      setQueryInputValue(inputTempValue);
+    }, 500);
+
+    return () => clearTimeout(interval);
+  }, [inputTempValue]);
+
   return (
     <main>
       <AdminBodyTitle>Search Product</AdminBodyTitle>
@@ -10,17 +22,16 @@ const ProductList = () => {
         {/* search button  */}
 
         <Input
-          // value={tempSearch}
+          value={inputTempValue}
           className="w-full border border-violet-600 p-2 rounded outline-none "
           placeholder="Search Product"
-          // onChange={(e) => setTempSearch(e.target.value)}
+          onChange={(e) => setInputTempValue(e.target.value)}
         />
       </div>
 
       {/* brand details */}
-
       <div>
-        <ProductTable />
+        <ProductTable queryInputValue={queryInputValue} />
       </div>
     </main>
   );
