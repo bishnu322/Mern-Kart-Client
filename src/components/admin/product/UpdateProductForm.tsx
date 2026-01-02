@@ -51,20 +51,17 @@ const UpdateProductForm = () => {
   });
 
   useEffect(() => {
-    if (!productData?.data) {
-      return null;
+    if (productData?.data) {
+      const product = productData.data;
+      reset({
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        stock: product.stock,
+        isFeatured: product.isFeatured,
+      });
+      // setValue("category", product.category)
     }
-
-    const product = productData.data;
-    reset({
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      stock: product.stock,
-      // category: product.category,
-      // brand: product.brand,
-      isFeatured: product.isFeatured,
-    });
   }, [reset, productData]);
 
   const onSubmit = (formData: IUpdateProductData) => {
