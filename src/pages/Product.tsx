@@ -15,7 +15,7 @@ const Product = () => {
     queryFn: () => getAllProduct({ category, brand }),
   });
 
-  const handleFilterProduct = (category: string) => {
+  const handleFilterCategory = (category: string) => {
     setCategory(category);
     setShowFilter(false);
   };
@@ -98,7 +98,7 @@ const Product = () => {
             </div>
 
             <ProductFilter
-              handleFilterProduct={handleFilterProduct}
+              handleFilterCategory={handleFilterCategory}
               handleFilterBrand={handleFilterBrand}
             />
           </div>
