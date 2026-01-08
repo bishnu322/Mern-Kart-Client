@@ -42,7 +42,7 @@ const Cart = () => {
       <>
         {validCartItems.map((prod) => (
           <div
-            key={prod.product._id}
+            key={prod.product?._id}
             className="w-full p-2 bg-white m-2 rounded"
           >
             <div className="flex justify-between w-full">
