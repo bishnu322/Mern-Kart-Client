@@ -7,6 +7,7 @@ import { IoMdPricetag } from "react-icons/io";
 import { useMutation } from "@tanstack/react-query";
 import { pushProductToCart } from "../../../api/cart.api";
 import toast from "react-hot-toast";
+import { addToWishlist } from "../../../api/wishlist.api";
 
 interface IProps {
   product: IProduct;
@@ -37,6 +38,19 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
     },
     mutationKey: ["productAddedToCart"],
   });
+
+  const { mutate: addWishListMutation, isPending: wishListIsPending } =
+    useMutation({
+      mutationKey: ["add_to_wishlist"],
+      mutationFn: addToWishlist,
+      retry: false,
+      onSuccess: () => {
+        toast.success("Product added to wishlist");
+      },
+      onError: () => {
+        toast.error("Failed to add to wishlist");
+      },
+    });
 
   const addProductToCart = () => {
     mutate({ productId: product._id, quantity });
@@ -155,7 +169,11 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
         >
           Add to Cart
         </button>
-        <button className="w-full bg-gray-300 px-10 py-2 text-back text-lg rounded cursor-pointer font-semibold border">
+        <button
+          onClick={() => addWishListMutation(product._id)}
+          disabled={wishListIsPending}
+          className="w-full bg-gray-300 px-10 py-2 text-back text-lg rounded cursor-pointer font-semibold border"
+        >
           Add to WishList
         </button>
       </div>
