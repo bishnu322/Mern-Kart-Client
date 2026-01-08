@@ -21,9 +21,8 @@ const Cart = () => {
     return <div>Cart is empty. Add some product to order...</div>;
   }
 
-  const validCartItems = data.data.items?.filter(
-    (cartProduct) => cartProduct !== null
-  );
+  const validCartItems =
+    data.data.items?.filter((cartProduct) => cartProduct !== null) || [];
 
   return (
     <div className="min-h-full p-5 bg-gray-200">
@@ -64,13 +63,16 @@ const Cart = () => {
                     <span>
                       {/* <IoMdPricetag /> */}
                       <img
-                        src={prod.product.brand?.logo?.path}
+                        src={
+                          prod.product?.brand?.logo?.path ||
+                          "/brand-fallback.png"
+                        }
                         alt="brand_logo"
                         className="w-5"
                       />
                     </span>
                     <span className="text-gray-700 font-semibold">
-                      {prod.product.brand?.brand_name}
+                      {prod.product?.brand?.brand_name || "Unknown brand"}
                     </span>
                   </div>
 
