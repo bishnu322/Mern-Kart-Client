@@ -24,12 +24,14 @@ interface AddToWishlist {
   message: string;
 }
 
-export const addToWishlist = async (_id: string): TResponse<AddToWishlist> => {
+export const addToWishlist = async (
+  productId: string
+): TResponse<AddToWishlist> => {
   const response = await api.post<TResponse<AddToWishlist>>("/wishlist", {
-    _id,
+    _id: productId, // 🔥 MUST be `_id`
   });
 
-  return response.data;
+  return response.data; // 🔥 return only data
 };
 
 export const removeWishlistProductApi = async (productId: string) => {
