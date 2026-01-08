@@ -13,8 +13,14 @@ const Cart = () => {
   if (!data?.data) {
     return <div>Cart is empty. Add some product to order...</div>;
   }
+
+  const validCartItems = data?.data?.items?.filter(
+    (cartProduct) => cartProduct !== null
+  );
+
+  console.log({ validCartItems });
   return (
-    <div className="min-h-full p-5 bg-white">
+    <div className="min-h-full p-5 bg-gray-200">
       {/* heading section */}
 
       <div className="flex justify-between items-center">
@@ -26,17 +32,20 @@ const Cart = () => {
       </div>
       {/* horizontal line */}
 
-      <hr />
+      {/* <hr /> */}
 
       {/* cart product */}
-      <div>
-        {data.data?.items.map((prod) => (
-          <div key={prod.product._id} className="w-full p-2">
+      <>
+        {validCartItems.map((prod) => (
+          <div
+            key={prod.product._id}
+            className="w-full p-2 bg-white m-2 rounded"
+          >
             <div className="flex justify-between w-full">
               <div className="flex gap-2 text-md font-semibold p-2">
                 {/* image section */}
                 <img
-                  src={prod.product.cover_img.path}
+                  src={prod.product?.cover_img.path}
                   alt="product_image"
                   className="w-[120px] object-contain"
                 />
@@ -77,7 +86,6 @@ const Cart = () => {
                 {prod.total_price}
               </h1>
             </div>
-            <hr />
           </div>
         ))}
 
@@ -100,7 +108,7 @@ const Cart = () => {
             Proceed to Checkout
           </Link>
         </div>
-      </div>
+      </>
     </div>
   );
 };
