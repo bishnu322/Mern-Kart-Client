@@ -34,8 +34,6 @@ const UpdateProductForm = () => {
     queryFn: () => getProductById(id),
   });
 
-  console.log(productData);
-
   //* query mutation
   const { mutate } = useMutation({
     mutationFn: (formData: IUpdateProductData) =>
