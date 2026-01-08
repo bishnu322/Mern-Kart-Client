@@ -54,4 +54,10 @@ export const strings = {
       placeOrder: "Place Order",
     },
   },
+  cart: {
+    cartTitle: "Shopping Cart",
+    cartPriceTitle: "Price",
+    cartBestSellerTitle: "#1 best seller",
+    checkout: "Proceed to Checkout",
+  },
 };
