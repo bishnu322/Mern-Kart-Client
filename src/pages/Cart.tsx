@@ -50,27 +50,27 @@ const Cart = () => {
               <div className="flex gap-2 text-md font-semibold p-2">
                 {/* image section */}
                 <img
-                  src={prod.product?.cover_img.path}
+                  src={prod.product?.cover_img?.path}
                   alt="product_image"
                   className="w-[120px] object-contain"
                 />
 
                 <div className="flex flex-col gap-2">
                   {/* product name */}
-                  <h1 className="text-violet-700">{prod.product.name}</h1>
+                  <h1 className="text-violet-700">{prod.product?.name}</h1>
 
                   {/* product brand */}
                   <div className="flex items-center gap-1 px-2 rounded bg-gray-200 border border-violet-300">
                     <span>
                       {/* <IoMdPricetag /> */}
                       <img
-                        src={prod.product.brand.logo.path}
+                        src={prod.product.brand?.logo?.path}
                         alt="brand_logo"
                         className="w-5"
                       />
                     </span>
                     <span className="text-gray-700 font-semibold">
-                      {prod.product.brand.brand_name}
+                      {prod.product.brand?.brand_name}
                     </span>
                   </div>
 
