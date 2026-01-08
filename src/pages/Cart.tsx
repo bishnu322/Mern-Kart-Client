@@ -102,7 +102,7 @@ const Cart = () => {
             className="text-gray-900"
             fontWeight={700}
           />
-          {data.data.total_amount}
+          {data.data?.total_amount}
         </h1>
 
         <div className="flex justify-end">
