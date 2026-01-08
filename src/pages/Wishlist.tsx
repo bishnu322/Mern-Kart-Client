@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { withAuth } from "../hoc/with.auth.hoc";
 import { allAdminAndUser } from "../types/global.types";
 import { useMutation, useQuery } from "@tanstack/react-query";
