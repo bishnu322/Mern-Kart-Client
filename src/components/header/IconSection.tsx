@@ -61,14 +61,14 @@ const IconSection = ({ className }: { className?: string }) => {
         <div className="flex items-center">
           <Link
             to="/profile"
-            className="p-2 hover:text-violet-600 transition-colors text-lg font-semibold text-violet-500"
+            className="p-2 text-lg font-semibold hover:text-violet-600 transition-colors text-violet-500"
           >
             <span>{get_user_data(user)}</span>
           </Link>
 
           <button
             onClick={logoutHandler}
-            className="p-1 text-2xl font-bold rounded  cursor-pointer transition-all duration-500 "
+            className="p-1 text-2xl font-bold rounded cursor-pointer  transition-all duration-500"
           >
             <RiLogoutBoxRFill />
           </button>
@@ -76,7 +76,7 @@ const IconSection = ({ className }: { className?: string }) => {
       ) : (
         <div>
           <Link to={"/login"}>
-            <button className="p-1 text-2xl font-bold rounded  cursor-pointer transition-all duration-500 ">
+            <button className="p-1 text-2xl font-bold rounded cursor-pointer  transition-all duration-500">
               <RiLoginBoxFill />
             </button>
           </Link>

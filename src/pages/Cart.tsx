@@ -28,12 +28,12 @@ const Cart = () => {
     <div className="min-h-full p-5 bg-gray-200">
       {/* heading section */}
 
-      <div className="flex justify-between items-center">
-        <h1 className=" text-3xl font-bold pb-3 text-violet-500">
+      <div className="flex items-center justify-between">
+        <h1 className="pb-3 text-3xl font-bold  text-violet-500">
           {cartTitle}
         </h1>
 
-        <p className="mt-5 px-5 text-md font-semibold text-orange-600">
+        <p className="px-5 mt-5 font-semibold text-orange-600 text-md">
           {cartPriceTitle}
         </p>
       </div>
@@ -43,10 +43,10 @@ const Cart = () => {
         {validCartItems.map((prod) => (
           <div
             key={prod.product?._id}
-            className="w-full p-2 bg-white m-2 rounded"
+            className="w-full p-2 m-2 bg-white rounded"
           >
             <div className="flex justify-between w-full">
-              <div className="flex gap-2 text-md font-semibold p-2">
+              <div className="flex p-2 font-semibold gap-2 text-md">
                 {/* image section */}
                 <img
                   src={prod.product?.cover_img?.path}
@@ -59,7 +59,7 @@ const Cart = () => {
                   <h1 className="text-violet-700">{prod.product?.name}</h1>
 
                   {/* product brand */}
-                  <div className="flex items-center gap-1 px-2 rounded bg-gray-200 border border-violet-300">
+                  <div className="flex items-center px-2 bg-gray-200 border rounded gap-1 border-violet-300">
                     <span>
                       {/* <IoMdPricetag /> */}
                       <img
@@ -71,13 +71,13 @@ const Cart = () => {
                         className="w-5"
                       />
                     </span>
-                    <span className="text-gray-700 font-semibold">
+                    <span className="font-semibold text-gray-700">
                       {prod.product?.brand?.brand_name || "Unknown brand"}
                     </span>
                   </div>
 
                   {/* best seller section */}
-                  <div className=" bg-amber-500 text-white text-sm p-1 rounded">
+                  <div className="p-1 text-sm text-white rounded  bg-amber-500">
                     <h1>{cartBestSellerTitle}</h1>
                   </div>
 
@@ -88,7 +88,7 @@ const Cart = () => {
                 </div>
               </div>
 
-              <h1 className="pr-2 text-md font-semibold text-gray-800 flex items-center gap-1">
+              <h1 className="flex items-center pr-2 font-semibold text-gray-800 text-md gap-1">
                 <TbCurrencyRupeeNepalese size={20} />
                 {prod.total_price}
               </h1>
@@ -98,7 +98,7 @@ const Cart = () => {
 
         {/* total amount */}
 
-        <h1 className="flex justify-end px-4 font-bold text-xl items-center gap-1 ">
+        <h1 className="flex items-center justify-end px-4 text-xl font-bold gap-1 ">
           <TbCurrencyRupeeNepalese
             size={20}
             className="text-gray-900"
@@ -110,9 +110,9 @@ const Cart = () => {
         <div className="flex justify-end">
           <Link
             to="/cart/placeOrder"
-            className="bg-orange-500 px-4 py-2 rounded text-gray-50 font-semibold 
-             cursor-pointer hover:bg-orange-700 my-5
-             flex items-center gap-2"
+            className="flex items-center px-4 py-2 font-semibold bg-orange-500 rounded cursor-pointer text-gray-50 
+  hover:bg-orange-700 my-5
+ gap-2"
           >
             <span>{checkout}</span>
             <FaArrowRight className="transition-transform group-hover:translate-x-1" />

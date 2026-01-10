@@ -22,13 +22,13 @@ const Table: React.FC<IProps> = ({ columns, data = [] }) => {
     // wrapper provides horizontal scrolling on small screens while keeping full width on larger screens
     <div className="w-full overflow-x-auto">
       <table className="min-w-[640px] w-full rounded-t-lg">
-        <thead className="bg-violet-600 text-white font-bold">
+        <thead className="font-bold text-white bg-violet-600">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} className="">
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
-                  className="py-2 border border-gray-100 text-center px-4"
+                  className="px-4 py-2 text-center border border-gray-100"
                 >
                   {header.isPlaceholder
                     ? null
@@ -45,12 +45,12 @@ const Table: React.FC<IProps> = ({ columns, data = [] }) => {
           {table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
-              className="hover:bg-violet-300 text-sm font-semibold"
+              className="text-sm font-semibold hover:bg-violet-300"
             >
               {row.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
-                  className="p-1 border border-gray-100 text-gray-800 px-4 "
+                  className="p-1 px-4 text-gray-800 border border-gray-100 "
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>

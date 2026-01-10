@@ -32,8 +32,8 @@ const AdminHeader = ({ setToggleMenuBar }: Props) => {
 
   return (
     <div className="w-full h-full">
-      <div className="flex justify-between items-center px-5 py-2">
-        <div className="font-bold flex items-center gap-2">
+      <div className="flex items-center justify-between px-5 py-2">
+        <div className="flex items-center font-bold gap-2">
           <span>
             <IoMdMenu
               size={30}
@@ -41,17 +41,17 @@ const AdminHeader = ({ setToggleMenuBar }: Props) => {
               className="cursor-pointer"
             />
           </span>
-          <span className="text-violet-600 italic">Welcome back, </span>
-          <span className="text-gray-600 text-xl">{user?.role ?? "Admin"}</span>
+          <span className="italic text-violet-600">Welcome back, </span>
+          <span className="text-xl text-gray-600">{user?.role ?? "Admin"}</span>
         </div>
 
         <div>
-          <h1 className="text-violet-600 font-semibold text-lg">
+          <h1 className="text-lg font-semibold text-violet-600">
             {`${user?.first_name} ${user?.last_name}`}
           </h1>
           <button
             onClick={() => mutate()}
-            className="text-orange-600 font-bold"
+            className="font-bold text-orange-600"
           >
             Sign out
           </button>

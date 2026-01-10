@@ -77,7 +77,7 @@ const BrandUpdate = () => {
     <>
       <AdminBodyTitle>Brand Update Field</AdminBodyTitle>
       <form
-        className="w-full h-screen flex flex-col gap-2"
+        className="flex flex-col w-full h-screen gap-2"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid  gap-2 sm:grid-cols-2">
@@ -87,7 +87,7 @@ const BrandUpdate = () => {
               label="Name"
               id="brand_name"
               placeholder="Brand name"
-              className="w-full border border-violet-600 p-2 rounded outline-none"
+              className="w-full p-2 border rounded outline-none border-violet-600"
               {...register("brand_name")}
               error={errors.brand_name ? errors.brand_name.message : ""}
             />
@@ -100,7 +100,7 @@ const BrandUpdate = () => {
               id="logo"
               placeholder="Brand image"
               type="file"
-              className="w-full border border-dashed border-violet-600 p-2 rounded outline-none"
+              className="w-full p-2 border border-dashed rounded outline-none border-violet-600"
               {...register("logo")}
               error={errors.logo ? errors.logo.message : ""}
             />
@@ -119,7 +119,7 @@ const BrandUpdate = () => {
           />
         </div>
 
-        <div className="mt-3 w-1/4">
+        <div className="w-1/4 mt-3">
           <Button type="submit">{isPending ? "Updating" : "Update"}</Button>
         </div>
       </form>

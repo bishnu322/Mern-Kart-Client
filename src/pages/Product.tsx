@@ -30,11 +30,11 @@ const Product = () => {
       {/* Mobile Filter Toggle Button */}
       <button
         onClick={() => setShowFilter(!showFilter)}
-        className="lg:hidden mb-4 px-4 py-2 bg-violet-500 text-white rounded-lg flex items-center gap-2 hover:bg-violet-600 transition-colors"
+        className="flex items-center px-4 py-2 mb-4 text-white rounded-lg lg:hidden bg-violet-500 gap-2 hover:bg-violet-600 transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
+          className="w-5 h-5"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -65,24 +65,24 @@ const Product = () => {
           {/* Mobile Overlay */}
           {showFilter && (
             <div
-              className="lg:hidden fixed inset-0 bg-gray-200 bg-opacity-50 -z-10"
+              className="fixed inset-0 bg-gray-200 lg:hidden bg-opacity-50 -z-10"
               onClick={() => setShowFilter(false)}
             />
           )}
 
           {/* Filter Content */}
-          <div className="h-full lg:h-auto overflow-y-auto p-4 lg:p-0">
-            <div className="flex justify-between items-center lg:block mb-4">
-              <h1 className="font-semibold text-violet-500 text-2xl">
+          <div className="h-full p-4 overflow-y-auto lg:h-auto lg:p-0">
+            <div className="flex items-center justify-between mb-4 lg:block">
+              <h1 className="text-2xl font-semibold text-violet-500">
                 Filter Product
               </h1>
               <button
                 onClick={() => setShowFilter(false)}
-                className="lg:hidden text-gray-500 hover:text-gray-700"
+                className="text-gray-500 lg:hidden hover:text-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="w-6 h-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -105,7 +105,7 @@ const Product = () => {
         </div>
 
         {/* Product Grid */}
-        <div className="flex-1 flex flex-wrap justify-around gap-2">
+        <div className="flex flex-wrap justify-around flex-1 gap-2">
           {isLoading ? (
             // Show skeleton loaders while loading
             Array.from({ length: 8 }).map((_, index) => (

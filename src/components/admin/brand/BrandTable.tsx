@@ -34,7 +34,7 @@ const BrandTable: React.FC<IProps> = ({ brandData }) => {
     columnHelper.accessor("s.n", {
       header: () => "S.N",
       cell: (info) => (
-        <span className="flex justify-center items-center">
+        <span className="flex items-center justify-center">
           {Number(info.cell.row.id) + 1}.
         </span>
       ),
@@ -61,8 +61,8 @@ const BrandTable: React.FC<IProps> = ({ brandData }) => {
           original: { logo },
         },
       }) => (
-        <span className="flex justify-center items-center">
-          <img src={logo.path} alt="brandLogo" className="w-10 object-cover" />
+        <span className="flex items-center justify-center">
+          <img src={logo.path} alt="brandLogo" className="object-cover w-10" />
         </span>
       ),
     }),
@@ -70,7 +70,7 @@ const BrandTable: React.FC<IProps> = ({ brandData }) => {
     columnHelper.accessor("createdAt", {
       header: () => "Created At",
       cell: (info) => (
-        <span className="flex justify-center items-center">
+        <span className="flex items-center justify-center">
           {new Intl.DateTimeFormat("en-us", {
             year: "numeric",
             month: "short",
@@ -82,7 +82,7 @@ const BrandTable: React.FC<IProps> = ({ brandData }) => {
     columnHelper.accessor("updatedAt", {
       header: () => "Updated At",
       cell: (info) => (
-        <span className="flex justify-center items-center">
+        <span className="flex items-center justify-center">
           {new Intl.DateTimeFormat("en-us", {
             year: "numeric",
             month: "short",

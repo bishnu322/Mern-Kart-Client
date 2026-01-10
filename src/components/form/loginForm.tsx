@@ -59,7 +59,7 @@ const LoginForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mt-3 flex flex-col gap-4">
+        <div className="flex flex-col mt-3 gap-4">
           {/* input field for email  */}
 
           <div className="flex flex-col gap-1">

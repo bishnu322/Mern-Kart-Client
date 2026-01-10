@@ -66,9 +66,9 @@ const OrderForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-gray-200 w-full md:w-1/2 p-4 space-y-4"
+      className="w-full p-4 bg-gray-200 md:w-1/2 space-y-4"
     >
-      <h1 className="font-semibold text-violet-500 text-2xl">Address</h1>
+      <h1 className="text-2xl font-semibold text-violet-500">Address</h1>
 
       {/* Country */}
       <div className="flex flex-col gap-1">

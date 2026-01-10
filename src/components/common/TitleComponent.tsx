@@ -11,13 +11,13 @@ const TitleComponent: React.FC<IProps> = ({ title, sub_title, link }) => {
   return (
     <div className="w-full">
       <div className="flex justify-between">
-        <h1 className="text-md font-semibold text-violet-600 sm:text-3xl">
+        <h1 className="font-semibold text-md text-violet-600 sm:text-3xl">
           {title}
         </h1>
         {link && (
           <Link
             to={link}
-            className="flex gap-2 items-center text-gray-700 text-sm"
+            className="flex items-center text-sm text-gray-700 gap-2"
           >
             <p>Explore all</p>
             <FaChevronDown />
@@ -26,7 +26,7 @@ const TitleComponent: React.FC<IProps> = ({ title, sub_title, link }) => {
       </div>
 
       <div>
-        <p className="text-sm p-2 font-semibold text-gray-700 sm:text-xl ">
+        <p className="p-2 text-sm font-semibold text-gray-700 sm:text-xl ">
           {sub_title}
         </p>
       </div>

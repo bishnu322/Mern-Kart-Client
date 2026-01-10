@@ -2,14 +2,16 @@
 // import CategoryList from "../components/landing/category";
 import FeaturedProduct from "../components/landing/product/FeaturedProduct";
 import Hero from "../components/landing/Hero";
+import CategoryList from "../components/landing/category";
 
 const Home = () => {
   return (
-    <div className=" bg-gray-50 w-full">
+    <div className="w-full  bg-gray-50">
       <Hero />
 
-      {/* <CategoryList /> */}
-      <div className="px-5 py-5 min-h-full">
+      <CategoryList />
+
+      <div className="min-h-full px-5 py-5">
         <FeaturedProduct />
       </div>
     </div>

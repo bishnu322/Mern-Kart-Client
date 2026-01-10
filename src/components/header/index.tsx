@@ -9,8 +9,8 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="flex justify-between px-4 md:px-8 lg:px-20 items-center py-3">
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="flex items-center justify-between px-4 py-3 md:px-8 lg:px-20">
         {/* logo */}
         <LogoSection />
 
@@ -22,7 +22,7 @@ const Header = () => {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden p-2 rounded-md text-gray-700 hover:text-violet-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-violet-500"
+          className="p-2 text-gray-700 md:hidden rounded-md hover:text-violet-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-violet-500"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -32,7 +32,7 @@ const Header = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white px-4 pt-2 pb-4 border-t border-gray-200">
+        <div className="px-4 pt-2 pb-4 bg-white border-t border-gray-200 md:hidden">
           <NavLinksMobile setIsMenuOpen={setIsMenuOpen} />
         </div>
       )}

@@ -3,13 +3,13 @@ import React from "react";
 const AboutUs: React.FC = () => {
   return (
     <>
-      <div className="w-full min-h-full bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <div className="w-full min-h-full px-4 py-12 bg-gray-200 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
               About Welcome Shringar
             </h1>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+            <p className="max-w-2xl mx-auto mt-4 text-xl text-gray-500">
               From Classic to Contemporary - Bangles for Every You
             </p>
           </div>
@@ -20,7 +20,7 @@ const AboutUs: React.FC = () => {
                 <img
                   alt="Team"
                   src="https://banglesking.com/wp-content/uploads/2024/12/IMG_20241220_144118_982.webp"
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 object-cover w-full h-full"
                 />
               </div>
 
@@ -99,19 +99,19 @@ const AboutUs: React.FC = () => {
                 },
               ].map((person) => (
                 <div key={person.name} className="pt-6">
-                  <div className="flow-root rounded-lg bg-gray-100 px-6 pb-8">
+                  <div className="px-6 pb-8 bg-gray-100 rounded-lg flow-root">
                     <div className="-mt-6">
-                      <div className="relative h-24 w-24 mx-auto">
+                      <div className="relative w-24 h-24 mx-auto">
                         <img
-                          className="absolute inset-0 h-full w-full rounded-full object-cover shadow-lg"
+                          className="absolute inset-0 object-cover w-full h-full rounded-full shadow-lg"
                           src={person.image}
                           alt={person.name}
                         />
                       </div>
-                      <h3 className="mt-8 text-lg font-medium text-gray-900 text-center">
+                      <h3 className="mt-8 text-lg font-medium text-center text-gray-900">
                         {person.name}
                       </h3>
-                      <p className="mt-1 text-base text-gray-600 text-center">
+                      <p className="mt-1 text-base text-center text-gray-600">
                         {person.role}
                       </p>
                     </div>
@@ -121,12 +121,12 @@ const AboutUs: React.FC = () => {
             </div>
           </div> */}
 
-          <div className="mt-24 bg-white shadow-lg rounded-lg p-8">
+          <div className="p-8 mt-24 bg-white rounded-lg shadow-lg">
             <div className="text-center">
               <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
                 Why Choose Welcome Shringar?
               </h2>
-              <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+              <p className="max-w-2xl mx-auto mt-4 text-xl text-gray-500">
                 Here's what makes us different
               </p>
             </div>
@@ -139,7 +139,7 @@ const AboutUs: React.FC = () => {
                     "We have various kinds of Bangles made from materials such as Glass, Metal, Plastic etc",
                   icon: (
                     <svg
-                      className="h-8 w-8 text-indigo-600"
+                      className="w-8 h-8 text-indigo-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -159,7 +159,7 @@ const AboutUs: React.FC = () => {
                     "Our product arrives only from trusted manufacturing partners",
                   icon: (
                     <svg
-                      className="h-8 w-8 text-indigo-600"
+                      className="w-8 h-8 text-indigo-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -179,7 +179,7 @@ const AboutUs: React.FC = () => {
                     "We have served tens of thousands of customers over 20 years of running our business.",
                   icon: (
                     <svg
-                      className="h-8 w-8 text-indigo-600"
+                      className="w-8 h-8 text-indigo-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -195,7 +195,7 @@ const AboutUs: React.FC = () => {
                 },
               ].map((feature, index) => (
                 <div key={index} className="text-center">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 mx-auto">
+                  <div className="flex items-center justify-center w-12 h-12 mx-auto rounded-md bg-indigo-50">
                     {feature.icon}
                   </div>
                   <h3 className="mt-4 text-lg font-medium text-gray-900">

@@ -19,10 +19,10 @@ const DetailPage = () => {
   if (!data?.data) return <div>Product not found!</div>;
 
   return (
-    <div className=" h-full w-full p-10">
+    <div className="w-full h-full p-10 ">
       <div className="flex flex-col gap-10 md:grid md:grid-cols-3 ">
         {/*product image section */}
-        <div className="col-span-1  w-full">
+        <div className="w-full col-span-1 ">
           <Product_image images={item?.images ?? []} />
         </div>
 

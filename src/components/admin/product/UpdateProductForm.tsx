@@ -69,7 +69,7 @@ const UpdateProductForm = () => {
   return (
     <>
       <AdminBodyTitle>Update Product Form</AdminBodyTitle>
-      <form className="grid text-sm gap-2" onSubmit={handleSubmit(onSubmit)}>
+      <form className="text-sm grid gap-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
           {/* product name */}
           <div>
@@ -79,7 +79,7 @@ const UpdateProductForm = () => {
               placeholder="Product name"
               id="name"
               labelHtmlFor="name"
-              className="w-full border border-violet-600 p-2 rounded outline-none"
+              className="w-full p-2 border rounded outline-none border-violet-600"
               {...register("name")}
             />
           </div>
@@ -92,7 +92,7 @@ const UpdateProductForm = () => {
               placeholder="Product price"
               id="price"
               labelHtmlFor="price"
-              className="w-full border border-violet-600 p-2 rounded outline-none"
+              className="w-full p-2 border rounded outline-none border-violet-600"
               {...register("price")}
             />
           </div>
@@ -105,7 +105,7 @@ const UpdateProductForm = () => {
               placeholder="Product stock"
               id="stock"
               labelHtmlFor="stock"
-              className="w-full border border-violet-600 p-2 rounded outline-none"
+              className="w-full p-2 border rounded outline-none border-violet-600"
               {...register("stock")}
             />
           </div>
@@ -124,14 +124,14 @@ const UpdateProductForm = () => {
           <div>
             <label
               htmlFor="isFeatured"
-              className="text-gray-800 font-semibold text-lg"
+              className="text-lg font-semibold text-gray-800"
             >
               Featured
             </label>
             <select
               // name="isFeatured"/
               id="isFeatured"
-              className="w-full border border-violet-600 p-2 rounded outline-none"
+              className="w-full p-2 border rounded outline-none border-violet-600"
               defaultValue="true"
               {...register("isFeatured")}
             >
@@ -148,7 +148,7 @@ const UpdateProductForm = () => {
               id="cover_img"
               placeholder="Product cover image"
               type="file"
-              className="w-full border border-dashed border-violet-600 p-2 rounded outline-none"
+              className="w-full p-2 border border-dashed rounded outline-none border-violet-600"
               {...register("cover_img")}
               // {...register("logo")}
               // error={errors.logo ? errors.logo.message : ""}
@@ -161,7 +161,7 @@ const UpdateProductForm = () => {
               id="images"
               placeholder="Product images"
               type="file"
-              className="w-full border border-dashed border-violet-600 p-2 rounded outline-none"
+              className="w-full p-2 border border-dashed rounded outline-none border-violet-600"
               {...register("images")}
               multiple
               // {...register("logo")}

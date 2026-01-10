@@ -73,12 +73,12 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
 
       {/* product price */}
 
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <div className="flex items-center gap-1 ">
           <span>
             <TbCurrencyRupeeNepalese
               size={22}
-              className="mt-1 text-violet-700 font-bold"
+              className="mt-1 font-bold text-violet-700"
             />
           </span>
           <span className="text-xl font-semibold">{product.price}</span>
@@ -86,9 +86,9 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
 
         <div className="font-semibold">
           {product.stock > 0 ? (
-            <span className=" text-green-500">In stock</span>
+            <span className="text-green-500 ">In stock</span>
           ) : (
-            <span className=" text-red-500">Out of stock</span>
+            <span className="text-red-500 ">Out of stock</span>
           )}
         </div>
       </div>
@@ -104,7 +104,7 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
         </label>
         <div className="w-[300px] border rounded flex items-center justify-between px-3">
           <button
-            className=" p-2 aspect-square text-2xl font-bold "
+            className="p-2 text-2xl font-bold  aspect-square"
             onClick={decrement}
           >
             -
@@ -112,14 +112,14 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
           <input
             type="number"
             id="quantity"
-            className=" h-13 text-center text-md font-bold outline-none"
+            className="font-bold text-center outline-none  h-13 text-md"
             value={quantity}
             min={1}
             readOnly
           />
           <button
             onClick={increment}
-            className="aspect-square text-2xl font-bold"
+            className="text-2xl font-bold aspect-square"
           >
             +
           </button>
@@ -127,9 +127,9 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
       </div>
 
       {/*  brand and category*/}
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         {/* brand */}
-        <div className="flex items-center gap-3  px-5 py-2 rounded bg-gray-300 border border-violet-400">
+        <div className="flex items-center px-5 py-2 bg-gray-300 border rounded gap-3  border-violet-400">
           <span>
             {/* <IoMdPricetag /> */}
             <img
@@ -138,17 +138,17 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
               className="w-5"
             />
           </span>
-          <span className="text-gray-700 font-semibold">
+          <span className="font-semibold text-gray-700">
             {product.brand?.brand_name}
           </span>
         </div>
 
         {/* category */}
-        <div className="flex items-center gap-3 border  px-5 py-2 rounded bg-gray-300 border-violet-400">
+        <div className="flex items-center px-5 py-2 bg-gray-300 border rounded gap-3  border-violet-400">
           <span>
             <IoMdPricetag />
           </span>
-          <span className="text-gray-700 font-semibold">
+          <span className="font-semibold text-gray-700">
             {product.category.name}
           </span>
         </div>
@@ -165,14 +165,14 @@ const Product_detail: React.FC<IProps> = ({ product }) => {
       <div className="flex justify-between md:flex md:justify-start gap-5">
         <button
           onClick={addProductToCart}
-          className="w-full bg-black px-10 py-2 text-white text-lg rounded cursor-pointer font-semibold"
+          className="w-full px-10 py-2 text-lg font-semibold text-white bg-black rounded cursor-pointer"
         >
           Add to Cart
         </button>
         <button
           onClick={() => addWishListMutation(product._id)}
           disabled={wishListIsPending}
-          className="w-full bg-gray-300 px-10 py-2 text-back text-lg rounded cursor-pointer font-semibold border"
+          className="w-full px-10 py-2 text-lg font-semibold bg-gray-300 border rounded cursor-pointer text-back"
         >
           Add to WishList
         </button>

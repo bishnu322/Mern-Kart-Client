@@ -37,7 +37,7 @@ const NavLinksMobile = ({
 
   return (
     // tightened spacing for mobile menu: smaller gaps and margins
-    <div className="flex flex-col space-y-1 mt-1">
+    <div className="flex flex-col mt-1 space-y-1">
       {links.map((items) => (
         <Link
           key={items.label}
@@ -57,11 +57,11 @@ const NavLinksMobile = ({
       ))}
 
       {/* Cart & Wishlist - mobile menu (stacked, no icons on mobile) */}
-      <div className="flex flex-col space-y-1 pt-1">
+      <div className="flex flex-col pt-1 space-y-1">
         <Link
           to="/cart"
           onClick={() => setIsMenuOpen(false)}
-          className="block py-2 px-4 rounded-md text-md text-gray-700 hover:bg-violet-50 hover:text-violet-600"
+          className="block px-4 py-2 text-gray-700 rounded-md text-md hover:bg-violet-50 hover:text-violet-600"
         >
           Cart
         </Link>
@@ -69,27 +69,27 @@ const NavLinksMobile = ({
         <Link
           to="/wishlist"
           onClick={() => setIsMenuOpen(false)}
-          className="block py-2 px-4 rounded-md text-md text-gray-700 hover:bg-violet-50 hover:text-violet-600"
+          className="block px-4 py-2 text-gray-700 rounded-md text-md hover:bg-violet-50 hover:text-violet-600"
         >
           Wishlist
         </Link>
       </div>
 
       {/* Auth area for mobile: show profile + logout or login */}
-      <div className="pt-1 border-t mt-2">
+      <div className="pt-1 mt-2 border-t">
         {user ? (
           <div className="flex items-center justify-between">
             <Link
               to="/profile"
               onClick={() => setIsMenuOpen(false)}
-              className="py-2 px-4 block font-semibold text-violet-600"
+              className="block px-4 py-2 font-semibold text-violet-600"
             >
               {get_user_data(user)}
             </Link>
 
             <button
               onClick={() => mutate()}
-              className="py-2 px-4 text-left text-gray-700 hover:text-violet-600"
+              className="px-4 py-2 text-left text-gray-700 hover:text-violet-600"
             >
               Logout
             </button>
@@ -98,7 +98,7 @@ const NavLinksMobile = ({
           <Link
             to="/login"
             onClick={() => setIsMenuOpen(false)}
-            className="block py-2 px-4 rounded-md text-md hover:bg-violet-50 text-gray-700 font-semibold"
+            className="block px-4 py-2 font-semibold text-gray-700 rounded-md text-md hover:bg-violet-50"
           >
             Login
           </Link>

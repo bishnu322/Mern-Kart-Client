@@ -28,9 +28,9 @@ const ProfileDetails = () => {
 
   return (
     <main className="px-4 py-5">
-      <h1 className="text-xl text-gray-700 font-semibold">My Profile</h1>
+      <h1 className="text-xl font-semibold text-gray-700">My Profile</h1>
       <p className="text-sm text-gray-600 ">View your profile detail</p>
-      <div className="flex gap-2 mt-4">
+      <div className="flex mt-4 gap-2">
         <button
           onClick={handleProfileToggle}
           className={` text-gray-600 px-4 py-2 rounded-t-sm font-semibold ${
@@ -78,7 +78,7 @@ const ProfileDetails = () => {
       )}
 
       {myOrders && (
-        <div className="bg-gray-200 p-4 rounded-b-md rounded-r-md">
+        <div className="p-4 bg-gray-200 rounded-b-md rounded-r-md">
           <MyOrders />
         </div>
       )}

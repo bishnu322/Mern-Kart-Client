@@ -14,7 +14,7 @@ export const MyOrders = () => {
       {orders.map((order) => (
         <div
           key={order._id}
-          className="p-5 my-4 rounded-md border border-gray-300 flex flex-col gap-5"
+          className="flex flex-col p-5 my-4 border border-gray-300 rounded-md gap-5"
         >
           <div>
             <div className="font-bold">
@@ -49,12 +49,12 @@ export const MyOrders = () => {
               <Link
                 to={`/product/${product.product._id}`}
                 key={product.product._id}
-                className="flex gap-5 items-center"
+                className="flex items-center gap-5"
               >
                 <img
                   src={product.product.cover_img.path}
                   alt="product image"
-                  className="rounded w-50 h-50 object-contain"
+                  className="object-contain rounded w-50 h-50"
                 />
                 <div>
                   <div>Product Title: {product.product.name}</div>

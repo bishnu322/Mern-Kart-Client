@@ -8,8 +8,8 @@ const Sidebar = ({
   setToggleMenuBar?: (v: boolean) => void;
 }) => {
   return (
-    <div className="h-full w-full ">
-      <div className="flex items-center p-2  gap-1 justify-between">
+    <div className="w-full h-full ">
+      <div className="flex items-center justify-between p-2  gap-1">
         <div className="flex items-center gap-2">
           <img src={logo} alt="logo" className="w-10" />
           <h1 className="text-xl font-semibold text-red-600">
@@ -20,7 +20,7 @@ const Sidebar = ({
         {/* close button visible on small screens */}
         <button
           onClick={() => setToggleMenuBar && setToggleMenuBar(false)}
-          className="md:hidden p-2 text-gray-600 hover:text-gray-800"
+          className="p-2 text-gray-600 md:hidden hover:text-gray-800"
           aria-label="Close menu"
         >
           <FaTimes />
