@@ -3,20 +3,20 @@ import React from "react";
 const ContactUs: React.FC = () => {
   return (
     <>
-      <div className="w-full min-h-full bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <div className="w-full min-h-full px-4 py-12 bg-gray-200 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
               Contact Us
             </h1>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+            <p className="max-w-2xl mx-auto mt-4 text-xl text-gray-500">
               We'd love to hear from you. Get in touch with us!
             </p>
           </div>
 
           {/* <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              <div className="bg-white overflow-hidden  rounded-lg shadow-xl  ">
+              <div className="overflow-hidden bg-white rounded-lg shadow-xl ">
                 <div className="px-4 py-5 sm:p-6 ">
                   <form onSubmit={handleSubmit} className="space-y-6 ">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -35,7 +35,7 @@ const ContactUs: React.FC = () => {
                             required
                             value={formData.name}
                             onChange={handleChange}
-                            className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                            className="block w-full px-4 py-3 border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
                             placeholder="Your name"
                           />
                         </div>
@@ -56,7 +56,7 @@ const ContactUs: React.FC = () => {
                             required
                             value={formData.email}
                             onChange={handleChange}
-                            className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                            className="block w-full px-4 py-3 border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
                             placeholder="your.email@example.com"
                           />
                         </div>
@@ -77,7 +77,7 @@ const ContactUs: React.FC = () => {
                           required
                           value={formData.subject}
                           onChange={handleChange}
-                          className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                          className="block w-full px-4 py-3 border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
                         >
                           <option value="">Select a subject</option>
                           <option value="General Inquiry">
@@ -108,7 +108,7 @@ const ContactUs: React.FC = () => {
                           required
                           value={formData.message}
                           onChange={handleChange}
-                          className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                          className="block w-full px-4 py-3 border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
                           placeholder="How can we help you?"
                         ></textarea>
                       </div>
@@ -117,7 +117,7 @@ const ContactUs: React.FC = () => {
                     <div>
                       <button
                         type="submit"
-                        className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       >
                         Send Message
                       </button>
@@ -128,9 +128,9 @@ const ContactUs: React.FC = () => {
             </div>
           </div> */}
 
-          <div className="space-y-8 mt-5">
-            <div className="bg-white overflow-hidden shadow-xl rounded-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <div className="mt-5 space-y-8">
+            <div className="p-6 overflow-hidden bg-white rounded-lg shadow-xl">
+              <h2 className="mb-4 text-2xl font-bold text-gray-900">
                 Contact Information
               </h2>
 
@@ -138,7 +138,7 @@ const ContactUs: React.FC = () => {
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
                     <svg
-                      className="h-6 w-6 text-indigo-600"
+                      className="w-6 h-6 text-indigo-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -167,7 +167,7 @@ const ContactUs: React.FC = () => {
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
                     <svg
-                      className="h-6 w-6 text-indigo-600"
+                      className="w-6 h-6 text-indigo-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -192,7 +192,7 @@ const ContactUs: React.FC = () => {
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
                     <svg
-                      className="h-6 w-6 text-indigo-600"
+                      className="w-6 h-6 text-indigo-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -215,17 +215,17 @@ const ContactUs: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-16 bg-white shadow-lg rounded-lg p-8">
+          <div className="p-8 mt-16 bg-white rounded-lg shadow-lg">
             <div className="text-center">
               <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
                 Visit Our Office
               </h2>
-              <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+              <p className="max-w-2xl mx-auto mt-4 text-xl text-gray-500">
                 Feel free to drop by our shop
               </p>
             </div>
 
-            <div className="mt-12 h-96 rounded-lg overflow-hidden">
+            <div className="mt-12 overflow-hidden rounded-lg h-96">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d478.6534112084386!2d83.46455634733113!3d27.704455817138683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3996870010eb6457%3A0x8dee9cfce50e29dd!2sButwal%20hattbazzar%20line!5e1!3m2!1sen!2sus!4v1766225505963!5m2!1sen!2sus"
                 width="100%"

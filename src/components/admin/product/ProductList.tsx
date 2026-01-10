@@ -23,7 +23,7 @@ const ProductList = () => {
 
         <Input
           value={inputTempValue}
-          className="w-full border border-violet-600 p-2 rounded outline-none "
+          className="w-full p-2 border rounded outline-none border-violet-600 "
           placeholder="Search Product"
           onChange={(e) => setInputTempValue(e.target.value)}
         />

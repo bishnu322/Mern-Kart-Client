@@ -74,7 +74,7 @@ const EditCategory = () => {
               label="Name"
               labelHtmlFor="name"
               placeholder="Category name"
-              className="w-full border border-violet-600 p-2 rounded outline-none"
+              className="w-full p-2 border rounded outline-none border-violet-600"
               {...register("name")}
             />
           </div>
@@ -90,7 +90,7 @@ const EditCategory = () => {
             />
           </div>
 
-          <div className=" w-full">
+          <div className="w-full ">
             <Button type="submit">{isPending ? "Updating" : "Update"}</Button>
           </div>
         </form>

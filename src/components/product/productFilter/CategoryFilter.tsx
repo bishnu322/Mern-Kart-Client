@@ -20,7 +20,7 @@ const CategoryFilter: React.FC<IProps> = ({ handleFilterCategory }) => {
         (item: { _id: string; name: string; createdAt: string }) => (
           <div
             key={item.createdAt}
-            className=" p-1 rounded hover:bg-violet-200 hover:cursor-pointer flex items-start gap-2 "
+            className="flex items-start p-1 rounded  hover:bg-violet-200 hover:cursor-pointer gap-2"
           >
             <input
               type="radio"

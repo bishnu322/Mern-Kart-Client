@@ -26,7 +26,7 @@ export const TextArea: FC<ITextAreaProps> = ({
         <div className="flex gap-1">
           <label
             htmlFor={labelHtmlFor}
-            className="text-gray-800 font-semibold text-lg"
+            className="text-lg font-semibold text-gray-800"
           >
             {label}
           </label>
@@ -46,7 +46,7 @@ export const TextArea: FC<ITextAreaProps> = ({
       />
 
       <span>
-        {error && <p className="text-red-600 h-1 text-sm mt-1">{error}</p>}
+        {error && <p className="h-1 mt-1 text-sm text-red-600">{error}</p>}
       </span>
     </>
   );

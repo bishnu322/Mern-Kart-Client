@@ -30,7 +30,7 @@ const CategoryList = () => {
       <div>
         {/* render category */}
         {data.data.length > 0 && (
-          <div className=" mt-6 flex flex-col gap-2 sm:grid sm:grid-cols-3">
+          <div className="flex flex-col mt-6  gap-2 sm:grid sm:grid-cols-3">
             {data.data.map((category) => (
               <CategoryCard key={category._id} category={category} />
             ))}

@@ -28,14 +28,14 @@ const BrandList = () => {
   }, [tempSearch]);
 
   return (
-    <main className="w-full  flex flex-col gap-2">
+    <main className="flex flex-col w-full  gap-2">
       <AdminBodyTitle>Search Brand</AdminBodyTitle>
       <div className="mt-2 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3">
         {/* search button  */}
 
         <Input
           value={tempSearch}
-          className="w-full border border-violet-600 p-2 rounded outline-none "
+          className="w-full p-2 border rounded outline-none border-violet-600 "
           placeholder="Search Brand"
           onChange={(e) => setTempSearch(e.target.value)}
         />

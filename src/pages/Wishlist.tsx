@@ -57,7 +57,7 @@ const Wishlist = () => {
 
   if (!data?.data?.length)
     return (
-      <div className="w-full h-full flex flex-col justify-center items-center text-2xl font-bold text-red-600">
+      <div className="flex flex-col items-center justify-center w-full h-full text-2xl font-bold text-red-600">
         <p>wishlist is empty..</p>
         <p>Add some product to wishlist</p>
       </div>
@@ -73,8 +73,8 @@ const Wishlist = () => {
       {/* heading for wishlist */}
       <div className="flex justify-between">
         <div>
-          <h1 className="font-bold text-2xl text-violet-600">My Wishlist</h1>
-          <h4 className="font-semibold text-lg text-gray-800">
+          <h1 className="text-2xl font-bold text-violet-600">My Wishlist</h1>
+          <h4 className="text-lg font-semibold text-gray-800">
             Your wish listed product
           </h4>
         </div>
@@ -89,7 +89,7 @@ const Wishlist = () => {
       </div>
 
       {/* card design  */}
-      <div className="flex justify-center flex-wrap items-center sm:flex sm:flex-wrap sm:my-5 sm:justify-start ">
+      <div className="flex flex-wrap items-center justify-center sm:flex sm:flex-wrap sm:my-5 sm:justify-start ">
         {data.data.map((value) => (
           <div
             className="m-5  rounded   bg-purple-50 border border-violet-200 h-[300px] w-[250px]"
@@ -100,7 +100,7 @@ const Wishlist = () => {
             <div className="relative">
               <button
                 onClick={() => removeProduct(value._id)}
-                className="absolute right-2 top-2 transition-all duration-300  text-end bg-orange-500 p-2 rounded text-white hover:bg-red-600 cursor-pointer"
+                className="absolute p-2 text-white bg-orange-500 rounded cursor-pointer right-2 top-2 transition-all duration-300  text-end hover:bg-red-600"
               >
                 <FaRegTrashCan size={15} />
               </button>
@@ -113,7 +113,7 @@ const Wishlist = () => {
 
             {/* name */}
 
-            <div className="flex justify-between px-2 py-1 items-center">
+            <div className="flex items-center justify-between px-2 py-1">
               <h2 className="text-[16px] font-semibold">{value.name}</h2>
 
               {/* price */}

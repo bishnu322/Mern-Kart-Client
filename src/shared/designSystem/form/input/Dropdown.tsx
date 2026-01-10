@@ -23,7 +23,7 @@ const Dropdown: React.FC<IdropDownInput> = ({
       {label && (
         <label
           htmlFor={labelFor}
-          className="text-gray-800 font-semibold text-lg"
+          className="text-lg font-semibold text-gray-800"
         >
           {label}
         </label>
@@ -31,7 +31,7 @@ const Dropdown: React.FC<IdropDownInput> = ({
       <select
         name={name}
         {...rest}
-        className="w-full border border-violet-600 p-2 rounded outline-none"
+        className="w-full p-2 border rounded outline-none border-violet-600"
       >
         {data ? (
           data.map((item, index) => (

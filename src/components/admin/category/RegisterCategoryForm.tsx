@@ -61,7 +61,7 @@ const RegisterCategoryForm = () => {
           labelHtmlFor="name"
           placeholder="Category name"
           error={errors.name ? errors.name.message : ""}
-          className="w-full border border-violet-600 p-2 rounded outline-none"
+          className="w-full p-2 border rounded outline-none border-violet-600"
           {...register("name")}
         />
       </div>
@@ -78,7 +78,7 @@ const RegisterCategoryForm = () => {
         />
       </div>
 
-      <div className="mt-3 w-1/4 ">
+      <div className="w-1/4 mt-3 ">
         <Button type="submit">{isPending ? "Submitting" : "Submit"}</Button>
       </div>
     </form>

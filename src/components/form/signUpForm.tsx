@@ -52,7 +52,7 @@ const SignUpForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(signUpFormSubmitHandler)}>
-        <div className="mt-3 flex flex-col gap-2">
+        <div className="flex flex-col mt-3 gap-2">
           <div className="flex flex-col gap-1">
             {/* for first_name */}
 

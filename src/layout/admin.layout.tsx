@@ -28,13 +28,13 @@ const AdminLayout = () => {
   }, []);
 
   return (
-    <main className="h-screen flex">
+    <main className="flex h-screen">
       {/* sidebar */}
       {/* On mobile: when sidebar is open we render it as a fixed overlay and hide the outlet */}
       {isMobile && toggleMenuBar ? (
         <>
           {/* full-screen sidebar overlay on mobile */}
-          <div className="fixed inset-0 z-50 bg-white overflow-auto">
+          <div className="fixed inset-0 z-50 overflow-auto bg-white">
             <Sidebar setToggleMenuBar={setToggleMenuBar} />
           </div>
           {/* backdrop (kept for accessibility/fade; clicking it closes the menu) */}
@@ -53,12 +53,12 @@ const AdminLayout = () => {
           )}
 
           {/* nav & outlet */}
-          <div className="flex-1 flex-col overflow-auto">
-            <div className="border-b  mb-3 shadow border-gray-300 ">
+          <div className="flex-col flex-1 overflow-auto">
+            <div className="mb-3 border-b border-gray-300 shadow ">
               <AdminHeader setToggleMenuBar={setToggleMenuBar} />
             </div>
 
-            <div className="px-4 py-2 flex-1">
+            <div className="flex-1 px-4 py-2">
               <Outlet />
             </div>
           </div>

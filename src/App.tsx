@@ -30,7 +30,7 @@ import OrderPlace from "./pages/OrderPlace";
 
 function App() {
   return (
-    <main className="min-h-screen w-screen">
+    <main className="w-screen min-h-screen">
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />

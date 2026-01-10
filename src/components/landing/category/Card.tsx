@@ -13,10 +13,10 @@ interface IProps {
 
 const CategoryCard: React.FC<IProps> = ({ category }) => {
   return (
-    <div className=" bg-purple-50 border border-violet-200 p-3 rounded  cursor-pointer  hover:shadow-sm hover:shadow-gray-400 transition-all duration-200">
+    <div className="p-3 border rounded cursor-pointer  bg-purple-50 border-violet-200 hover:shadow-sm hover:shadow-gray-400 transition-all duration-200">
       <div className="flex gap-2">
         <MdOutlineCategory size={22} className="text-violet-500" />
-        <h2 className="text-bold text-violet-800 text-lg">{category.name}</h2>
+        <h2 className="text-lg text-bold text-violet-800">{category.name}</h2>
       </div>
       <div>
         <p className="text-sm text-gray-500 line-clamp-1">

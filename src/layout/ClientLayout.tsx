@@ -4,7 +4,7 @@ import Header from "../components/header";
 
 const ClientLayout = () => {
   return (
-    <main className="h-screen w-full flex flex-col">
+    <main className="flex flex-col w-full h-screen">
       {/* Fixed Header */}
       <div className="sticky top-0 z-50">
         <Header />

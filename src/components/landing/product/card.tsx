@@ -34,8 +34,8 @@ const ProductCard = ({ product }: IProductCardProps) => {
         />
       </div>
 
-      <div className="px-3 pb-3 flex flex-col gap-1">
-        <h2 className="text-md text-violet-800 font-semibold">
+      <div className="flex flex-col px-3 pb-3 gap-1">
+        <h2 className="font-semibold text-md text-violet-800">
           {product.name}
         </h2>
 
@@ -58,17 +58,17 @@ const ProductCard = ({ product }: IProductCardProps) => {
           </p>
         </div>
 
-        <div className="flex justify-end gap-2 mt-1">
+        <div className="flex justify-end mt-1 gap-2">
           <button
             onClick={() => mutate(product._id)}
             disabled={isPending}
-            className="disabled:cursor-not-allowed border border-gray-300 px-2 py-2 rounded hover:bg-black hover:text-white transition-all duration-300"
+            className="px-2 py-2 border border-gray-300 rounded disabled:cursor-not-allowed hover:bg-black hover:text-white transition-all duration-300"
           >
             {isPending ? "Adding..." : <FaHeart />}
           </button>
 
           <Link to={`/product/${product._id}?name=${product.name}`}>
-            <button className="border border-gray-300 px-2 py-2 rounded hover:bg-black hover:text-white transition-all duration-300">
+            <button className="px-2 py-2 border border-gray-300 rounded hover:bg-black hover:text-white transition-all duration-300">
               <FaEye />
             </button>
           </Link>

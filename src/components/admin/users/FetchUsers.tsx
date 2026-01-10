@@ -35,7 +35,7 @@ const FetchUsers = () => {
     columnHelper.accessor("s.n", {
       header: () => "S.N",
       cell: (info) => (
-        <span className="flex justify-center items-center">
+        <span className="flex items-center justify-center">
           {Number(info.cell.row.id) + 1}.
         </span>
       ),
@@ -64,7 +64,7 @@ const FetchUsers = () => {
     columnHelper.accessor("createdAt", {
       header: () => "Created At",
       cell: (info) => (
-        <span className="flex justify-center items-center">
+        <span className="flex items-center justify-center">
           {new Intl.DateTimeFormat("en-us", {
             year: "numeric",
             month: "short",
@@ -77,7 +77,7 @@ const FetchUsers = () => {
     columnHelper.accessor("updatedAt", {
       header: () => "Updated At",
       cell: (info) => (
-        <span className="flex justify-center items-center">
+        <span className="flex items-center justify-center">
           {new Intl.DateTimeFormat("en-us", {
             year: "numeric",
             month: "short",
